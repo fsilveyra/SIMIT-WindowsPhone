@@ -1,0 +1,314 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Simit.page.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+    <phone:PhoneApplicationPage.Resources>
+        <Color x:Key="verde_simit">#FF73CF17</Color>
+    </phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot es la cuadrícula raíz donde se coloca todo el contenido de la página-->
+    <Grid x:Name="LayoutRoot">
+        <!--
+        <Grid.Background>
+            <ImageBrush ImageSource="/image/background.png"></ImageBrush>
+        </Grid.Background>
+        -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--fragments-->
+        <!--******************************* fragment de consultas***************************************-->
+        <Grid x:Name="fragment_consultations" Grid.Row="1" MinHeight="642" VerticalAlignment="Top" Visibility="Visible">
+            <Grid.Background>
+                <ImageBrush ImageSource="/image/background_2.png"/>
+            </Grid.Background>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
+                    <Grid MinWidth="480">
+                        <StackPanel MinWidth="380">
+                            <Image Source="/image/simit_logoblanco.png" Width="160"></Image>
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Right">
+                            <Image x:Name="button_info_consultations" Source="/image/icon_info.png" Width="40" HorizontalAlignment="Left" Margin="30" Tap="button_info_Tap"></Image>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Margin="0,20,0,0">
+                    <TextBlock Text="Digite la información requerida para"
+                               TextWrapping="Wrap" Margin="30,0,30,0" HorizontalAlignment="Center"
+                               Foreground="Black" FontSize="22" FontWeight="SemiBold"></TextBlock>
+                    <TextBlock Text="consultar su estado de cuenta." 
+                               TextWrapping="Wrap" Margin="70,0,70,0" HorizontalAlignment="Center"
+                               Foreground="Black"  FontSize="22" FontWeight="SemiBold"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="45,30,45,0">
+                    <TextBlock Text="TIPO DE DOCUMENTO" FontSize="22" HorizontalAlignment="Left" 
+                               Foreground="#00a6a1"></TextBlock>
+                    <StackPanel x:Name="button_select_document" Background="#73cf17" Margin="0,10,0,0" MinHeight="50" VerticalAlignment="Center" 
+                                Orientation="Horizontal" Tap="button_select_document_Tap">
+                        <TextBlock x:Name="text_select_document" Text="CÉDULA DE CIUDADANíA" 
+                    		Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" 
+                    		FontSize="16" Width="260"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="70,0,0,0">
+                            <Image Source="/image/arrow_down_list_piker.png" HorizontalAlignment="Right" Width="30"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="45,25,45,0">
+                    <TextBlock Text="NÚMERO DE DOCUMENTO" FontSize="22" HorizontalAlignment="Left" Foreground="#00a6a1"/>
+                </StackPanel>
+                <TextBox MinWidth="200" MinHeight="50" Margin="32,0,32,0" TextChanged="TextBox_TextChanged" BorderBrush="Gray"/>
+                <Grid x:Name="button_accep_consultations" Margin="45,35,45,0"  Background="#73cf17"
+                            MinHeight="50" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="380" Width="390">
+                    <TextBlock  Foreground="Black" Text="CONSULTAR" FontSize="16"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+                </Grid>
+            </StackPanel>
+
+        </Grid>
+
+        <!-- ******************************fragment atention point****************************************-->
+        <Grid x:Name="fragment_point_atention" Grid.Row="1" VerticalAlignment="Top" MinHeight="642" Visibility="Collapsed" Background="White">
+            <StackPanel>
+                <Image x:Name="button_info_atention" Source="/image/icon_info.png" Width="40" HorizontalAlignment="Right" Margin="30" Tap="button_info_Tap"></Image>
+                <Image></Image>
+            </StackPanel>
+        </Grid>
+
+        <!--************************************fragment news**********************************************-->
+        <Grid x:Name="fragment_news" Grid.Row="1" VerticalAlignment="Top"  Visibility="Collapsed" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" VerticalAlignment="Top">
+                <StackPanel Orientation="Vertical" MinWidth="380" Background="#73cf17" Height="100" VerticalAlignment="Top">
+                    <Image Source="/image/logo_header.png" Width="160" HorizontalAlignment="Center" Height="100"></Image>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right">
+                    <Image Source="/image/icon_info.png" Width="40" HorizontalAlignment="Left" Margin="30" Tap="button_info_Tap"></Image>
+                </StackPanel>
+            </Grid>
+            <Grid Background="#452738" Grid.RowSpan="2" VerticalAlignment="Bottom">
+                <StackPanel >
+
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <!--************************************fragment share**********************************************-->
+        <Grid x:Name="fragment_share" Grid.Row="1" VerticalAlignment="Top" MinHeight="642" Visibility="Collapsed">
+            <Grid.Background>
+                <ImageBrush ImageSource="/image/background_2.png"></ImageBrush>
+            </Grid.Background>
+            <StackPanel>
+                <Image x:Name="button_info" Source="/image/icon_info.png" Width="40" HorizontalAlignment="Right" Margin="30" Tap="button_info_Tap"></Image>
+                <Image></Image>
+            </StackPanel>
+        </Grid>
+
+        <!--**********************************************************************************************-->
+        <!--botones del menu-->
+        <Grid x:Name="button_panel" Grid.Row="1" VerticalAlignment="Bottom" MinHeight="120" HorizontalAlignment="Left" MinWidth="480">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1" x:Name="arrow_atention" Height="15" Visibility="Collapsed">
+                    <Image Source="/image/arrow_up_menu.png" Height="15"></Image>
+                    </Grid>
+                    <Grid Grid.Column="2" Height="15" x:Name="arrow_news" Visibility="Collapsed">
+                        <Image Source="/image/arrow_up_menu.png" Height="15"></Image>
+                    </Grid>
+                    <Grid Grid.Column="3" x:Name="arrow_share" Height="15" Visibility="Collapsed">
+                        <Image Source="/image/arrow_up_menu.png" Height="15"></Image>
+                    </Grid>
+                    <Grid Height="15" x:Name="arrow_consultions">
+                        <Image Source="/image/arrow_up_menu.png" Height="15"></Image>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Background="#003938" MinWidth="480">
+                <StackPanel Orientation="Horizontal">
+                    <!--botton consultas-->
+                        <StackPanel x:Name="button_consultations" Orientation="Vertical" Tap="button_consultations_Tap" Margin="0,0,0,0">
+                            <StackPanel VerticalAlignment="Center" Height="120" Orientation="Horizontal">
+                                <StackPanel VerticalAlignment="Center" Margin="0,20,0,5" Width="108">
+                                    <Image x:Name="icon_consultions" Source="/image/Consultas_blanco.png" Height="58"></Image>
+                                    <TextBlock x:Name="text_consultions" Text="CONSULTAS" FontSize="16" Margin="0,10,0,0" 
+                                               HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Width="8">
+                                    <!--linea de color #002f2e-->
+                                    <Image x:Name="image_shadow_right_consultions" Source="/image/shadow right.png" 
+                                                Height="120" Width="8" Stretch="Fill" Visibility="Visible"></Image>
+                                </StackPanel>
+                            </StackPanel>
+                            <Grid x:Name="line_green_consultions" Background="#73cf17" VerticalAlignment="Bottom" 
+                                            Height="6" Visibility="Visible"></Grid>
+                        </StackPanel>
+                   
+                    <!--boton puntos de atención-->
+                    <StackPanel x:Name="button_atention" VerticalAlignment="Center" Tap="button_atention_Tap">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <StackPanel Width="8">
+                                <!--imagen con sombreado-->
+                                <Image x:Name="image_shadow_left_atention" Source="/image/shadow left.png" Height="120" Width="8" Stretch="Fill" Visibility="Collapsed"></Image>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Center" Margin="0,20,0,5" Width="108">
+                                <Image x:Name="icon_atention" Source="/image/Puntos_verde.png" Height="42" Margin="0,0,0,0"></Image>
+                                <TextBlock x:Name="text_atention" Text="PUNTOS DE ATENCIÓN" FontSize="16" TextWrapping="Wrap" 
+                                       Margin="0,5,0,0" HorizontalAlignment="Center"  Foreground="#73cf17"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Width="8" Height="120">
+                                <!--imagen con sombreado-->
+                                <Image x:Name="image_shadow_rigth_atention" Source="/image/shadow right.png" Height="120" Width="8" Stretch="Fill" Visibility="Collapsed"></Image>
+                            </StackPanel>
+                        </StackPanel >
+                        <Grid Height="6" >
+                            <Grid x:Name="line_green_atention" Background="#73cf17" VerticalAlignment="Bottom" Height="6" Visibility="Collapsed"></Grid>
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel  Orientation="Horizontal">
+                    <!--boton noticias-->
+                    <StackPanel x:Name="button_news" VerticalAlignment="Center" Tap="button_news_Tap">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <StackPanel Width="8">
+                                <!--imagen con sombreado-->
+                                <Image x:Name="image_shadow_left_news" Source="/image/shadow left.png" Height="120" Width="8" Stretch="Fill" Visibility="Collapsed"></Image>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Center" Margin="0,20,0,5" Width="108">
+                                <Image x:Name="icon_news" Source="/image/Noticias_verde.png" Height="58"></Image>
+                                <TextBlock x:Name="text_news" Text="NOTICIAS" FontSize="16" Margin="0,10,0,0" HorizontalAlignment="Center"  
+                                            Foreground="#73cf17"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Width="8">
+                                <!--imagen con sombreado-->
+                                <Image x:Name="image_shadow_rigth_news" Source="/image/shadow right.png" Height="120" Width="8" Stretch="Fill" Visibility="Collapsed"></Image>
+                            </StackPanel>
+                        </StackPanel>
+                        <Grid Height="6">
+                            <Grid x:Name="line_green_news" Background="#73cf17" VerticalAlignment="Bottom" Height="6" Visibility="Collapsed"></Grid>
+                        </Grid>
+                    </StackPanel>
+                    <!--boton compartir-->
+                    <StackPanel x:Name="button_share" VerticalAlignment="Center" Tap="button_share_Tap">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <StackPanel Width="8">
+                                <!--imagen con sombreado-->
+                                <Image x:Name="image_shadow_left_share" Source="/image/shadow left.png" Height="120" Width="8" Stretch="Fill" Visibility="Collapsed"></Image>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Center" Margin="0,20,0,5" Width="108">
+                                <Image x:Name="icon_share" Source="/image/Compartir_verde.png" Height="58"></Image>
+                                <TextBlock x:Name="text_share" Text="COMPARTIR" FontSize="16" Margin="0,10,0,0" HorizontalAlignment="Center" 
+                                                Foreground="#73cf17"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <Grid Height="6">
+                            <Grid x:Name="line_green_share" Background="#73cf17" VerticalAlignment="Bottom" Height="6" Visibility="Collapsed"></Grid>
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <!--pop up de mensajes -->
+        <!--******************************************* pop up de informacion ******************************************-->
+        <Popup x:Name="popup_info" VerticalAlignment="Center" IsOpen="False">
+            <Grid Height="768"  Width="480">
+                <Grid.Background>
+                    <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
+                </Grid.Background>
+                <StackPanel HorizontalAlignment="Center" Orientation="Vertical" VerticalAlignment="Center"
+                           Height="Auto" Background="White" Margin="15,0,15,0">
+                    <StackPanel Orientation="Vertical"
+                                Width="Auto" Height="Auto" Background="White" VerticalAlignment="Center">
+                        <StackPanel x:Name="button_close_popup_info" Orientation="Vertical" Width="Auto" Height="Auto" Background="White" HorizontalAlignment="Right" Margin="10"
+                                   Tap="button_close_popup_info_Tap">
+                            <Image Source="/image/icon_cross.png" MaxWidth="40" ></Image>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Width="Auto" Height="Auto" Background="White" HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" Width="Auto" Height="Auto" Background="White">
+                                <Image Source="/image/simit_logocolores.png" MaxWidth="160" Margin="5,5,15,5"></Image>
+                                <Image Source="/image/logo_federacion.png" MaxWidth="180"  Margin="15,5,5,5"></Image>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Width="Auto" Height="Auto" Background="White" HorizontalAlignment="Right">
+                        </StackPanel>
+                    </StackPanel>
+                    <TextBlock x:Name="textPopUp"
+                               Text="Bienvenido a la Aplicación del Sistema Integrado de Información sobre Multas y Sanciones por Infragciones de Tráncito - Simit.
+                               
+                                    A través de esta aplicación podrá consultar sus infracciones de  tráncito pendientes y el estado de cuenta. Así mismo podrá consultar  puntos de atención y noticias actualizadas del sistema." 
+                               Foreground="Gray" FontSize="22"  TextWrapping="Wrap" Margin="25,10,25,15"/>
+
+                </StackPanel>
+            </Grid>
+        </Popup>
+
+        <!--********************************pop up de Lista de busqueda ************************************ -->
+        <Popup x:Name="popup_list_select_document" VerticalAlignment="Center" IsOpen="False">
+            <Grid Height="768"  Width="480">
+                <Grid.Background>
+                    <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
+                </Grid.Background>
+                <StackPanel HorizontalAlignment="Center" Orientation="Vertical" VerticalAlignment="Center"
+                           Height="Auto" Width="350" Background="White" Margin="15,0,15,0">
+                    <ListBox x:Name="list_select_document" Tap="list_selec_document_Tap" MinHeight="450">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel  Orientation="Vertical" Width="Auto" Background="White" Name="Line">
+                                    <TextBlock Text="{Binding NameDocument}" FontSize="22" Foreground="Black" 
+                                    VerticalAlignment="Center" Height="35" Margin="20"/>
+                                    <Grid Height="1" Width="480" Background="Gray"></Grid>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Grid>
+        </Popup>
+
+
+        <!-- *********************************************************************************************************************-->
+
+        <Grid x:Name="background_progress_bar" Visibility="Collapsed">
+            <Grid.Background>
+                <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Cargando..." Margin="180,300,180,430" Grid.Row="1" FontSize="23" HorizontalAlignment="Center" Foreground="White"
+                       ></TextBlock>
+            <ProgressBar IsIndeterminate="True" Maximum="100" Value="30" Margin="90,342,87,330" Background="#FF7C8386" Foreground="White" Grid.Row="1" />
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>
