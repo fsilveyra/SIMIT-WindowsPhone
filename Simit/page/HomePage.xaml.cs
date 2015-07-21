@@ -11,6 +11,10 @@ using System.Threading;
 using Simit.classAux;
 using Simit.data;
 using Simit.entities;
+using System.Xml.Linq;
+using Microsoft.Phone.Controls.Maps;
+using System.Windows.Media;
+using Microsoft.Phone.Controls.Maps.Platform;
 
 namespace Simit.page
 {
@@ -32,6 +36,12 @@ namespace Simit.page
         private static string COLOR_WHITE = "#ffffff";
         private static String COLOR_GREEN = "#73cf17";
 
+        //para la ubicacion
+        private static String LATITUDE = "-34.603623";//valor por defecto
+        private static String LONGITUDE = "-58.381528";//valor por defecto
+        private static String LATITUDE1 = "-34.603630";//valor por defecto
+        private static String LONGITUDE1 = "-58.381528";//valor por defecto
+
         //list document prueba
         List<TypeDocument> listDocument = null;//inicializo la lista
         
@@ -41,10 +51,16 @@ namespace Simit.page
         {
             InitializeComponent();
             listDocument = new List<TypeDocument>();
+            map_ubication.Mode = new RoadMode();
+            map_ubication.ZoomLevel = 15;
+
             this.Loaded += (s, e) =>
            {
+               openBackgroundProgressBar();
                Thread.Sleep(3000);
                closeBackgroundProgressBar();
+
+               
            };
         }
 
@@ -203,6 +219,16 @@ namespace Simit.page
             fragment_point_atention.Visibility = Visibility.Visible;
             arrow_atention.Visibility = Visibility.Visible;
             buttonSelect = 2;
+
+            //hago el llamado
+            //openBackgroundProgressBar();
+            ConnectionManager.getIntance().getDataPointsAtention("11");
+            markerUbicatioPoints("", "");
+        }
+
+        private void DoStuff(XDocument xml)
+        {
+            //parse the xml result here
         }
 
         private void button_news_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -240,6 +266,7 @@ namespace Simit.page
             loadListDocument(); //cargo la lista manualmente
             list_select_document.ItemsSource = listDocument;
             popup_list_select_document.IsOpen = true; //abro el popup de lista
+            grid_popup_list.Visibility = Visibility.Visible;
         }
 
         /*toma el item seleccionado
@@ -252,8 +279,48 @@ namespace Simit.page
                 text_select_document.Text = ((TypeDocument)list_select_document.SelectedValue).NameDocument;
             }
             popup_list_select_document.IsOpen = false; //cierro el popup de lista
+            grid_popup_list.Visibility = Visibility.Collapsed;
         }
 
-        
+        //marcar los puntos de atension
+        private void markerUbicatioPoints(String latitude, String longitude)
+        {
+            Pushpin pushpin = new Pushpin();//marcador en el mapa
+            Pushpin pushpin2 = new Pushpin();//marcador en el mapa
+            String latitude1 = LATITUDE1;
+            String longitude1 = LONGITUDE1;
+            if (latitude == null || latitude.Equals("") || longitude == null || longitude.Equals(""))
+            {
+                //valores por defecto para la ubicacion, si la misma es nula o el nombre es nulo
+                latitude = LATITUDE;
+                longitude = LONGITUDE;
+            }
+
+            //seteo el color del pushpin o marcador
+            pushpin.Background = new SolidColorBrush(Colors.Red);
+            pushpin2.Background = new SolidColorBrush(Colors.Blue);
+            //seteo la leyenda con el nombre
+            Location location = new Location();
+            Location location1 = new Location();
+            //seteo las coordenadas
+            location.Latitude = Convert.ToDouble(latitude.Replace(".", ","));
+            location.Longitude = Convert.ToDouble(longitude.Replace(".", ","));
+            location.Latitude = Convert.ToDouble(latitude1.Replace(".", ","));
+            location.Longitude = Convert.ToDouble(longitude1.Replace(".", ","));
+            //seteo al pushpin las coordenadas
+            pushpin.Location = location;
+            pushpin2.Location = location1;
+            //seteo la localizacion en el mapa con el zoom
+            map_ubication.SetView(location, 17);
+            //agrego al mapa el pushpin
+            map_ubication.Children.Add(pushpin);
+            map_ubication.Children.Add(pushpin2);
+        }
+
+        private void button_select_point(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            //despliega la lista con los departamentos disponibles
+        }
+
     }
 }

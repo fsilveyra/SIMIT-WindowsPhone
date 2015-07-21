@@ -92,8 +92,16 @@
     <Compile Include="classAux\ImageLoader.cs" />
     <Compile Include="data\ManagerData.cs" />
     <Compile Include="entities\TypeDocument.cs" />
+    <Compile Include="events\EventResponseConnection.cs" />
+    <Compile Include="events\EventResponseData.cs" />
+    <Compile Include="net\ConnectionManager.cs" />
     <Compile Include="page\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\GetPointsService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="SplashScreen.xaml.cs">
       <DependentUpon>SplashScreen.xaml</DependentUpon>
@@ -121,6 +129,10 @@
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\GetPointsService\WsPuntosAtencion.wsdl" />
+    <None Include="Service References\GetPointsService\WsPuntosAtencion.xsd" />
+    <Content Include="image\Background_panel_share.png" />
+    <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationIcon.png">
@@ -159,9 +171,20 @@
     <Content Include="image\simit_logoblanco.png" />
     <Content Include="image\simit_logocolores.png" />
     <Content Include="image\SplashScreenImage.png" />
+    <None Include="Service References\GetPointsService\configuration91.svcinfo" />
+    <None Include="Service References\GetPointsService\configuration.svcinfo" />
+    <None Include="Service References\GetPointsService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\GetPointsService\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
