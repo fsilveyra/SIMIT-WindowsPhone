@@ -15,6 +15,7 @@ using System.Xml.Linq;
 using Microsoft.Phone.Controls.Maps;
 using System.Windows.Media;
 using Microsoft.Phone.Controls.Maps.Platform;
+using Facebook.Client;
 
 namespace Simit.page
 {
@@ -86,12 +87,12 @@ namespace Simit.page
 
         private void button_info_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            popup_info.IsOpen = true;
+            popup_info.Visibility = Visibility.Visible;
         }
 
         private void button_close_popup_info_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            popup_info.IsOpen = false;
+            popup_info.Visibility = Visibility.Collapsed;
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -321,6 +322,15 @@ namespace Simit.page
         {
             //despliega la lista con los departamentos disponibles
         }
+
+        private void button_share_facebook_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            //Facebook.Client.Session.ShowFeedDialog(null,null, null, null,"linkDescription=Simit",null);
+            //Facebook.Client.Session.ShowAppRequestsDialog(null,"App Simit", null);
+            Session.ShowAppRequestDialogViaBrowser("Test Message", "test title");
+        }
+
+         
 
     }
 }

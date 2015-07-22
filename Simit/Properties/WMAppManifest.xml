@@ -23,7 +23,7 @@
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="SplashScreen.xaml" />
-    </Tasks>
+          </Tasks>
     <Tokens>
       <PrimaryToken TokenID="SimitToken" TaskName="_default">
         <TemplateFlip>
@@ -43,9 +43,13 @@
         </TemplateFlip>
       </PrimaryToken>
     </Tokens>
+    <Extensions>
+      <Protocol Name="1678522302379601" NavUriFragment="encodedLaunchUri=%s" TaskID="_default"/>
+      <Protocol Name="612a770e-09f8-418e-a897-81d571155b86" NavUriFragment="encodedLaunchUri=%s" TaskID="_default"/>
+    </Extensions>
     <ScreenResolutions>
       <ScreenResolution Name="ID_RESOLUTION_WVGA" />
       <ScreenResolution Name="ID_RESOLUTION_WXGA" />
     </ScreenResolutions>
-  </App>
+        </App>
 </Deployment>

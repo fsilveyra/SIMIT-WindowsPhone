@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Facebook.Client;
 
 namespace Simit
 {
@@ -56,7 +57,15 @@ namespace Simit
                 // y consumirán energía de la batería cuando el usuario no esté usando el teléfono.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
+             // You can setup a event handler to be called back when the authentication has finished
+          
+            //Facebook.Client.Session.OnFacebookAuthenticationFinished += OnFacebookAuthenticationFinished;
+           // RootFrame.UriMapper = new FacebookUriMapper();
+        }
 
+        private void OnFacebookAuthenticationFinished(AccessTokenData session)
+        {
+           
         }
 
         // Código para ejecutar cuando la aplicación se inicia (p.ej. a partir de Inicio)

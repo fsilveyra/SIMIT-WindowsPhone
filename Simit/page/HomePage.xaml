@@ -174,7 +174,7 @@
                                FontSize="18" HorizontalAlignment="Right" Margin="5"></TextBlock>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Image Source="/image/btnfacebook1.png" Margin="35,5,35,5"></Image>
+                    <Image x:Name="button_share_facebook" Source="/image/btnfacebook1.png" Margin="35,5,35,5" Tap="button_share_facebook_Tap"></Image>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Image Source="/image/btntwitter1.png" Margin="35,5,35,5"></Image>
@@ -329,45 +329,49 @@
 
         <!--pop up de mensajes -->
         <!--******************************************* pop up de informacion ******************************************-->
-        <Grid Grid.RowSpan="2">
-        <Popup x:Name="popup_info" VerticalAlignment="Center" IsOpen="False">
-            <Grid Height="768"  Width="480">
-                <Grid.Background>
-                    <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
-                </Grid.Background>
-                <StackPanel HorizontalAlignment="Center" Orientation="Vertical" VerticalAlignment="Center"
+        <Grid x:Name="popup_info" Grid.RowSpan="2" Visibility="Collapsed">
+            <Grid.Background>
+                <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
+            </Grid.Background>
+            <!--
+        <Popup x:Name="popup_info" IsOpen="False">
+            <Grid>
+                
+                
+            </Grid>
+        </Popup>
+            -->
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical" VerticalAlignment="Center"
                            Height="Auto" Background="White" Margin="15,0,15,0">
-                    <StackPanel Orientation="Vertical"
+                <StackPanel Orientation="Vertical"
                                 Width="Auto" Height="Auto" Background="White" VerticalAlignment="Center">
-                        <StackPanel x:Name="button_close_popup_info" Orientation="Vertical" Width="Auto" Height="Auto" Background="White" HorizontalAlignment="Right" Margin="10"
+                    <StackPanel x:Name="button_close_popup_info" Orientation="Vertical" Width="Auto" Height="Auto" Background="White" HorizontalAlignment="Right" Margin="10"
                                    Tap="button_close_popup_info_Tap">
-                            <Image Source="/image/icon_cross.png" MaxWidth="40" ></Image>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Width="Auto" Height="Auto" Background="White" HorizontalAlignment="Center">
-                            <StackPanel Orientation="Horizontal" Width="Auto" Height="Auto" Background="White">
-                                <Image Source="/image/simit_logocolores.png" MaxWidth="160" Margin="5,5,15,5"></Image>
-                                <Image Source="/image/logo_federacion.png" MaxWidth="180"  Margin="15,5,5,5"></Image>
-                            </StackPanel>
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical" Width="Auto" Height="Auto" Background="White" HorizontalAlignment="Right">
+                        <Image Source="/image/icon_cross.png" MaxWidth="40" ></Image>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Width="Auto" Height="Auto" Background="White" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Width="Auto" Height="Auto" Background="White">
+                            <Image Source="/image/simit_logocolores.png" MaxWidth="160" Margin="5,5,15,5"></Image>
+                            <Image Source="/image/logo_federacion.png" MaxWidth="180"  Margin="15,5,5,5"></Image>
                         </StackPanel>
                     </StackPanel>
-                    <TextBlock x:Name="textPopUp"
+                    <StackPanel Orientation="Vertical" Width="Auto" Height="Auto" Background="White" HorizontalAlignment="Right">
+                    </StackPanel>
+                </StackPanel>
+                <TextBlock x:Name="textPopUp"
                                Text="Bienvenido a la Aplicación del Sistema Integrado de Información sobre Multas y Sanciones por Infragciones de Tráncito - Simit.
                                
                                     A través de esta aplicación podrá consultar sus infracciones de  tráncito pendientes y el estado de cuenta. Así mismo podrá consultar  puntos de atención y noticias actualizadas del sistema." 
                                Foreground="Gray" FontSize="22"  TextWrapping="Wrap" Margin="25,10,25,15"/>
 
-                </StackPanel>
-            </Grid>
-        </Popup>
+            </StackPanel>
         </Grid>
         <!--********************************pop up de Lista de busqueda ************************************ -->
         <Grid Grid.RowSpan="2" x:Name="grid_popup_list" Visibility="Collapsed">
             <Grid.Background>
                 <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
             </Grid.Background>
-            <Popup x:Name="popup_list_select_document" IsOpen="False">
+            <Popup x:Name="popup_list_select_document" IsOpen="False" Height="550" Width="300" VerticalAlignment="Top" Margin="0,50,0,0">
                 <Grid Background="White" >
                  <ListBox x:Name="list_select_document" Tap="list_selec_document_Tap">
                         <ListBox.ItemTemplate>
@@ -375,7 +379,7 @@
                                 <StackPanel  Orientation="Vertical" Background="White" Name="Line">
                                     <TextBlock Text="{Binding NameDocument}" FontSize="22" Foreground="Black" 
                                     VerticalAlignment="Center" Height="35" Margin="20"/>
-                                    <Grid Height="1" Background="Gray"></Grid>
+                                    <Grid Height="1" Background="Gray" Width="300"></Grid>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

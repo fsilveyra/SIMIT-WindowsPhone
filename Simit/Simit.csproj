@@ -82,6 +82,9 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Facebook.Client">
+      <HintPath>..\packages\Facebook.Client.1.0.4\lib\wp8\Facebook.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Maps, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
   </ItemGroup>
@@ -125,12 +128,14 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\GetPointsService\WsPuntosAtencion.wsdl" />
     <None Include="Service References\GetPointsService\WsPuntosAtencion.xsd" />
+    <Content Include="FacebookConfig.xml" />
     <Content Include="image\Background_panel_share.png" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
