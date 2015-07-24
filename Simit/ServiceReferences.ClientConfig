@@ -4,14 +4,15 @@
             <basicHttpBinding>
                 <binding name="WsPuntosAtencionPortBinding" maxBufferSize="2147483647"
                     maxReceivedMessageSize="2147483647">
-                    <security mode="None" />
+                  <security mode="none">
+                  </security>
                 </binding>
             </basicHttpBinding>
         </bindings>
         <client>
             <endpoint address="http://181.48.11.4:80/ServiciosSimit/WsPuntosAtencion"
                 binding="basicHttpBinding" bindingConfiguration="WsPuntosAtencionPortBinding"
-                contract="GetPointsService.WsPuntosAtencion" name="WsPuntosAtencionPort" />
+                contract="GetPointsService.WsPuntosAtencion" name="WsPuntosAtencionPort"/>
         </client>
     </system.serviceModel>
 </configuration>

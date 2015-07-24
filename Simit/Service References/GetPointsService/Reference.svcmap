@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b219d5e7-7d0f-4217-a751-8990597d0604" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="6043538b-3be3-41fc-af5f-041e9b2856a3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -9,7 +9,7 @@
     <GenerateMessageContracts>false</GenerateMessageContracts>
     <NamespaceMappings />
     <CollectionMappings>
-      <CollectionMapping TypeName="System.Collections.ObjectModel.Collection`1" Category="List" />
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
     </CollectionMappings>
     <GenerateSerializableTypes>false</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
@@ -23,8 +23,8 @@
     <MetadataSource Address="https://181.48.11.4/ServiciosSimit/WsPuntosAtencion?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="WsPuntosAtencion.xsd" MetadataType="Schema" ID="8bd9a460-e9e8-4c45-a8cb-618d3e05411b" SourceId="1" SourceUrl="https://181.48.11.4/ServiciosSimit/WsPuntosAtencion?xsd=1" />
-    <MetadataFile FileName="WsPuntosAtencion.wsdl" MetadataType="Wsdl" ID="a546f540-a6e8-47a2-b76a-1a3a59083780" SourceId="1" SourceUrl="https://181.48.11.4/ServiciosSimit/WsPuntosAtencion?wsdl" />
+    <MetadataFile FileName="WsPuntosAtencion.xsd" MetadataType="Schema" ID="10f2f379-53cf-46aa-8bea-e019a3fb2307" SourceId="1" SourceUrl="https://181.48.11.4/ServiciosSimit/WsPuntosAtencion?xsd=1" />
+    <MetadataFile FileName="WsPuntosAtencion.wsdl" MetadataType="Wsdl" ID="29cf5e42-9ba6-4ec1-a5a9-0215ff00cdee" SourceId="1" SourceUrl="https://181.48.11.4/ServiciosSimit/WsPuntosAtencion?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

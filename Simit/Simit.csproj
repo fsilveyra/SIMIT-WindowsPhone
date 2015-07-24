@@ -85,8 +85,20 @@
     <Reference Include="Facebook.Client">
       <HintPath>..\packages\Facebook.Client.1.0.4\lib\wp8\Facebook.Client.dll</HintPath>
     </Reference>
+    <Reference Include="Hammock.WindowsPhone">
+      <HintPath>..\packages\TweetSharp.2.3.1\lib\sl4-wp\Hammock.WindowsPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib.WindowsPhone">
+      <HintPath>..\packages\TweetSharp.2.3.1\lib\sl4-wp\ICSharpCode.SharpZipLib.WindowsPhone.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Maps, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\TweetSharp.2.3.1\lib\sl4-wp\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="TweetSharp.WindowsPhone">
+      <HintPath>..\packages\TweetSharp.2.3.1\lib\sl4-wp\TweetSharp.WindowsPhone.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -100,6 +112,11 @@
     <Compile Include="net\ConnectionManager.cs" />
     <Compile Include="page\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="resources\string\StringResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringResource.resx</DependentUpon>
     </Compile>
     <Compile Include="Service References\GetPointsService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -133,10 +150,13 @@
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="FacebookConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="image\Background_panel_share.png" />
     <None Include="Service References\GetPointsService\WsPuntosAtencion.wsdl" />
     <None Include="Service References\GetPointsService\WsPuntosAtencion.xsd" />
-    <Content Include="FacebookConfig.xml" />
-    <Content Include="image\Background_panel_share.png" />
+    <Content Include="image\logo_twitter.png" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
@@ -185,10 +205,24 @@
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="resources\string\StringResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="resources\color\" />
+  </ItemGroup>
+  <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\GetPointsService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="MSAdvertising, Version=6.1">
+      <Name>Microsoft Advertising SDK for Windows Phone 8 %28XAML%29</Name>
+    </SDKReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

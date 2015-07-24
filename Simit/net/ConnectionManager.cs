@@ -14,11 +14,13 @@ using System.IO;
 using Simit.classAux;
 using System.Windows.Resources;
 using Simit.data;
-
+using System.Net.Sockets;
 
 using System.Text;
 using System.Xml.Linq;
 using Microsoft.Phone.Reactive;
+using System.Net;
+
 namespace Simit.data
 {
     public class ConnectionManager
@@ -86,7 +88,7 @@ namespace Simit.data
         String postDataSendRequestCoupon = null;
 
         //Simit
-       
+        private static String URL_SERVEICE_GET_POINTS_ATENTION = "https://181.48.11.4/ServiciosSimit/WsPuntosAtencion?wsdl";
 
         //eventos de respuesta
         public event EventHandler<EventResponseConnection> getQuestionCompleted = null;
@@ -195,13 +197,30 @@ namespace Simit.data
             getAccessTypesCompleted = null;
         }
 
-            public void getDataPointsAtention(String code)
-            {
-                GetPointsService.WsPuntosAtencionClient getPointsService = new GetPointsService.WsPuntosAtencionClient();
-                getPointsService.BuscarPuntosAsync(code);
-                getPointsService.BuscarPuntosCompleted += getPointsService_BuscarPuntosCompleted;
-            }
-        
+        public void getDataPointsAtention(String code)
+        {
+            
+            GetPointsService.WsPuntosAtencionClient getPointsService = new GetPointsService.WsPuntosAtencionClient();
+            getPointsService.BuscarPuntosCompleted += getPointsService_BuscarPuntosCompleted;
+            getPointsService.BuscarPuntosAsync(code);
+             
+            
+            /*
+            string oRequest = "";
+            oRequest = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"http://Servicios/\">";
+            oRequest = oRequest + "<soapenv:Header/>";
+            oRequest = oRequest + "<soapenv:Body>";
+            oRequest = oRequest + "<ser:BuscarPuntos>";
+            oRequest = oRequest + "<CodDepartamento>" + code + "</CodDepartamento>";
+            oRequest = oRequest + "/<ser:BuscarPuntos>";
+            oRequest = oRequest + "</soapenv:Body>";
+            oRequest = oRequest + "</soapenv:Envelope>";
+            */
+           
+
+          
+        }
+
         void getPointsService_BuscarPuntosCompleted(object sender, GetPointsService.BuscarPuntosCompletedEventArgs e)
         {
             int i = 0;

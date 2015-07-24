@@ -176,11 +176,11 @@
                 <Grid Grid.Row="1">
                     <Image x:Name="button_share_facebook" Source="/image/btnfacebook1.png" Margin="35,5,35,5" Tap="button_share_facebook_Tap"></Image>
                 </Grid>
-                <Grid Grid.Row="2">
-                    <Image Source="/image/btntwitter1.png" Margin="35,5,35,5"></Image>
+                <Grid Grid.Row="2" Tap="button_share_twitter_Tap">
+                    <Image x:Name="button_share_twitter" Source="/image/btntwitter1.png" Margin="35,5,35,5"></Image>
                 </Grid>
                 <Grid Grid.Row="3"  Margin="0,0,0,40">
-                    <Image Source="/image/btncorreo.png" Margin="35,5,35,0"></Image>
+                    <Image Source="/image/btncorreo.png" Margin="35,5,35,0" ></Image>
                 </Grid>
                 <Grid Grid.Row="4" Margin="0,10,0,0">
                     <StackPanel Margin="35,0,35,0">
@@ -327,8 +327,63 @@
             </Grid>
         </Grid>
 
+        <!--******************************************* dialog twitter ******************************************-->
+        <!-- dialog twiwtter-->
+        <Grid Grid.RowSpan="2" Visibility="Collapsed" x:Name="dialogTwitter">
+            <Grid.Background>
+                <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
+            </Grid.Background>
+            <Grid Background="White" Margin="50">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="1"></RowDefinition>
+                    <RowDefinition Height="10*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" x:Name="buttonCancel" Tap="buttonCancel_Tap">
+                        <TextBlock Foreground="Gray" Text="Cancelar" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Image Source="/image/logo_twitter.png" Width="60" HorizontalAlignment="Center"></Image>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <TextBlock Text="Twitter" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Gray" FontWeight="Medium"></TextBlock>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Column="2" x:Name="button_accept_twiter" Tap="button_accept_twiter_Tap">
+                        <TextBlock Foreground="Gray" Text="Aceptar" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1" Background="Black"></Grid>
+                <Grid Grid.Row="2">
+                    <TextBox x:Name="textTwitterImput" Foreground="Black" Margin="10" FontSize="20" TextWrapping="Wrap"></TextBox>
+                </Grid>
+            </Grid>
+        </Grid>
+        
+        <!-- ewb view twitter-->
+        <Grid Grid.RowSpan="2" Visibility="Collapsed" x:Name="webView">
+            <Grid.Background>
+                <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
+            </Grid.Background>
+            <Grid Margin="50">
+                <phone:WebBrowser Name="Browser" Grid.Row="1"  Background="Aqua" />
+            </Grid>
+        </Grid>
+
         <!--pop up de mensajes -->
         <!--******************************************* pop up de informacion ******************************************-->
+
         <Grid x:Name="popup_info" Grid.RowSpan="2" Visibility="Collapsed">
             <Grid.Background>
                 <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />

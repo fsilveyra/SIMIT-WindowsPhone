@@ -16,6 +16,12 @@ using Microsoft.Phone.Controls.Maps;
 using System.Windows.Media;
 using Microsoft.Phone.Controls.Maps.Platform;
 using Facebook.Client;
+using Simit.resources.@string;
+using TweetSharp;
+
+using TweetSharp.Model;
+using Hammock.Authentication.OAuth;
+using Hammock;
 
 namespace Simit.page
 {
@@ -48,6 +54,11 @@ namespace Simit.page
         
         private int buttonSelect = 1; //identifica el boton activo
 
+        //twitter
+        private String AccessToken = null;
+        private String AccessTokenSecret = null;
+        TwitterService service = new TwitterService(resources.@string.StringResource.Consumer_Key_twitter, resources.@string.StringResource.Consumer_Secret_twitter);
+
         public HomePage()
         {
             InitializeComponent();
@@ -67,11 +78,20 @@ namespace Simit.page
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
-            e.Cancel = false;
-            //cierro la aplicacion eliminando todas las paginas abiertas
-            while (NavigationService.RemoveBackEntry() != null)
+            if (webView.Visibility == Visibility.Visible || dialogTwitter.Visibility == Visibility.Visible)
             {
-                NavigationService.RemoveBackEntry();
+                webView.Visibility = Visibility.Collapsed;
+                dialogTwitter.Visibility = Visibility.Collapsed;
+                e.Cancel = true;
+            }
+            else
+            {
+                e.Cancel = false;
+                //cierro la aplicacion eliminando todas las paginas abiertas
+                while (NavigationService.RemoveBackEntry() != null)
+                {
+                    NavigationService.RemoveBackEntry();
+                }
             }
         }
 
@@ -224,6 +244,7 @@ namespace Simit.page
             //hago el llamado
             //openBackgroundProgressBar();
             ConnectionManager.getIntance().getDataPointsAtention("11");
+            //paso una lista con todos los puntos de atension
             markerUbicatioPoints("", "");
         }
 
@@ -325,12 +346,143 @@ namespace Simit.page
 
         private void button_share_facebook_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            //Facebook.Client.Session.ShowFeedDialog(null,null, null, null,"linkDescription=Simit",null);
-            //Facebook.Client.Session.ShowAppRequestsDialog(null,"App Simit", null);
-            Session.ShowAppRequestDialogViaBrowser("Test Message", "test title");
+            //realiza el comentario en facebook y comparte el enlace
+            Facebook.Client.Session.ShowFeedDialog(null, resources.@string.StringResource.url_site_simit,resources.@string.StringResource.app_name
+                            ,resources.@string.StringResource.dialog_share_facebook, null, null);
         }
 
-         
+        private void button_share_twitter_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            dialogTwitter.Visibility = Visibility.Visible;
+            textTwitterImput.Text = resources.@string.StringResource.dialog_share_facebook;
+            /*
+            // Pass your credentials to the service
+            TwitterService service = new TwitterService("oyPeJmke0eto8rxZZuOBzrNim", "dOh3sS9pNzzhsyPocKFg7Be51l9Q60KvaE1UoTBeK2Q0VEqX02");
+            service.AuthenticateWith("2174228179-s6KJ4qvQxrViumDaVXtJo0GoSjw8I97cuYypSss", "7eL22tqKXXtpOva3UdpsSk0qGdsgaRQ6J6Cg9SlxzkccE");
+            //var tweets = service.ListTweetsOnHomeTimeline(new ListTweetsOnHomeTimelineOptions());
+            //service.ListTweetsOnHomeTimeline(new ListTweetsOnHomeTimelineOptions(), null);
+            
+            service.SendTweet(new SendTweetOptions { Status = "Consulte en nuestra app información importante de los organismos de transito http://www.simit.org.co" }, (tweet, response) =>
+            {
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        //TwitterStatus tweet = status;
+                         
+                    });
+                }
+                else
+                {
+                    throw new Exception(response.StatusCode.ToString());
+                }
+            });
 
+           
+             
+            //ScreenName is the profile name of the twitter user. 
+            */
+        }
+
+        private void buttonCancel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            dialogTwitter.Visibility = Visibility.Collapsed;
+        }
+
+        private void button_accept_twiter_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (textTwitterImput.Text.Length > 140)
+            {
+                MessageBox.Show(resources.@string.StringResource.text_dialog_twitter);
+            }
+            else
+            {
+                dialogTwitter.Visibility = Visibility.Collapsed;
+                //realizo la publicacion
+                GetTwitterToken();
+            }
+        }
+
+        private void setTweet(String AccessToken, String AccessTokenSecret)
+        {
+            
+            service.AuthenticateWith(AccessToken, AccessTokenSecret);
+            service.SendTweet(new SendTweetOptions { Status = textTwitterImput + " " + "http://www.simit.org.co" }, (tweet, response) =>
+            {
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        //TwitterStatus tweet = status;
+
+                    });
+                }
+                else
+                {
+                    throw new Exception(response.StatusCode.ToString());
+                }
+            });
+        }
+
+        private void GetTwitterToken()
+        {
+            var credentials = new OAuthCredentials
+            {
+                Type = OAuthType.RequestToken,
+                SignatureMethod = OAuthSignatureMethod.HmacSha1,
+                ParameterHandling = OAuthParameterHandling.HttpAuthorizationHeader,
+                ConsumerKey = resources.@string.StringResource.Consumer_Key_twitter,
+                ConsumerSecret = resources.@string.StringResource.Consumer_Secret_twitter,
+                Version = "1.0"
+            };
+
+            var client = new RestClient
+            {
+                Authority = "https://api.twitter.com/oauth",
+                Credentials = credentials,
+                HasElevatedPermissions = true,
+            };
+
+            var request = new RestRequest
+            {
+                Path = "/request_token"
+            };
+            client.BeginRequest(request, new RestCallback(TwitterRequestTokenCompleted));
+        }
+
+        
+
+        private void TwitterRequestTokenCompleted(RestRequest request, RestResponse response, object userstate)
+        {
+            var authorizeUrl = "https://api.twitter.com/oauth/authorize?" + response.Content;
+
+            OAuthRequestToken oAuh = new OAuthRequestToken();
+            
+            if (String.IsNullOrEmpty(response.Content))
+            {
+                Dispatcher.BeginInvoke(() => MessageBox.Show("error calling twitter"));
+                return;
+            }
+
+            Dispatcher.BeginInvoke(() =>
+            {
+                webView.Visibility = Visibility.Visible;
+                //var cb = new Action<OAuthRequestToken, TwitterResponse>(CallBackVerifiedResponse);
+                Browser.Navigate(new Uri(service.GetAuthorizationUri();
+            });
+        }
+
+        private void CallBackVerifiedResponse(OAuthRequestToken at, TwitterResponse response)
+        {
+            if (at != null)
+            {
+                AccessToken = at.Token;
+                AccessTokenSecret = at.TokenSecret;
+                if (string.IsNullOrEmpty(AccessToken) && string.IsNullOrEmpty(AccessTokenSecret))
+                {
+                    setTweet(AccessToken, AccessTokenSecret);
+                }
+            }
+        }
     }
 }
