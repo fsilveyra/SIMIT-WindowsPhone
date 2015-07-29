@@ -126,7 +126,7 @@
   <data name="Consumer_Secret_twitter" xml:space="preserve">
     <value>dOh3sS9pNzzhsyPocKFg7Be51l9Q60KvaE1UoTBeK2Q0VEqX02</value>
   </data>
-  <data name="dialog_share_facebook" xml:space="preserve">
+  <data name="dialog_share" xml:space="preserve">
     <value>Consulte en nuestra app información importante de los organismos de transito.</value>
   </data>
   <data name="text_dialog_twitter" xml:space="preserve">
@@ -134,5 +134,29 @@
   </data>
   <data name="url_site_simit" xml:space="preserve">
     <value>http://www2.simit.org.co</value>
+  </data>
+  <data name="body_email" xml:space="preserve">
+    <value>http://www2.simit.org.co/simit/menu/menu_inicial.jsp</value>
+  </data>
+  <data name="consumer_token_secret_twitter" xml:space="preserve">
+    <value>dOh3sS9pNzzhsyPocKFg7Be51l9Q60KvaE1UoTBeK2Q0VEqX02</value>
+  </data>
+  <data name="consumer_token_twitter" xml:space="preserve">
+    <value>oyPeJmke0eto8rxZZuOBzrNim</value>
+  </data>
+  <data name="error_post_tweet" xml:space="preserve">
+    <value>Ocurrio un error y el tweet no fue publicado.</value>
+  </data>
+  <data name="message_public_tweet_ok" xml:space="preserve">
+    <value>El tweet fue publicado correctamente.</value>
+  </data>
+  <data name="url_page_facebook" xml:space="preserve">
+    <value>https://es-es.facebook.com/simitnacional</value>
+  </data>
+  <data name="url_page_simit" xml:space="preserve">
+    <value>https://www.simit.org.co/</value>
+  </data>
+  <data name="url_page_twitter" xml:space="preserve">
+    <value>https://mobile.twitter.com/Simit_FCM</value>
   </data>
 </root>

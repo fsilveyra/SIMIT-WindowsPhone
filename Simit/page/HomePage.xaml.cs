@@ -18,10 +18,10 @@ using Microsoft.Phone.Controls.Maps.Platform;
 using Facebook.Client;
 using Simit.resources.@string;
 using TweetSharp;
-
 using TweetSharp.Model;
 using Hammock.Authentication.OAuth;
 using Hammock;
+using Microsoft.Phone.Tasks;
 
 namespace Simit.page
 {
@@ -55,9 +55,18 @@ namespace Simit.page
         private int buttonSelect = 1; //identifica el boton activo
 
         //twitter
-        private String AccessToken = null;
-        private String AccessTokenSecret = null;
-        TwitterService service = new TwitterService(resources.@string.StringResource.Consumer_Key_twitter, resources.@string.StringResource.Consumer_Secret_twitter);
+        
+
+        private TweetSharp.TwitterService service;
+        private OAuthRequestToken requestToken;
+        private OAuthAccessToken accessToken;
+        private String accessTokenFinal;
+        private String accessTokensecretFinal;
+        //private String _oauth_token;
+        private String _oauth_verifier;
+        private Uri uri;
+        private WebBrowser webBrowser;
+        private String message;
 
         public HomePage()
         {
@@ -348,40 +357,14 @@ namespace Simit.page
         {
             //realiza el comentario en facebook y comparte el enlace
             Facebook.Client.Session.ShowFeedDialog(null, resources.@string.StringResource.url_site_simit,resources.@string.StringResource.app_name
-                            ,resources.@string.StringResource.dialog_share_facebook, null, null);
+                            ,resources.@string.StringResource.dialog_share, null, null);
+            
         }
 
         private void button_share_twitter_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             dialogTwitter.Visibility = Visibility.Visible;
-            textTwitterImput.Text = resources.@string.StringResource.dialog_share_facebook;
-            /*
-            // Pass your credentials to the service
-            TwitterService service = new TwitterService("oyPeJmke0eto8rxZZuOBzrNim", "dOh3sS9pNzzhsyPocKFg7Be51l9Q60KvaE1UoTBeK2Q0VEqX02");
-            service.AuthenticateWith("2174228179-s6KJ4qvQxrViumDaVXtJo0GoSjw8I97cuYypSss", "7eL22tqKXXtpOva3UdpsSk0qGdsgaRQ6J6Cg9SlxzkccE");
-            //var tweets = service.ListTweetsOnHomeTimeline(new ListTweetsOnHomeTimelineOptions());
-            //service.ListTweetsOnHomeTimeline(new ListTweetsOnHomeTimelineOptions(), null);
-            
-            service.SendTweet(new SendTweetOptions { Status = "Consulte en nuestra app información importante de los organismos de transito http://www.simit.org.co" }, (tweet, response) =>
-            {
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    Deployment.Current.Dispatcher.BeginInvoke(() =>
-                    {
-                        //TwitterStatus tweet = status;
-                         
-                    });
-                }
-                else
-                {
-                    throw new Exception(response.StatusCode.ToString());
-                }
-            });
-
-           
-             
-            //ScreenName is the profile name of the twitter user. 
-            */
+            textTwitterImput.Text = resources.@string.StringResource.dialog_share;
         }
 
         private void buttonCancel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -399,22 +382,83 @@ namespace Simit.page
             {
                 dialogTwitter.Visibility = Visibility.Collapsed;
                 //realizo la publicacion
-                GetTwitterToken();
+                try
+                {
+                    openBackgroundProgressBar();
+                    TweetPost(textTwitterImput.Text);
+                }
+                catch (Exception exception)
+                {
+                    closeBackgroundProgressBar();
+                    MessageBox.Show(resources.@string.StringResource.error_post_tweet);
+                }
+            }
+        }
+
+        //metodos para la publicacion con twitter
+        /*-------------------------------------------------------------------------------------------------------------------------------*/
+        private void getRequestToken()
+        {
+            //creo el servicio
+            service = new TwitterService(resources.@string.StringResource.consumer_token_twitter, resources.@string.StringResource.consumer_token_secret_twitter);
+            var cb = new Action<OAuthRequestToken, TwitterResponse>(CallBackToken);
+            service.GetRequestToken("", CallBackToken);//pido el request token
+        }
+
+        private void CallBackToken(OAuthRequestToken rt, TwitterResponse response)
+        {
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                throw new Exception("Unable to connect to twitter");
+            }
+            uri = service.GetAuthorizationUri(rt);
+            requestToken = rt;
+            //creo el webView donde se loquea el usuario para la autorizacion
+            Dispatcher.BeginInvoke(() =>
+            {
+                webView.Visibility = Visibility.Visible;
+               Browser.Navigate(uri);
+            });
+        }
+
+        private void getAccesToken(String veriferToken)
+        {
+            var cb = new Action<OAuthAccessToken, TwitterResponse>(CallBackVeriferToken);
+            service.GetAccessToken(requestToken, veriferToken, CallBackVeriferToken);
+        }
+
+        private void CallBackVeriferToken(OAuthAccessToken rt, TwitterResponse arg2)
+        {
+            if (rt != null)
+            {
+                accessTokenFinal = rt.Token;
+                accessTokensecretFinal = rt.TokenSecret;
+                //envio el mensaje
+                setTweet(accessTokenFinal, accessTokensecretFinal);
+            }
+        }
+
+
+        public void TweetPost(String message)
+        {
+            if (message != null)
+            {
+                getRequestToken();
+                this.message = message;//guardo el mensaje
             }
         }
 
         private void setTweet(String AccessToken, String AccessTokenSecret)
         {
-            
+
             service.AuthenticateWith(AccessToken, AccessTokenSecret);
-            service.SendTweet(new SendTweetOptions { Status = textTwitterImput + " " + "http://www.simit.org.co" }, (tweet, response) =>
+            service.SendTweet(new SendTweetOptions { Status = this.message + " " + "http://www.simit.org.co" }, (tweet, response) =>
             {
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                     {
-                        //TwitterStatus tweet = status;
-
+                        MessageBox.Show(resources.@string.StringResource.message_public_tweet_ok);
                     });
                 }
                 else
@@ -424,65 +468,64 @@ namespace Simit.page
             });
         }
 
-        private void GetTwitterToken()
+        private void Browser_Navigating(object sender, NavigatingEventArgs e)
         {
-            var credentials = new OAuthCredentials
+            if (e.Uri.ToString().Contains("?oauth_token") && e.Uri.ToString().Contains("&oauth_verifier"))
             {
-                Type = OAuthType.RequestToken,
-                SignatureMethod = OAuthSignatureMethod.HmacSha1,
-                ParameterHandling = OAuthParameterHandling.HttpAuthorizationHeader,
-                ConsumerKey = resources.@string.StringResource.Consumer_Key_twitter,
-                ConsumerSecret = resources.@string.StringResource.Consumer_Secret_twitter,
-                Version = "1.0"
-            };
-
-            var client = new RestClient
-            {
-                Authority = "https://api.twitter.com/oauth",
-                Credentials = credentials,
-                HasElevatedPermissions = true,
-            };
-
-            var request = new RestRequest
-            {
-                Path = "/request_token"
-            };
-            client.BeginRequest(request, new RestCallback(TwitterRequestTokenCompleted));
-        }
-
-        
-
-        private void TwitterRequestTokenCompleted(RestRequest request, RestResponse response, object userstate)
-        {
-            var authorizeUrl = "https://api.twitter.com/oauth/authorize?" + response.Content;
-
-            OAuthRequestToken oAuh = new OAuthRequestToken();
-            
-            if (String.IsNullOrEmpty(response.Content))
-            {
-                Dispatcher.BeginInvoke(() => MessageBox.Show("error calling twitter"));
-                return;
+                string[] separators = { "?oauth_token=","&oauth_verifier=" };
+                string[] values = e.Uri.ToString().Split(separators, StringSplitOptions.None);
+                webView.Visibility = Visibility.Collapsed;// cierro el navegador
+                //llamo al metodo que obtiene el token de acceso con el de verificacion
+                getAccesToken(values[2]);
             }
-
-            Dispatcher.BeginInvoke(() =>
+            else if (e.Uri.ToString().Contains("https://consulta.simit.org.co/Simit/index.html") || e.Uri.ToString().Contains("?denied"))
             {
-                webView.Visibility = Visibility.Visible;
-                //var cb = new Action<OAuthRequestToken, TwitterResponse>(CallBackVerifiedResponse);
-                Browser.Navigate(new Uri(service.GetAuthorizationUri();
-            });
-        }
-
-        private void CallBackVerifiedResponse(OAuthRequestToken at, TwitterResponse response)
-        {
-            if (at != null)
-            {
-                AccessToken = at.Token;
-                AccessTokenSecret = at.TokenSecret;
-                if (string.IsNullOrEmpty(AccessToken) && string.IsNullOrEmpty(AccessTokenSecret))
-                {
-                    setTweet(AccessToken, AccessTokenSecret);
-                }
+                // se rechaso la autorizacion a la aplicacion
+                //cierro el webView
+                webView.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void Browser_LoadCompleted(object sender, NavigationEventArgs e)
+        {
+            closeBackgroundProgressBar();
+        }
+
+        /*----------------------------------------------------------------------------------------------------------------------------------*/
+
+        private void button_send_mail_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            EmailComposeTask email = new EmailComposeTask();
+            email.Body = resources.@string.StringResource.body_email;//cuerpo del mensaje a enviar
+            email.Show();
+        }
+
+        private void button_page_facebook_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            openBackgroundProgressBar();
+            webView.Visibility = Visibility.Visible;
+            Browser.Navigate(new Uri(resources.@string.StringResource.url_page_facebook, UriKind.RelativeOrAbsolute));
+        }
+
+        private void button_page_twitter_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            openBackgroundProgressBar();
+            webView.Visibility = Visibility.Visible;
+            Browser.Navigate(new Uri(resources.@string.StringResource.url_page_twitter, UriKind.RelativeOrAbsolute));
+        }
+
+        private void button_page_simit_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            openBackgroundProgressBar();
+            webView.Visibility = Visibility.Visible;
+            Browser.Navigate(new Uri(resources.@string.StringResource.url_page_simit, UriKind.RelativeOrAbsolute));
+        }
+
+        private void Browser_NavigationFailed(object sender, NavigationFailedEventArgs e)
+        {
+            closeBackgroundProgressBar();
+        }
+
+
     }
 }

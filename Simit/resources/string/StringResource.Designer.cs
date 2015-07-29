@@ -70,6 +70,15 @@ namespace Simit.resources.@string {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a http://www2.simit.org.co/simit/menu/menu_inicial.jsp.
+        /// </summary>
+        internal static string body_email {
+            get {
+                return ResourceManager.GetString("body_email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a oyPeJmke0eto8rxZZuOBzrNim.
         /// </summary>
         internal static string Consumer_Key_twitter {
@@ -88,11 +97,47 @@ namespace Simit.resources.@string {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a dOh3sS9pNzzhsyPocKFg7Be51l9Q60KvaE1UoTBeK2Q0VEqX02.
+        /// </summary>
+        internal static string consumer_token_secret_twitter {
+            get {
+                return ResourceManager.GetString("consumer_token_secret_twitter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a oyPeJmke0eto8rxZZuOBzrNim.
+        /// </summary>
+        internal static string consumer_token_twitter {
+            get {
+                return ResourceManager.GetString("consumer_token_twitter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Consulte en nuestra app información importante de los organismos de transito..
         /// </summary>
-        internal static string dialog_share_facebook {
+        internal static string dialog_share {
             get {
-                return ResourceManager.GetString("dialog_share_facebook", resourceCulture);
+                return ResourceManager.GetString("dialog_share", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ocurrio un error y el tweet no fue publicado..
+        /// </summary>
+        internal static string error_post_tweet {
+            get {
+                return ResourceManager.GetString("error_post_tweet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El tweet fue publicado correctamente..
+        /// </summary>
+        internal static string message_public_tweet_ok {
+            get {
+                return ResourceManager.GetString("message_public_tweet_ok", resourceCulture);
             }
         }
         
@@ -102,6 +147,33 @@ namespace Simit.resources.@string {
         internal static string text_dialog_twitter {
             get {
                 return ResourceManager.GetString("text_dialog_twitter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a https://es-es.facebook.com/simitnacional.
+        /// </summary>
+        internal static string url_page_facebook {
+            get {
+                return ResourceManager.GetString("url_page_facebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a https://www.simit.org.co/.
+        /// </summary>
+        internal static string url_page_simit {
+            get {
+                return ResourceManager.GetString("url_page_simit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a https://mobile.twitter.com/Simit_FCM.
+        /// </summary>
+        internal static string url_page_twitter {
+            get {
+                return ResourceManager.GetString("url_page_twitter", resourceCulture);
             }
         }
         

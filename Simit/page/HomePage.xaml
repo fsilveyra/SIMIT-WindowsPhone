@@ -180,7 +180,7 @@
                     <Image x:Name="button_share_twitter" Source="/image/btntwitter1.png" Margin="35,5,35,5"></Image>
                 </Grid>
                 <Grid Grid.Row="3"  Margin="0,0,0,40">
-                    <Image Source="/image/btncorreo.png" Margin="35,5,35,0" ></Image>
+                    <Image x:Name="button_send_mail" Source="/image/btncorreo.png" Margin="35,5,35,0" Tap="button_send_mail_Tap"></Image>
                 </Grid>
                 <Grid Grid.Row="4" Margin="0,10,0,0">
                     <StackPanel Margin="35,0,35,0">
@@ -195,13 +195,15 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                        <Image Source="/image/btnfacebook.png"  Width="100" HorizontalAlignment="Left"></Image>
+                        <Image x:Name="button_page_facebook" Source="/image/btnfacebook.png"  
+                                        Width="100" HorizontalAlignment="Left" Tap="button_page_facebook_Tap"></Image>
                     </Grid>
                     <Grid Grid.Column="1">
-                        <Image Source="/image/btntwitter.png" Width="100"></Image>
+                        <Image x:Name="button_page_twitter" Source="/image/btntwitter.png" Width="100" Tap="button_page_twitter_Tap"></Image>
                     </Grid>
                     <Grid Grid.Column="2">
-                        <Image Source="/image/btnweb.png" Width="100" HorizontalAlignment="Right"></Image>
+                        <Image x:Name="button_page_simit" Source="/image/btnweb.png" Width="100"
+                               HorizontalAlignment="Right" Tap="button_page_simit_Tap"></Image>
                     </Grid>
                 </Grid>
             </Grid>
@@ -371,13 +373,15 @@
             </Grid>
         </Grid>
         
-        <!-- ewb view twitter-->
+        <!-- web view-->
         <Grid Grid.RowSpan="2" Visibility="Collapsed" x:Name="webView">
             <Grid.Background>
                 <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
             </Grid.Background>
-            <Grid Margin="50">
-                <phone:WebBrowser Name="Browser" Grid.Row="1"  Background="Aqua" />
+            <Grid Margin="0">
+                <phone:WebBrowser x:Name="Browser" Grid.Row="1"  Background="Aqua" 
+                                    Navigating="Browser_Navigating" LoadCompleted="Browser_LoadCompleted"
+                                        NavigationFailed="Browser_NavigationFailed"/>
             </Grid>
         </Grid>
 
@@ -388,14 +392,7 @@
             <Grid.Background>
                 <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
             </Grid.Background>
-            <!--
-        <Popup x:Name="popup_info" IsOpen="False">
-            <Grid>
-                
-                
-            </Grid>
-        </Popup>
-            -->
+            <!-- -->
             <StackPanel HorizontalAlignment="Center" Orientation="Vertical" VerticalAlignment="Center"
                            Height="Auto" Background="White" Margin="15,0,15,0">
                 <StackPanel Orientation="Vertical"
