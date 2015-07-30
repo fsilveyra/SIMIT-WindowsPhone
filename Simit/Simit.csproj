@@ -114,12 +114,16 @@
     <Compile Include="classAux\ImageLoader.cs" />
     <Compile Include="classAux\TwitterSharpIntegrated.cs" />
     <Compile Include="data\ManagerData.cs" />
+    <Compile Include="entities\PointsAtention.cs" />
     <Compile Include="entities\TypeDocument.cs" />
     <Compile Include="events\EventResponseConnection.cs" />
     <Compile Include="events\EventResponseData.cs" />
     <Compile Include="net\ConnectionManager.cs" />
     <Compile Include="page\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\PageConsultations.xaml.cs">
+      <DependentUpon>PageConsultations.xaml</DependentUpon>
     </Compile>
     <Compile Include="resources\string\StringResource.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -147,6 +151,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="page\PageConsultations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SplashScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -165,6 +173,11 @@
     <Content Include="image\Background_panel_share.png" />
     <None Include="Service References\GetPointsService\WsPuntosAtencion.wsdl" />
     <None Include="Service References\GetPointsService\WsPuntosAtencion.xsd" />
+    <Content Include="image\button_green.png" />
+    <Content Include="image\icon_circle.png" />
+    <Content Include="image\icon_payment_arrangements.png" />
+    <Content Include="image\icon_resolutions.png" />
+    <Content Include="image\icon_subpoenas.png" />
     <Content Include="image\logo_twitter.png" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>

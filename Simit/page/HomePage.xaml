@@ -34,51 +34,82 @@
             <Grid.Background>
                 <ImageBrush ImageSource="/image/background_2.png"/>
             </Grid.Background>
-            <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
-                    <Grid MinWidth="480">
-                        <StackPanel MinWidth="380">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <StackPanel>
                             <Image Source="/image/simit_logoblanco.png" Width="160"></Image>
                         </StackPanel>
                         <StackPanel HorizontalAlignment="Right">
-                            <Image x:Name="button_info_consultations" Source="/image/icon_info.png" Width="40" HorizontalAlignment="Left" Margin="30" Tap="button_info_Tap"></Image>
+                            <Image x:Name="button_info_consultations" Source="/image/icon_info.png" Width="40"
+                                    HorizontalAlignment="Left" Margin="30" Tap="button_info_Tap"></Image>
                         </StackPanel>
                     </Grid>
-                </StackPanel>
-                <StackPanel Margin="0,20,0,0">
-                    <TextBlock Text="{StaticResource text_info_page_consultations}"
-                               TextWrapping="Wrap" Margin="30,0,30,0" HorizontalAlignment="Center"
-                               Foreground="Black" FontSize="22" FontWeight="SemiBold"></TextBlock>
-                    <TextBlock Text="{StaticResource text_info_page_consultations_2}" 
-                               TextWrapping="Wrap" Margin="70,0,70,0" HorizontalAlignment="Center"
-                               Foreground="Black"  FontSize="22" FontWeight="SemiBold"></TextBlock>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Margin="45,30,45,0">
-                    <TextBlock Text="{StaticResource text_type_document_page_consultations}" FontSize="22" HorizontalAlignment="Left" 
-                               Foreground="{StaticResource color_blue_text_title}"></TextBlock>
-                    <StackPanel x:Name="button_select_document" Background="{StaticResource color_green_light}" Margin="0,10,0,0" MinHeight="50" VerticalAlignment="Center" 
-                                Orientation="Horizontal" Tap="button_select_document_Tap">
-                        <TextBlock x:Name="text_select_document" Text="CÉDULA DE CIUDADANíA" 
-                    		Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" 
-                    		FontSize="16" Width="260"/>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="70,0,0,0">
-                            <Image Source="/image/arrow_down_list_piker.png" HorizontalAlignment="Right" Width="30"/>
-                        </StackPanel>
+                <Grid  Grid.Row="1">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{StaticResource text_info_page_consultations}"
+                                   TextWrapping="Wrap"  HorizontalAlignment="Center"
+                                   Foreground="Black" FontSize="22" FontWeight="SemiBold"></TextBlock>
+                        <TextBlock Text="{StaticResource text_info_page_consultations_2}" 
+                                   TextWrapping="Wrap"  HorizontalAlignment="Center"
+                                   Foreground="Black"  FontSize="22" FontWeight="SemiBold"></TextBlock>
                     </StackPanel>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Margin="45,25,45,0">
-                    <TextBlock Text="{StaticResource text_number_document_page_consultations}" FontSize="22" HorizontalAlignment="Left" Foreground="{StaticResource color_blue_text_title}"/>
-                </StackPanel>
-                <TextBox MinWidth="200" MinHeight="50" Margin="32,0,32,0" TextChanged="TextBox_TextChanged" BorderBrush="Gray"/>
-                <Grid x:Name="button_accep_consultations" Margin="45,35,45,0"  Background="{StaticResource color_green_light}"
-                            MinHeight="50" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="380" Width="390">
-                    <TextBlock  Foreground="Black" Text="{StaticResource text_button_consultation_page_consultations}" FontSize="16"
-                               HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
                 </Grid>
-            </StackPanel>
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0,40,0,0">
+                    <TextBlock Text="{StaticResource text_type_document_page_consultations}" FontSize="22" HorizontalAlignment="Left" 
+                               Foreground="{StaticResource color_blue_text_title}" Margin="40,0,0,0"></TextBlock>
+                    </Grid>
+                    <Grid Grid.Row="1" x:Name="button_select_document" Margin="40,10,40,0" 
+                          Tap="button_select_document_Tap">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="/image/button_green.png" ></ImageBrush>
+                        </Grid.Background>
+                        <TextBlock x:Name="text_select_document" Text="CÉDULA DE CIUDADANíA" 
+                    		Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15" 
+                    		FontSize="18" Width="260"/>
+                        <Image Source="/image/arrow_down_list_piker.png" HorizontalAlignment="Right" Width="30" Margin="0,0,20,0"/>
+                    </Grid>
+                </Grid>
+                <Grid  Grid.Row="3" Margin="0,20,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0,20,0,0">
+                    <TextBlock Text="{StaticResource text_number_document_page_consultations}" 
+                               FontSize="22" HorizontalAlignment="Left" Margin="40,0,0,-2"
+                               Foreground="{StaticResource color_blue_text_title}"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <TextBox x:Name="text_imput_document" MinWidth="200" MinHeight="50" Margin="30,0,30,0"
+                                 TextChanged="TextBox_TextChanged" BorderBrush="Gray"/>
+                    </Grid>
+                </Grid>
+                
+                <Grid Grid.Row="4" x:Name="button_accept_consultations" Tap="button_accept_consultations_Tap">
+                    <Grid VerticalAlignment="Center" Margin="40,0,40,0">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="/image/button_green.png"></ImageBrush>
+                        </Grid.Background>
+                        <TextBlock  Foreground="Black" Text="{StaticResource text_button_consultation_page_consultations}" FontSize="18"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15" ></TextBlock>
+                    </Grid>
+                </Grid>
+            </Grid>
 
         </Grid>
-
+        
         <!-- ******************************fragment atention point****************************************-->
         <Grid x:Name="fragment_point_atention" Grid.Row="0"  Visibility="Collapsed" Background="White">
             <Grid.RowDefinitions>

@@ -24,12 +24,12 @@ namespace Simit.data
     public class ManagerData //: NotificationEnabledObject
     {
         private static ManagerData INSTANCE = null;
-        //private ConnectionManager connectionManager;
-        //public event EventHandler<EventResponseData> getDataCompleted;//evento que se genera para ser capturado por la clase llamadora
+        private ConnectionManager connectionManager;
+        public event EventHandler<EventResponseData> getDataCompleted;//evento que se genera para ser capturado por la clase llamadora
 
         private ManagerData()
         {
-            //this.connectionManager = ConnectionManager.getIntance();
+            this.connectionManager = ConnectionManager.getIntance();
         }
 
         public static ManagerData getIntance()
@@ -62,8 +62,8 @@ namespace Simit.data
             );
             return colorBrush;
         }
+        
         /*
-
         public void setEventDataCompleted()
         {
             getDataCompleted = null;
@@ -71,19 +71,21 @@ namespace Simit.data
 
         
 
-
+        */
         //Metodos de ManagerData
 
         /// <summary>
         /// I performed the call to connectionManager.getFaq() 
         /// and parses the data and generates an event with the data.
         /// </summary>
-        public void getQuestions()
+        public void getAtentionPoints()
         {
+            /*
             //preguntar si hay internet
             Question questions;
             ParserQuestion parserQuestion = new ParserQuestion();
-            connectionManager.getFaq();
+             * */
+            connectionManager.getAtentionPoints();
             //hago el llamado para obtener los datos
             connectionManager.getQuestionCompleted += (s, eventResponse) =>
                 {
@@ -93,16 +95,18 @@ namespace Simit.data
                             if (eventResponse != null)//verifico si no es nula la respuesta
                             {
                                 //parser los datos
+                                /*
                                 questions = parserQuestion.json_parser_faq(eventResponse.getResponse());
                                 if (getDataCompleted != null)
                                     getDataCompleted(this, new EventResponseData(questions));//genero un evento de respuesta con los datos solicitados
+                                 * */
                             }
                         });
                 };
             getDataCompleted = null;
         }
 
-
+        /*
         /// <summary>
         /// I performed the call to connectionManager.getAccessTypes()
         /// and parses the data and generates an event with the data.

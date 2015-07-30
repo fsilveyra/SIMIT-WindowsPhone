@@ -54,18 +54,14 @@ namespace Simit.page
         
         private int buttonSelect = 1; //identifica el boton activo
 
-        //twitter
-        
+        //page
+        private static String PAGE_CONSULTATIONS = "/page/PageConsultations.xaml";
 
+        //twitter
         private TweetSharp.TwitterService service;
         private OAuthRequestToken requestToken;
         private OAuthAccessToken accessToken;
-        private String accessTokenFinal;
-        private String accessTokensecretFinal;
-        //private String _oauth_token;
-        private String _oauth_verifier;
         private Uri uri;
-        private WebBrowser webBrowser;
         private String message;
 
         public HomePage()
@@ -351,6 +347,14 @@ namespace Simit.page
         private void button_select_point(object sender, System.Windows.Input.GestureEventArgs e)
         {
             //despliega la lista con los departamentos disponibles
+            openBackgroundProgressBar();
+            ManagerData.getIntance().getAtentionPoints();
+            ManagerData.getIntance().getDataCompleted += HomePage_getDataCompleted;
+        }
+
+        void HomePage_getDataCompleted(object sender, EventResponseData e)
+        {
+            closeBackgroundProgressBar();
         }
 
         private void button_share_facebook_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -431,10 +435,9 @@ namespace Simit.page
         {
             if (rt != null)
             {
-                accessTokenFinal = rt.Token;
-                accessTokensecretFinal = rt.TokenSecret;
+                accessToken = rt;
                 //envio el mensaje
-                setTweet(accessTokenFinal, accessTokensecretFinal);
+                setTweet(accessToken.Token, accessToken.TokenSecret);
             }
         }
 
@@ -524,6 +527,13 @@ namespace Simit.page
         private void Browser_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             closeBackgroundProgressBar();
+        }
+
+        private void button_accept_consultations_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            openBackgroundProgressBar();
+            //llamado a la api
+            NavigationService.Navigate(new Uri(PAGE_CONSULTATIONS, UriKind.RelativeOrAbsolute));
         }
 
 

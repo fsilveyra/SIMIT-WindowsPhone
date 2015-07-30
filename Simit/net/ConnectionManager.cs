@@ -15,7 +15,7 @@ using Simit.classAux;
 using System.Windows.Resources;
 using Simit.data;
 using System.Net.Sockets;
-
+using System.Xml;
 using System.Text;
 using System.Xml.Linq;
 using Microsoft.Phone.Reactive;
@@ -43,7 +43,7 @@ namespace Simit.data
         }
 
         //Urls
-        private static String URL_BASE = "http://www.cuponstar.com/api/";
+        //private static String URL_BASE = "http://www.cuponstar.com/api/";
         private static String URL_BASE_CUPON = "http://cms.bonda.us/";
         private static String URL_SAVE_TOKEN_PUSH_NOTIFICATION = "http://173.255.200.14/cupon/api/saveToken";
         private static String API = "api/";
@@ -81,6 +81,7 @@ namespace Simit.data
         private WebRequest webRequest = null;
         private String resultPost = null;
         private IAsyncResult result = null;
+        
 
         //string post
         String postDataCheckCode = null;
@@ -89,6 +90,7 @@ namespace Simit.data
 
         //Simit
         private static String URL_SERVEICE_GET_POINTS_ATENTION = "https://181.48.11.4/ServiciosSimit/WsPuntosAtencion?wsdl";
+        private static String URL_BASE = "https://development.infinixsoft.com/simit/?department_id=11";
 
         //eventos de respuesta
         public event EventHandler<EventResponseConnection> getQuestionCompleted = null;
@@ -132,9 +134,9 @@ namespace Simit.data
         /// <summary>
         /// I done called for the FAQ. On error, returns null
         /// </summary>
-        public void getFaq()
+        public void getAtentionPoints()
         {
-            webRequest = HttpWebRequest.Create(URL_BASE_CUPON + API + FAQ);//api
+            webRequest = HttpWebRequest.Create(URL_BASE);//api
             String resultRequest = null;
             IAsyncResult result = null;
             //verificar si existe coneccion a internet
@@ -144,6 +146,18 @@ namespace Simit.data
                    {
                        var responseFaq = webRequest.EndGetResponse(result);
                        resultRequest = new StreamReader(responseFaq.GetResponseStream()).ReadToEnd();
+                       XDocument document = XDocument.Parse(resultRequest);
+                       var points = document.Descendants("return");
+                       foreach (var Point in points.Descendants("puntos"))
+                           {
+                               string cel = (string)Point.Element("celular1");
+                               string address = (string)Point.Element("direcciones");
+                               string time = (string)Point.Element("horarios");
+                               string latitude = (string)Point.Element("latitud");
+                               string longitud = (string)Point.Element("longitud");
+                               string muni = (string)Point.Element("municipios");
+                           }
+
                        if (resultRequest != null)
                        {
                            if (getQuestionCompleted != null)
