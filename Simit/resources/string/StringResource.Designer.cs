@@ -61,6 +61,24 @@ namespace Simit.resources.@string {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Amazonas.
+        /// </summary>
+        internal static string amazonas {
+            get {
+                return ResourceManager.GetString("amazonas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Antioquia.
+        /// </summary>
+        internal static string antioquia {
+            get {
+                return ResourceManager.GetString("antioquia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Simit.
         /// </summary>
         internal static string app_name {
@@ -70,11 +88,137 @@ namespace Simit.resources.@string {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Arauca.
+        /// </summary>
+        internal static string arauca {
+            get {
+                return ResourceManager.GetString("arauca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Atlántico.
+        /// </summary>
+        internal static string atlantic {
+            get {
+                return ResourceManager.GetString("atlantic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a http://www2.simit.org.co/simit/menu/menu_inicial.jsp.
         /// </summary>
         internal static string body_email {
             get {
                 return ResourceManager.GetString("body_email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Bogotá D.C..
+        /// </summary>
+        internal static string bogota_dc {
+            get {
+                return ResourceManager.GetString("bogota_dc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Bolívar.
+        /// </summary>
+        internal static string bolivar {
+            get {
+                return ResourceManager.GetString("bolivar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Boyacá.
+        /// </summary>
+        internal static string boyaca {
+            get {
+                return ResourceManager.GetString("boyaca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Caldas.
+        /// </summary>
+        internal static string caldas {
+            get {
+                return ResourceManager.GetString("caldas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Caquetá.
+        /// </summary>
+        internal static string caqueta {
+            get {
+                return ResourceManager.GetString("caqueta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CÉDULA VENEZOLANA.
+        /// </summary>
+        internal static string card_venezuela {
+            get {
+                return ResourceManager.GetString("card_venezuela", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Casanare.
+        /// </summary>
+        internal static string casanare {
+            get {
+                return ResourceManager.GetString("casanare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cauca.
+        /// </summary>
+        internal static string cauca {
+            get {
+                return ResourceManager.GetString("cauca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cesar.
+        /// </summary>
+        internal static string cesar {
+            get {
+                return ResourceManager.GetString("cesar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Chocó.
+        /// </summary>
+        internal static string choco {
+            get {
+                return ResourceManager.GetString("choco", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CÉDULA DE CIUDADANÍA.
+        /// </summary>
+        internal static string citizenship_card {
+            get {
+                return ResourceManager.GetString("citizenship_card", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a REGISTRO CIVIL.
+        /// </summary>
+        internal static string civil_registration {
+            get {
+                return ResourceManager.GetString("civil_registration", resourceCulture);
             }
         }
         
@@ -115,11 +259,38 @@ namespace Simit.resources.@string {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Córoba.
+        /// </summary>
+        internal static string cordoba {
+            get {
+                return ResourceManager.GetString("cordoba", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cundinamarca.
+        /// </summary>
+        internal static string cundinamarca {
+            get {
+                return ResourceManager.GetString("cundinamarca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Consulte en nuestra app información importante de los organismos de transito..
         /// </summary>
         internal static string dialog_share {
             get {
                 return ResourceManager.GetString("dialog_share", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CARNET DIPLOMATÍCO.
+        /// </summary>
+        internal static string diplomatic_passport {
+            get {
+                return ResourceManager.GetString("diplomatic_passport", resourceCulture);
             }
         }
         
@@ -133,6 +304,60 @@ namespace Simit.resources.@string {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Guainía.
+        /// </summary>
+        internal static string guainía {
+            get {
+                return ResourceManager.GetString("guainía", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Guaviare.
+        /// </summary>
+        internal static string guaviare {
+            get {
+                return ResourceManager.GetString("guaviare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Huila.
+        /// </summary>
+        internal static string huila {
+            get {
+                return ResourceManager.GetString("huila", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a TARJETA DE IDENTIDAD.
+        /// </summary>
+        internal static string identity_card {
+            get {
+                return ResourceManager.GetString("identity_card", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La Guajira.
+        /// </summary>
+        internal static string la_guajira {
+            get {
+                return ResourceManager.GetString("la_guajira", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Magdalena.
+        /// </summary>
+        internal static string magdalena {
+            get {
+                return ResourceManager.GetString("magdalena", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a El tweet fue publicado correctamente..
         /// </summary>
         internal static string message_public_tweet_ok {
@@ -142,11 +367,128 @@ namespace Simit.resources.@string {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Meta.
+        /// </summary>
+        internal static string meta {
+            get {
+                return ResourceManager.GetString("meta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nariño.
+        /// </summary>
+        internal static string nariño {
+            get {
+                return ResourceManager.GetString("nariño", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a NIT.
+        /// </summary>
+        internal static string nit {
+            get {
+                return ResourceManager.GetString("nit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Norte de Santander.
+        /// </summary>
+        internal static string north_of_santander {
+            get {
+                return ResourceManager.GetString("north_of_santander", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nose pudo obtener los datos, por favor intente nuevamente..
+        /// </summary>
+        internal static string not_get_data {
+            get {
+                return ResourceManager.GetString("not_get_data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a PASAPORTE.
+        /// </summary>
+        internal static string passport {
+            get {
+                return ResourceManager.GetString("passport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Putumayo.
+        /// </summary>
+        internal static string putumayo {
+            get {
+                return ResourceManager.GetString("putumayo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Quindío.
+        /// </summary>
+        internal static string quindio {
+            get {
+                return ResourceManager.GetString("quindio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Risalda.
+        /// </summary>
+        internal static string risalda {
+            get {
+                return ResourceManager.GetString("risalda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a San Andrés y Providencia.
+        /// </summary>
+        internal static string san_andres_providencia {
+            get {
+                return ResourceManager.GetString("san_andres_providencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Santander.
+        /// </summary>
+        internal static string santander {
+            get {
+                return ResourceManager.GetString("santander", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sucre.
+        /// </summary>
+        internal static string sucre {
+            get {
+                return ResourceManager.GetString("sucre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a El texto debe contener como maximo 140 caracteres..
         /// </summary>
         internal static string text_dialog_twitter {
             get {
                 return ResourceManager.GetString("text_dialog_twitter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tolina.
+        /// </summary>
+        internal static string tolina {
+            get {
+                return ResourceManager.GetString("tolina", resourceCulture);
             }
         }
         
@@ -183,6 +525,42 @@ namespace Simit.resources.@string {
         internal static string url_site_simit {
             get {
                 return ResourceManager.GetString("url_site_simit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Valle del Cauca.
+        /// </summary>
+        internal static string valle_del_cauca {
+            get {
+                return ResourceManager.GetString("valle_del_cauca", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Vaupés.
+        /// </summary>
+        internal static string vaupes {
+            get {
+                return ResourceManager.GetString("vaupes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Vichada.
+        /// </summary>
+        internal static string vichada {
+            get {
+                return ResourceManager.GetString("vichada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a CÉDULA DE EXTRANJERÍA.
+        /// </summary>
+        internal static string writ_of_estranjeria {
+            get {
+                return ResourceManager.GetString("writ_of_estranjeria", resourceCulture);
             }
         }
     }

@@ -16,6 +16,8 @@ using System.Runtime.Serialization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Simit.parse;
+using Simit.entities;
 
 
 
@@ -78,14 +80,12 @@ namespace Simit.data
         /// I performed the call to connectionManager.getFaq() 
         /// and parses the data and generates an event with the data.
         /// </summary>
-        public void getAtentionPoints()
+        public void getAtentionPoints(String numDeparment)
         {
-            /*
             //preguntar si hay internet
-            Question questions;
-            ParserQuestion parserQuestion = new ParserQuestion();
-             * */
-            connectionManager.getAtentionPoints();
+            ParsePointAtenion xmlParserPointAtention = new ParsePointAtenion();
+            List<PointsAtention> listPointsAtention = new List<PointsAtention>();
+            connectionManager.getAtentionPoints(numDeparment);
             //hago el llamado para obtener los datos
             connectionManager.getQuestionCompleted += (s, eventResponse) =>
                 {
@@ -94,12 +94,11 @@ namespace Simit.data
                         {
                             if (eventResponse != null)//verifico si no es nula la respuesta
                             {
-                                //parser los datos
-                                /*
-                                questions = parserQuestion.json_parser_faq(eventResponse.getResponse());
+                                //parser los datos90
+                                listPointsAtention = xmlParserPointAtention.XmlParserPointAtention(eventResponse.getResponseString());
                                 if (getDataCompleted != null)
-                                    getDataCompleted(this, new EventResponseData(questions));//genero un evento de respuesta con los datos solicitados
-                                 * */
+                                    getDataCompleted(this, new EventResponseData(listPointsAtention));//genero un evento de respuesta con los datos solicitados
+                                 
                             }
                         });
                 };

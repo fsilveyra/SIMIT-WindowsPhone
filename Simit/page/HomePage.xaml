@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:my="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"
+    xmlns:local="clr-namespace:CustomPushpinWp8" x:Key="LocalizedStrings"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -14,8 +15,19 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
     <phone:PhoneApplicationPage.Resources>
+        
+        <Style TargetType="my:Pushpin" x:Key="PushpinStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="my:Pushpin">
+                            
+                            <Image x:Name="image_push_pin" Source="/image/icon_push_pin.png" Stretch="Uniform" 
+                                                               Height="40" Tap="image_push_pin_Tap"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </phone:PhoneApplicationPage.Resources>
-
     <!--LayoutRoot es la cuadrícula raíz donde se coloca todo el contenido de la página-->
     <Grid x:Name="LayoutRoot">
         <!--
@@ -134,7 +146,10 @@
                 <!--ContentPanel. Colocar aquí el contenido adicional-->
                 <Grid x:Name="ContentPanel" >
                     <my:Map x:Name="map_ubication"
-                                ZoomLevel="2" CredentialsProvider="Ag4c6F1g0UPr6O25eV-g1e_QshW0GmlIdywTlac9c_bHoIjX50G_eLXnhzTCvyv9"/>
+                                ZoomLevel="9" CredentialsProvider="Ag4c6F1g0UPr6O25eV-g1e_QshW0GmlIdywTlac9c_bHoIjX50G_eLXnhzTCvyv9"
+                            >
+                    </my:Map>
+                    
                 </Grid>
                 <Grid VerticalAlignment="Top">
                     <StackPanel  Background="{StaticResource color_green_light}" Margin="50,60,50,0" MinHeight="50" VerticalAlignment="Center" 
@@ -149,7 +164,6 @@
                 </Grid>
             </Grid>
         </Grid>
-
         <!--************************************fragment news**********************************************-->
         <Grid x:Name="fragment_news" Grid.Row="0"  Visibility="Collapsed" Background="White">
             <Grid.RowDefinitions>

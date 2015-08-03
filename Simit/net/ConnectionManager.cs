@@ -20,6 +20,8 @@ using System.Text;
 using System.Xml.Linq;
 using Microsoft.Phone.Reactive;
 using System.Net;
+using Simit.entities;
+using Simit.parse;
 
 namespace Simit.data
 {
@@ -90,7 +92,8 @@ namespace Simit.data
 
         //Simit
         private static String URL_SERVEICE_GET_POINTS_ATENTION = "https://181.48.11.4/ServiciosSimit/WsPuntosAtencion?wsdl";
-        private static String URL_BASE = "https://development.infinixsoft.com/simit/?department_id=11";
+        private static String URL_BASE = "https://development.infinixsoft.com/simit/";
+        private static String PARAMETER_NUM_DEPARTMENT = "?department_id=";
 
         //eventos de respuesta
         public event EventHandler<EventResponseConnection> getQuestionCompleted = null;
@@ -134,9 +137,9 @@ namespace Simit.data
         /// <summary>
         /// I done called for the FAQ. On error, returns null
         /// </summary>
-        public void getAtentionPoints()
+        public void getAtentionPoints(String numDepartment)
         {
-            webRequest = HttpWebRequest.Create(URL_BASE);//api
+            webRequest = HttpWebRequest.Create(URL_BASE + PARAMETER_NUM_DEPARTMENT + numDepartment);//api
             String resultRequest = null;
             IAsyncResult result = null;
             //verificar si existe coneccion a internet
@@ -146,23 +149,12 @@ namespace Simit.data
                    {
                        var responseFaq = webRequest.EndGetResponse(result);
                        resultRequest = new StreamReader(responseFaq.GetResponseStream()).ReadToEnd();
-                       XDocument document = XDocument.Parse(resultRequest);
-                       var points = document.Descendants("return");
-                       foreach (var Point in points.Descendants("puntos"))
-                           {
-                               string cel = (string)Point.Element("celular1");
-                               string address = (string)Point.Element("direcciones");
-                               string time = (string)Point.Element("horarios");
-                               string latitude = (string)Point.Element("latitud");
-                               string longitud = (string)Point.Element("longitud");
-                               string muni = (string)Point.Element("municipios");
-                           }
-
+                       
                        if (resultRequest != null)
                        {
                            if (getQuestionCompleted != null)
                            {
-                               getQuestionCompleted(this, new EventResponseConnection(responseFaq.GetResponseStream()));
+                               getQuestionCompleted(this, new EventResponseConnection(resultRequest));
                            }
                        }
                    }

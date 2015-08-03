@@ -51,11 +51,13 @@ namespace Simit.page
 
         //list document prueba
         List<TypeDocument> listDocument = null;//inicializo la lista
+        List<TypeNameAtentionPoints> listNameAtentionPoints = null;//inicializo la lista
         
         private int buttonSelect = 1; //identifica el boton activo
 
         //page
         private static String PAGE_CONSULTATIONS = "/page/PageConsultations.xaml";
+        private static String  NUM_DEPARTMENT_DEFECT = "11";
 
         //twitter
         private TweetSharp.TwitterService service;
@@ -68,8 +70,9 @@ namespace Simit.page
         {
             InitializeComponent();
             listDocument = new List<TypeDocument>();
-            map_ubication.Mode = new RoadMode();
-            map_ubication.ZoomLevel = 15;
+            listNameAtentionPoints = new List<TypeNameAtentionPoints>();
+            //map_ubication.Mode = new 
+            map_ubication.ZoomLevel = 9;
 
             this.Loaded += (s, e) =>
            {
@@ -129,35 +132,35 @@ namespace Simit.page
         {
 
             TypeDocument typeDocument1 = new TypeDocument();
-            typeDocument1.NameDocument = "CÉDULA DE CIUDADANÍA";
+            typeDocument1.NameDocument = resources.@string.StringResource.citizenship_card;
             listDocument.Add(typeDocument1);
 
             TypeDocument typeDocument2 = new TypeDocument();
-            typeDocument2.NameDocument = "TARJETA DE IDENTIDAD";
+            typeDocument2.NameDocument = resources.@string.StringResource.identity_card;
             listDocument.Add(typeDocument2);
 
             TypeDocument typeDocument3 = new TypeDocument();
-            typeDocument3.NameDocument = "CÉDULA DE EXTRANJERÍA";
+            typeDocument3.NameDocument = resources.@string.StringResource.writ_of_estranjeria;
             listDocument.Add(typeDocument3);
 
             TypeDocument typeDocument4 = new TypeDocument();
-            typeDocument4.NameDocument = "NIT";
+            typeDocument4.NameDocument = resources.@string.StringResource.nit;
             listDocument.Add(typeDocument4);
 
             TypeDocument typeDocument5 = new TypeDocument();
-            typeDocument5.NameDocument = "PASAPORTE";
+            typeDocument5.NameDocument = resources.@string.StringResource.passport;
             listDocument.Add(typeDocument5);
 
             TypeDocument typeDocument6 = new TypeDocument();
-            typeDocument6.NameDocument = "CARNET DIPLOMATÍCO";
+            typeDocument6.NameDocument = resources.@string.StringResource.diplomatic_passport;
             listDocument.Add(typeDocument6);
 
             TypeDocument typeDocument7 = new TypeDocument();
-            typeDocument7.NameDocument = "REGISTRO CIVIL";
+            typeDocument7.NameDocument = resources.@string.StringResource.civil_registration;
             listDocument.Add(typeDocument7);
 
             TypeDocument typeDocument8 = new TypeDocument();
-            typeDocument8.NameDocument = "CÉDULA VENEZOLANA";
+            typeDocument8.NameDocument = resources.@string.StringResource.card_venezuela;
             listDocument.Add(typeDocument8);
         }
 
@@ -247,10 +250,24 @@ namespace Simit.page
             buttonSelect = 2;
 
             //hago el llamado
-            //openBackgroundProgressBar();
-            ConnectionManager.getIntance().getDataPointsAtention("11");
-            //paso una lista con todos los puntos de atension
-            markerUbicatioPoints("", "");
+            openBackgroundProgressBar();
+            ManagerData.getIntance().getAtentionPoints(NUM_DEPARTMENT_DEFECT);
+            ManagerData.getIntance().getDataCompleted += (s, eventResponseData) =>
+            {
+                closeBackgroundProgressBar();
+                List<PointsAtention> listPointArtention = new List<PointsAtention>();
+                if (eventResponseData.getResponseData() != null)
+                {
+                    listPointArtention = (List<PointsAtention>)eventResponseData.getResponseData();
+                    //paso una lista con todos los puntos de atension
+                    markerUbicatioPoints(listPointArtention);
+                }
+                else
+                {
+                    MessageBox.Show(resources.@string.StringResource.not_get_data);
+                }
+            };
+            
         }
 
         private void DoStuff(XDocument xml)
@@ -310,53 +327,73 @@ namespace Simit.page
         }
 
         //marcar los puntos de atension
-        private void markerUbicatioPoints(String latitude, String longitude)
+        private void markerUbicatioPoints(List<PointsAtention> listPointAtention)
         {
-            Pushpin pushpin = new Pushpin();//marcador en el mapa
-            Pushpin pushpin2 = new Pushpin();//marcador en el mapa
-            String latitude1 = LATITUDE1;
-            String longitude1 = LONGITUDE1;
-            if (latitude == null || latitude.Equals("") || longitude == null || longitude.Equals(""))
+            foreach (PointsAtention pointAtention in listPointAtention)
             {
-                //valores por defecto para la ubicacion, si la misma es nula o el nombre es nulo
-                latitude = LATITUDE;
-                longitude = LONGITUDE;
+                Pushpin pushpin = new Pushpin();//marcador en el mapa
+                pushpin.Style = this.Resources["PushpinStyle"] as Style;
+                Location location = new Location();
+                pushpin.Background = new SolidColorBrush(Colors.Red);
+                location.Latitude = Convert.ToDouble(pointAtention.LATITUDE);
+                location.Longitude = Convert.ToDouble(pointAtention.LONGITUDE);
+                pushpin.Location = location;
+                map_ubication.SetView(location, 9);
+                map_ubication.Children.Add(pushpin);
             }
-
-            //seteo el color del pushpin o marcador
-            pushpin.Background = new SolidColorBrush(Colors.Red);
-            pushpin2.Background = new SolidColorBrush(Colors.Blue);
-            //seteo la leyenda con el nombre
-            Location location = new Location();
-            Location location1 = new Location();
-            //seteo las coordenadas
-            location.Latitude = Convert.ToDouble(latitude.Replace(".", ","));
-            location.Longitude = Convert.ToDouble(longitude.Replace(".", ","));
-            location.Latitude = Convert.ToDouble(latitude1.Replace(".", ","));
-            location.Longitude = Convert.ToDouble(longitude1.Replace(".", ","));
-            //seteo al pushpin las coordenadas
-            pushpin.Location = location;
-            pushpin2.Location = location1;
-            //seteo la localizacion en el mapa con el zoom
-            map_ubication.SetView(location, 17);
-            //agrego al mapa el pushpin
-            map_ubication.Children.Add(pushpin);
-            map_ubication.Children.Add(pushpin2);
         }
+
+        private void image_push_pin_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            Image item = (Image)sender;
+            
+        }
+
 
         private void button_select_point(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            //despliega la lista con los departamentos disponibles
-            openBackgroundProgressBar();
-            ManagerData.getIntance().getAtentionPoints();
-            ManagerData.getIntance().getDataCompleted += HomePage_getDataCompleted;
+            loadListAtentionPoints(); //cargo la lista manualmente
+            list_select_document.ItemsSource = listNameAtentionPoints;
+            popup_list_select_document.IsOpen = true; //abro el popup de lista
+            grid_popup_list.Visibility = Visibility.Visible;
         }
 
-        void HomePage_getDataCompleted(object sender, EventResponseData e)
+        private void loadListAtentionPoints()
         {
-            closeBackgroundProgressBar();
+            //Cargo la lista con los nombres y su id 
+            TypeNameAtentionPoints name1 = new TypeNameAtentionPoints();
+            name1.NAME_ATENTION_POINTS = resources.@string.StringResource.antioquia;
+            listNameAtentionPoints.Add(name1);
+
+            /*
+            TypeNameAtentionPoints name2 = new TypeNameAtentionPoints();
+            name2.NAME_ATENTION_POINTS = resources.@string.StringResource.atlantic;
+            listNameAtentionPoints.Add(name2);
+            TypeNameAtentionPoints name3 = new TypeNameAtentionPoints();
+            name3.NAME_ATENTION_POINTS = resources.@string.StringResource.boyaca;
+            listNameAtentionPoints.Add(name3);
+            TypeNameAtentionPoints name4 = new TypeNameAtentionPoints();
+            name4.NAME_ATENTION_POINTS = resources.@string.StringResource.bogota_dc;
+            listNameAtentionPoints.Add(name4);
+            TypeNameAtentionPoints name5 = new TypeNameAtentionPoints();
+            name5.NAME_ATENTION_POINTS = resources.@string.StringResource.bolivar;
+            listNameAtentionPoints.Add(name5);
+            TypeNameAtentionPoints name6 = new TypeNameAtentionPoints();
+            name6.NAME_ATENTION_POINTS = resources.@string.StringResource.cordoba;
+            listNameAtentionPoints.Add(name6);
+            TypeNameAtentionPoints name7 = new TypeNameAtentionPoints();
+            name7.NAME_ATENTION_POINTS = resources.@string.StringResource.cauca;
+            listNameAtentionPoints.Add(name7);
+            TypeNameAtentionPoints name8 = new TypeNameAtentionPoints();
+            name8.NAME_ATENTION_POINTS = resources.@string.StringResource.caldas;
+            listNameAtentionPoints.Add(name8);
+            TypeNameAtentionPoints name = new TypeNameAtentionPoints();
+            name1.NAME_ATENTION_POINTS = resources.@string.StringResource.antioquia;
+            listNameAtentionPoints.Add(name1);
+             * */
         }
 
+       
         private void button_share_facebook_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             //realiza el comentario en facebook y comparte el enlace
@@ -536,6 +573,12 @@ namespace Simit.page
             NavigationService.Navigate(new Uri(PAGE_CONSULTATIONS, UriKind.RelativeOrAbsolute));
         }
 
+        private void image_push_pin_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+
+        }
+
+        
 
     }
 }
