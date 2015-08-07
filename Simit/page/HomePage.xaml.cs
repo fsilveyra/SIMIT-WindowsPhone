@@ -22,6 +22,7 @@ using TweetSharp.Model;
 using Hammock.Authentication.OAuth;
 using Hammock;
 using Microsoft.Phone.Tasks;
+using System.Net.NetworkInformation;
 
 namespace Simit.page
 {
@@ -51,29 +52,32 @@ namespace Simit.page
 
         //list document prueba
         List<TypeDocument> listDocument = null;//inicializo la lista
+        TypeDocument typeDocument = new TypeDocument();//para almasenar el tipo de documento elegido
+
+        //para las lista de los detalles
+        List<Subpoena> listSubpoena;
         
         private int buttonSelect = 1; //identifica el boton activo
 
-        //twitter
-        
+        //page
+        private static String PAGE_CONSULTATIONS = "/page/PageConsultations.xaml";
+        private static String  NUM_DEPARTMENT_DEFECT = "11";
 
+        //twitter
         private TweetSharp.TwitterService service;
         private OAuthRequestToken requestToken;
         private OAuthAccessToken accessToken;
-        private String accessTokenFinal;
-        private String accessTokensecretFinal;
-        //private String _oauth_token;
-        private String _oauth_verifier;
         private Uri uri;
-        private WebBrowser webBrowser;
         private String message;
 
         public HomePage()
         {
             InitializeComponent();
+            //map_ubication.Mode = new 
+            map_ubication.ZoomLevel = 9;
             listDocument = new List<TypeDocument>();
-            map_ubication.Mode = new RoadMode();
-            map_ubication.ZoomLevel = 15;
+            typeDocument.ID = "1";
+            typeDocument.NameDocument = resources.@string.StringResource.citizenship_card;//nombre por defecto
 
             this.Loaded += (s, e) =>
            {
@@ -91,6 +95,17 @@ namespace Simit.page
             {
                 webView.Visibility = Visibility.Collapsed;
                 dialogTwitter.Visibility = Visibility.Collapsed;
+                e.Cancel = true;
+            }
+            else if (fragment_info_consultation.Visibility == Visibility.Visible)
+            {
+                fragment_info_consultation.Visibility = Visibility.Collapsed;
+                e.Cancel = true;
+            }
+            else if (fragment_detail_consultation.Visibility == Visibility.Visible)
+            {
+                fragment_detail_consultation.Visibility = Visibility.Collapsed;
+                fragment_info_consultation.Visibility = Visibility.Visible;
                 e.Cancel = true;
             }
             else
@@ -131,38 +146,7 @@ namespace Simit.page
 
         public void loadListDocument()
         {
-
-            TypeDocument typeDocument1 = new TypeDocument();
-            typeDocument1.NameDocument = "CÉDULA DE CIUDADANÍA";
-            listDocument.Add(typeDocument1);
-
-            TypeDocument typeDocument2 = new TypeDocument();
-            typeDocument2.NameDocument = "TARJETA DE IDENTIDAD";
-            listDocument.Add(typeDocument2);
-
-            TypeDocument typeDocument3 = new TypeDocument();
-            typeDocument3.NameDocument = "CÉDULA DE EXTRANJERÍA";
-            listDocument.Add(typeDocument3);
-
-            TypeDocument typeDocument4 = new TypeDocument();
-            typeDocument4.NameDocument = "NIT";
-            listDocument.Add(typeDocument4);
-
-            TypeDocument typeDocument5 = new TypeDocument();
-            typeDocument5.NameDocument = "PASAPORTE";
-            listDocument.Add(typeDocument5);
-
-            TypeDocument typeDocument6 = new TypeDocument();
-            typeDocument6.NameDocument = "CARNET DIPLOMATÍCO";
-            listDocument.Add(typeDocument6);
-
-            TypeDocument typeDocument7 = new TypeDocument();
-            typeDocument7.NameDocument = "REGISTRO CIVIL";
-            listDocument.Add(typeDocument7);
-
-            TypeDocument typeDocument8 = new TypeDocument();
-            typeDocument8.NameDocument = "CÉDULA VENEZOLANA";
-            listDocument.Add(typeDocument8);
+            listDocument = ListTypedocument.getInstance().getListTypeDocument();
         }
 
         /* verifica que boton se 
@@ -236,6 +220,7 @@ namespace Simit.page
             fragment_consultations.Visibility = Visibility.Visible;
             arrow_consultions.Visibility = Visibility.Visible;
             buttonSelect = 1;
+            
         }
 
         private void button_atention_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -249,18 +234,30 @@ namespace Simit.page
             fragment_point_atention.Visibility = Visibility.Visible;
             arrow_atention.Visibility = Visibility.Visible;
             buttonSelect = 2;
+            fragment_info_consultation.Visibility = Visibility.Collapsed;
 
             //hago el llamado
-            //openBackgroundProgressBar();
-            ConnectionManager.getIntance().getDataPointsAtention("11");
-            //paso una lista con todos los puntos de atension
-            markerUbicatioPoints("", "");
+            openBackgroundProgressBar();
+            ManagerData.getIntance().getAtentionPoints(NUM_DEPARTMENT_DEFECT);
+            ManagerData.getIntance().getDataCompleted += (s, eventResponseData) =>
+            {
+                closeBackgroundProgressBar();
+                List<PointsAtention> listPointArtention = new List<PointsAtention>();
+                if (eventResponseData.getResponseData() != null)
+                {
+                    listPointArtention = (List<PointsAtention>)eventResponseData.getResponseData();
+                    //paso una lista con todos los puntos de atension
+                    markerUbicatioPoints(listPointArtention);
+                }
+                else
+                {
+                    MessageBox.Show(resources.@string.StringResource.not_get_data);
+                }
+            };
+            
         }
 
-        private void DoStuff(XDocument xml)
-        {
-            //parse the xml result here
-        }
+        
 
         private void button_news_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
@@ -273,6 +270,7 @@ namespace Simit.page
             fragment_news.Visibility = Visibility.Visible;
             arrow_news.Visibility = Visibility.Visible;
             buttonSelect = 3;
+            fragment_info_consultation.Visibility = Visibility.Collapsed;
 
         }
 
@@ -298,7 +296,11 @@ namespace Simit.page
             list_select_document.ItemsSource = listDocument;
             popup_list_select_document.IsOpen = true; //abro el popup de lista
             grid_popup_list.Visibility = Visibility.Visible;
+            fragment_info_consultation.Visibility = Visibility.Collapsed;
         }
+
+
+        
 
         /*toma el item seleccionado
          * y cierra el popup
@@ -308,50 +310,78 @@ namespace Simit.page
             if (list_select_document.SelectedItem != null)
             {
                 text_select_document.Text = ((TypeDocument)list_select_document.SelectedValue).NameDocument;
+                typeDocument = (TypeDocument)list_select_document.SelectedValue;
             }
             popup_list_select_document.IsOpen = false; //cierro el popup de lista
             grid_popup_list.Visibility = Visibility.Collapsed;
         }
 
         //marcar los puntos de atension
-        private void markerUbicatioPoints(String latitude, String longitude)
+        private void markerUbicatioPoints(List<PointsAtention> listPointAtention)
         {
-            Pushpin pushpin = new Pushpin();//marcador en el mapa
-            Pushpin pushpin2 = new Pushpin();//marcador en el mapa
-            String latitude1 = LATITUDE1;
-            String longitude1 = LONGITUDE1;
-            if (latitude == null || latitude.Equals("") || longitude == null || longitude.Equals(""))
+            //elimino los puntos anteriores si es que hay
+            if (map_ubication.Children.Count > 0)
+                /*
+                for (int i = 0; i < map_ubication.Children.Count - 1; i++)
+                  */
+                map_ubication.Children.Clear();
+            foreach (PointsAtention pointAtention in listPointAtention)
             {
-                //valores por defecto para la ubicacion, si la misma es nula o el nombre es nulo
-                latitude = LATITUDE;
-                longitude = LONGITUDE;
+                Pushpin pushpin = new Pushpin();//marcador en el mapa
+                pushpin.Style = this.Resources["PushpinStyle"] as Style;
+                Location location = new Location();
+                pushpin.Background = new SolidColorBrush(Colors.Red);
+                location.Latitude = Convert.ToDouble(pointAtention.LATITUDE);
+                location.Longitude = Convert.ToDouble(pointAtention.LONGITUDE);
+                pushpin.Location = location;
+                map_ubication.SetView(location, 9);
+                map_ubication.Children.Add(pushpin);
             }
-
-            //seteo el color del pushpin o marcador
-            pushpin.Background = new SolidColorBrush(Colors.Red);
-            pushpin2.Background = new SolidColorBrush(Colors.Blue);
-            //seteo la leyenda con el nombre
-            Location location = new Location();
-            Location location1 = new Location();
-            //seteo las coordenadas
-            location.Latitude = Convert.ToDouble(latitude.Replace(".", ","));
-            location.Longitude = Convert.ToDouble(longitude.Replace(".", ","));
-            location.Latitude = Convert.ToDouble(latitude1.Replace(".", ","));
-            location.Longitude = Convert.ToDouble(longitude1.Replace(".", ","));
-            //seteo al pushpin las coordenadas
-            pushpin.Location = location;
-            pushpin2.Location = location1;
-            //seteo la localizacion en el mapa con el zoom
-            map_ubication.SetView(location, 17);
-            //agrego al mapa el pushpin
-            map_ubication.Children.Add(pushpin);
-            map_ubication.Children.Add(pushpin2);
         }
+
+        private void image_push_pin_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            Image item = (Image)sender;
+            
+        }
+
 
         private void button_select_point(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            //despliega la lista con los departamentos disponibles
+            list_select_atention_point.ItemsSource = ListNameAtentionPoints.getInstance().getListNameAtentionPoints();
+            grid_popup_list_atention_point.Visibility = Visibility.Visible;
+            popup_list_select_atention_point.IsOpen = true;
         }
+
+        private void list_select_atention_point_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (list_select_atention_point.SelectedItem != null)
+            {
+                NameAtentionPoints atentionPoint = (NameAtentionPoints)list_select_atention_point.SelectedItem;
+                //cambio el texto del selector y hago el llamado
+                text_select_point.Text = atentionPoint.NAME_ATENTION_POINTS;
+                grid_popup_list_atention_point.Visibility = Visibility.Collapsed;
+                popup_list_select_atention_point.IsOpen = false;
+                openBackgroundProgressBar();
+                ManagerData.getIntance().getAtentionPoints(atentionPoint.ID);
+                ManagerData.getIntance().getDataCompleted += (s, eventResponseData) =>
+                {
+                    closeBackgroundProgressBar();
+                    List<PointsAtention> listPointArtention = new List<PointsAtention>();
+                    if (eventResponseData.getResponseData() != null)
+                    {
+                        List<PointsAtention> listPoint = (List<PointsAtention>)eventResponseData.getResponseData();
+                        //paso una lista con todos los puntos de atension
+                        markerUbicatioPoints(listPoint);
+                    }
+                    else
+                    {
+                        MessageBox.Show(resources.@string.StringResource.not_get_data);
+                    }
+                };
+            }
+        }
+
 
         private void button_share_facebook_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
@@ -374,7 +404,7 @@ namespace Simit.page
 
         private void button_accept_twiter_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            if (textTwitterImput.Text.Length > 140)
+            if (textTwitterImput.Text.Length > 100)
             {
                 MessageBox.Show(resources.@string.StringResource.text_dialog_twitter);
             }
@@ -431,10 +461,9 @@ namespace Simit.page
         {
             if (rt != null)
             {
-                accessTokenFinal = rt.Token;
-                accessTokensecretFinal = rt.TokenSecret;
+                accessToken = rt;
                 //envio el mensaje
-                setTweet(accessTokenFinal, accessTokensecretFinal);
+                setTweet(accessToken.Token, accessToken.TokenSecret);
             }
         }
 
@@ -526,6 +555,137 @@ namespace Simit.page
             closeBackgroundProgressBar();
         }
 
+        /************ fragment de consultas*********************/
+        private void button_accept_consultations_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+                openBackgroundProgressBar();
+                //hago los llamados
+                ManagerData.getIntance().getSubpoena(text_imput_document.Text.ToString(), typeDocument.ID);
+                ManagerData.getIntance().getDataCompleted += (s, eventResponseData) =>
+                {
+                    closeBackgroundProgressBar();
+                     listSubpoena = new List<Subpoena>();
+                    if (eventResponseData.getResponseData() != null)
+                    {
+                        listSubpoena = (List<Subpoena>)eventResponseData.getResponseData();
+                        //paso una lista con todos los puntos de atension
+                        fragment_info_consultation.Visibility = Visibility.Visible;
+                        text_title_page_detail_consultations.Text = text_title_page_detail_consultations.Text.ToString() + text_imput_document.Text.ToString();
+                        if(listSubpoena.Count > 0)
+                         text_value_count_subpoenas.Text = listSubpoena.Count.ToString();
+                        //hago el siguiente llamado, para las resoluciones
+                        getResolutions(text_imput_document.Text.ToString(),typeDocument.ID);
+                    }
+                    else
+                    {
+                        Dialog dialog = new Dialog();
+                        dialog.setDialog(resources.@string.StringResource.MENSAGE_ERROR_LOAD_DATA);
+                        dialog.showDialog();
+                    }
+                };
 
+            }
+            else
+            {
+                Dialog dialog = new Dialog();
+                dialog.setDialog(resources.@string.StringResource.MENSAGE_NOT_CONECTION_INTERNET);
+            }
+        }
+
+        public void getResolutions(String document, String typeDocument)
+        {
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+                openBackgroundProgressBar();
+                ManagerData.getIntance().getResolutions(document, typeDocument);
+                ManagerData.getIntance().getDataCompleted += (s, eventResponseData) =>
+                {
+                    closeBackgroundProgressBar();
+                    List<Resolution> listResolution = new List<Resolution>();
+                    if (eventResponseData.getResponseData() != null)
+                    {
+                        listResolution = (List<Resolution>)eventResponseData.getResponseData();
+                        //paso una lista con todos los puntos de atension
+                        if(listResolution.Count > 0)
+                            text_value_count_resolutions.Text = listResolution.Count.ToString();
+                        //hago el siguiente llamado, para los acuerdos de pago
+                        getPaymentArrangements(document, typeDocument);
+                    }
+                    else
+                    {
+                        Dialog dialog = new Dialog();
+                        dialog.setDialog(resources.@string.StringResource.MENSAGE_ERROR_LOAD_DATA);
+                        dialog.showDialog();
+                    }
+                };
+            }
+            else
+            {
+                Dialog dialog = new Dialog();
+                dialog.setDialog(resources.@string.StringResource.MENSAGE_NOT_CONECTION_INTERNET);
+                dialog.showDialog();
+            }
+        }
+
+        public void getPaymentArrangements(String document, String typeDocument)
+        {
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+                openBackgroundProgressBar();
+                ManagerData.getIntance().getPaymentArrangements(document,typeDocument);
+                ManagerData.getIntance().getDataCompleted += (s, eventResponseData) =>
+                {
+                    closeBackgroundProgressBar();
+                    List<PaymentsArrangement> listPayment = new List<PaymentsArrangement>();
+                    if (eventResponseData.getResponseData() != null)
+                    {
+                        listPayment = (List<PaymentsArrangement>)eventResponseData.getResponseData();
+                        //paso una lista con todos los puntos de atension
+                        if(listPayment.Count > 0)
+                            text_value_count_resolutions.Text = listPayment.Count.ToString();
+                        //se generaron las llamadas correctamente
+                    }
+                    else
+                    {
+                        Dialog dialog = new Dialog();
+                        dialog.setDialog(resources.@string.StringResource.MENSAGE_ERROR_LOAD_DATA);
+                        dialog.showDialog();
+                    }
+                };
+            }
+            else
+            {
+                Dialog dialog = new Dialog();
+                dialog.setDialog(resources.@string.StringResource.MENSAGE_NOT_CONECTION_INTERNET);
+                dialog.showDialog();
+            }
+        }
+
+        private void button_subpoenas_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            fragment_detail_consultation.Visibility = Visibility.Visible;
+            fragment_info_consultation.Visibility = Visibility.Collapsed;
+            text_title_type_list.Text = resources.@string.StringResource.subpoenas;
+            //con la lista cargada al entrar en la pagina
+            if (listSubpoena.Count > 0)
+            {
+                list_detail.ItemsSource = listSubpoena;
+            }
+
+        }
+
+        private void button_resolutions_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+
+        }
+
+        private void button_payment_arrangements_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+
+        }
+
+       
     }
 }

@@ -98,6 +98,9 @@
     </Reference>
     <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Maps, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit">
+      <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\TweetSharp.2.3.0\lib\sl4-wp\Newtonsoft.Json.dll</HintPath>
@@ -111,16 +114,31 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="classAux\Dialog.cs" />
     <Compile Include="classAux\ImageLoader.cs" />
     <Compile Include="classAux\TwitterSharpIntegrated.cs" />
     <Compile Include="data\ManagerData.cs" />
+    <Compile Include="entities\ListNameAtentionPoints.cs" />
+    <Compile Include="entities\ListTypedocument.cs" />
+    <Compile Include="entities\PaymentsArrangement.cs" />
+    <Compile Include="entities\PointsAtention.cs" />
+    <Compile Include="entities\Resolution.cs" />
+    <Compile Include="entities\Subpoena.cs" />
     <Compile Include="entities\TypeDocument.cs" />
+    <Compile Include="entities\NameAtentionPoints.cs" />
     <Compile Include="events\EventResponseConnection.cs" />
     <Compile Include="events\EventResponseData.cs" />
     <Compile Include="net\ConnectionManager.cs" />
     <Compile Include="page\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="page\PageConsultations.xaml.cs">
+      <DependentUpon>PageConsultations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="parse\ParsePaymentArrangements.cs" />
+    <Compile Include="parse\ParsePointAtenion.cs" />
+    <Compile Include="parse\ParseResolutions.cs" />
+    <Compile Include="parse\ParseSubpoena.cs" />
     <Compile Include="resources\string\StringResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -147,6 +165,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="page\PageConsultations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SplashScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -165,6 +187,12 @@
     <Content Include="image\Background_panel_share.png" />
     <None Include="Service References\GetPointsService\WsPuntosAtencion.wsdl" />
     <None Include="Service References\GetPointsService\WsPuntosAtencion.xsd" />
+    <Content Include="image\button_green.png" />
+    <Content Include="image\icon_circle.png" />
+    <Content Include="image\icon_payment_arrangements.png" />
+    <Content Include="image\icon_push_pin.png" />
+    <Content Include="image\icon_resolutions.png" />
+    <Content Include="image\icon_subpoenas.png" />
     <Content Include="image\logo_twitter.png" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>

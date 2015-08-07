@@ -159,4 +159,145 @@
   <data name="url_page_twitter" xml:space="preserve">
     <value>https://mobile.twitter.com/Simit_FCM</value>
   </data>
+  <data name="not_get_data" xml:space="preserve">
+    <value>Nose pudo obtener los datos, por favor intente nuevamente.</value>
+  </data>
+  <data name="amazonas" xml:space="preserve">
+    <value>Amazonas</value>
+  </data>
+  <data name="antioquia" xml:space="preserve">
+    <value>Antioquia</value>
+  </data>
+  <data name="arauca" xml:space="preserve">
+    <value>Arauca</value>
+  </data>
+  <data name="atlantic" xml:space="preserve">
+    <value>Atlántico</value>
+  </data>
+  <data name="bogota_dc" xml:space="preserve">
+    <value>Bogotá D.C.</value>
+  </data>
+  <data name="bolivar" xml:space="preserve">
+    <value>Bolívar</value>
+  </data>
+  <data name="boyaca" xml:space="preserve">
+    <value>Boyacá</value>
+  </data>
+  <data name="caldas" xml:space="preserve">
+    <value>Caldas</value>
+  </data>
+  <data name="caqueta" xml:space="preserve">
+    <value>Caquetá</value>
+  </data>
+  <data name="card_venezuela" xml:space="preserve">
+    <value>CÉDULA VENEZOLANA</value>
+  </data>
+  <data name="casanare" xml:space="preserve">
+    <value>Casanare</value>
+  </data>
+  <data name="cauca" xml:space="preserve">
+    <value>Cauca</value>
+  </data>
+  <data name="cesar" xml:space="preserve">
+    <value>Cesar</value>
+  </data>
+  <data name="choco" xml:space="preserve">
+    <value>Chocó</value>
+  </data>
+  <data name="citizenship_card" xml:space="preserve">
+    <value>CÉDULA DE CIUDADANÍA</value>
+  </data>
+  <data name="civil_registration" xml:space="preserve">
+    <value>REGISTRO CIVIL</value>
+  </data>
+  <data name="cordoba" xml:space="preserve">
+    <value>Córoba</value>
+  </data>
+  <data name="cundinamarca" xml:space="preserve">
+    <value>Cundinamarca</value>
+  </data>
+  <data name="diplomatic_passport" xml:space="preserve">
+    <value>CARNET DIPLOMATÍCO</value>
+  </data>
+  <data name="guainía" xml:space="preserve">
+    <value>Guainía</value>
+  </data>
+  <data name="guaviare" xml:space="preserve">
+    <value>Guaviare</value>
+  </data>
+  <data name="huila" xml:space="preserve">
+    <value>Huila</value>
+  </data>
+  <data name="identity_card" xml:space="preserve">
+    <value>TARJETA DE IDENTIDAD</value>
+  </data>
+  <data name="la_guajira" xml:space="preserve">
+    <value>La Guajira</value>
+  </data>
+  <data name="magdalena" xml:space="preserve">
+    <value>Magdalena</value>
+  </data>
+  <data name="meta" xml:space="preserve">
+    <value>Meta</value>
+  </data>
+  <data name="nariño" xml:space="preserve">
+    <value>Nariño</value>
+  </data>
+  <data name="nit" xml:space="preserve">
+    <value>NIT</value>
+  </data>
+  <data name="north_of_santander" xml:space="preserve">
+    <value>Norte de Santander</value>
+  </data>
+  <data name="passport" xml:space="preserve">
+    <value>PASAPORTE</value>
+  </data>
+  <data name="putumayo" xml:space="preserve">
+    <value>Putumayo</value>
+  </data>
+  <data name="quindio" xml:space="preserve">
+    <value>Quindío</value>
+  </data>
+  <data name="risalda" xml:space="preserve">
+    <value>Risalda</value>
+  </data>
+  <data name="santander" xml:space="preserve">
+    <value>Santander</value>
+  </data>
+  <data name="san_andres_providencia" xml:space="preserve">
+    <value>San Andrés y Providencia</value>
+  </data>
+  <data name="sucre" xml:space="preserve">
+    <value>Sucre</value>
+  </data>
+  <data name="tolina" xml:space="preserve">
+    <value>Tolina</value>
+  </data>
+  <data name="valle_del_cauca" xml:space="preserve">
+    <value>Valle del Cauca</value>
+  </data>
+  <data name="vaupes" xml:space="preserve">
+    <value>Vaupés</value>
+  </data>
+  <data name="vichada" xml:space="preserve">
+    <value>Vichada</value>
+  </data>
+  <data name="writ_of_estranjeria" xml:space="preserve">
+    <value>CÉDULA DE EXTRANJERÍA</value>
+  </data>
+  <data name="MENSAGE_ERROR_LOAD_DATA" xml:space="preserve">
+    <value>Ocurrió un error al recuperar los datos, intente nuevamente.</value>
+  </data>
+  <data name="MENSAGE_NOT_CONECTION_INTERNET" xml:space="preserve">
+    <value>Se perdió la conexión, verifique su conexión de internet</value>
+  </data>
+  <data name="payment_arrangements" xml:space="preserve">
+    <value>Acuerdos de Pago</value>
+  </data>
+  <data name="resolutions" xml:space="preserve">
+    <value>Resoluciones</value>
+  </data>
+  <data name="subpoenas" xml:space="preserve">
+    <value>Comparendos</value>
+  </data>
 </root>

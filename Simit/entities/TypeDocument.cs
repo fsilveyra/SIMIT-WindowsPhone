@@ -10,6 +10,8 @@ namespace Simit.entities
     {
         private String _nameDocument;
 
+        private String _id;
+
         public String NameDocument
         {
             get
@@ -23,6 +25,20 @@ namespace Simit.entities
                 {
                     _nameDocument = value;
                 }
+            }
+        }
+
+        public String ID
+        {
+            get
+            {
+                return _id;
+            }
+
+            set
+            {
+                if (value != null)
+                    _id = value;
             }
         }
     }

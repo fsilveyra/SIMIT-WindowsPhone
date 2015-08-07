@@ -16,6 +16,8 @@ using System.Runtime.Serialization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Simit.parse;
+using Simit.entities;
 
 
 
@@ -24,12 +26,12 @@ namespace Simit.data
     public class ManagerData //: NotificationEnabledObject
     {
         private static ManagerData INSTANCE = null;
-        //private ConnectionManager connectionManager;
-        //public event EventHandler<EventResponseData> getDataCompleted;//evento que se genera para ser capturado por la clase llamadora
+        private ConnectionManager connectionManager;
+        public event EventHandler<EventResponseData> getDataCompleted;//evento que se genera para ser capturado por la clase llamadora
 
         private ManagerData()
         {
-            //this.connectionManager = ConnectionManager.getIntance();
+            this.connectionManager = ConnectionManager.getIntance();
         }
 
         public static ManagerData getIntance()
@@ -62,8 +64,8 @@ namespace Simit.data
             );
             return colorBrush;
         }
+        
         /*
-
         public void setEventDataCompleted()
         {
             getDataCompleted = null;
@@ -71,38 +73,109 @@ namespace Simit.data
 
         
 
-
+        */
         //Metodos de ManagerData
 
         /// <summary>
         /// I performed the call to connectionManager.getFaq() 
         /// and parses the data and generates an event with the data.
         /// </summary>
-        public void getQuestions()
+        public void getAtentionPoints(String numDeparment)
         {
             //preguntar si hay internet
-            Question questions;
-            ParserQuestion parserQuestion = new ParserQuestion();
-            connectionManager.getFaq();
+            ParsePointAtenion xmlParserPointAtention = new ParsePointAtenion();
+            List<PointsAtention> listPointsAtention = new List<PointsAtention>();
+            connectionManager.getAtentionPoints(numDeparment);
             //hago el llamado para obtener los datos
-            connectionManager.getQuestionCompleted += (s, eventResponse) =>
+            connectionManager.getAtentionPointsCompleted += (s, eventResponse) =>
                 {
                     //para eliminar la excepcion de hilos cruzados
                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
                             if (eventResponse != null)//verifico si no es nula la respuesta
                             {
-                                //parser los datos
-                                questions = parserQuestion.json_parser_faq(eventResponse.getResponse());
+                                //parser los datos90
+                                listPointsAtention = xmlParserPointAtention.XmlParserPointAtention(eventResponse.getResponseString());
                                 if (getDataCompleted != null)
-                                    getDataCompleted(this, new EventResponseData(questions));//genero un evento de respuesta con los datos solicitados
+                                    getDataCompleted(this, new EventResponseData(listPointsAtention));//genero un evento de respuesta con los datos solicitados
+                                 
                             }
                         });
                 };
             getDataCompleted = null;
         }
 
+        public void getResolutions(String document, String documentType)
+        {
+            ParseResolutions parseResolutions = new ParseResolutions();
+            List<Resolution> resolutions = new List<Resolution>();
+            connectionManager.getResolutions(document, documentType);
+            connectionManager.getResolutionsCompleted += (s, eventResponse) =>
+            {
+                //para eliminar la excepcion de hilos cruzados
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    if (eventResponse != null)//verifico si no es nula la respuesta
+                    {
+                        //parser los datos
+                        resolutions = parseResolutions.XmlParserRsolutions(eventResponse.getResponseString());
+                        if (getDataCompleted != null)
+                            getDataCompleted(this, new EventResponseData(resolutions));//genero un evento de respuesta con los datos solicitados
 
+                    }
+                });
+            };
+            getDataCompleted = null;
+        }
+
+
+        public void getSubpoena(String document, String document_type)
+        {
+            ParseSubpoena xmlParserSubpona = new ParseSubpoena();
+            List<Subpoena> listSubpoenas = new List<Subpoena>();
+            connectionManager.getSubpoena(document, document_type);
+            connectionManager.getSubpoenaCompleted += (s, eventResponse) =>
+            {
+                //para eliminar la excepcion de hilos cruzados
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    if (eventResponse != null)//verifico si no es nula la respuesta
+                    {
+                        //parser los datos
+                        listSubpoenas = xmlParserSubpona.XmlParserSubpoena(eventResponse.getResponseString());
+                        if (getDataCompleted != null)
+                            getDataCompleted(this, new EventResponseData(listSubpoenas));//genero un evento de respuesta con los datos solicitados
+
+                    }
+                });
+            };
+            getDataCompleted = null;
+        }
+
+        public void getPaymentArrangements(String document, String documentType)
+        {
+            ParsePaymentArrangements parsePayment = new ParsePaymentArrangements();
+            List<PaymentsArrangement> payments = new List<PaymentsArrangement>();
+            connectionManager.getPaymentArrangements(document, documentType);
+            connectionManager.getPaymentArrangementsCompleted += (s, eventResponse) =>
+            {
+                //para eliminar la excepcion de hilos cruzados
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    if (eventResponse != null)//verifico si no es nula la respuesta
+                    {
+                        //parser los datos
+                        payments = parsePayment.XmlParsePaymentArrangement(eventResponse.getResponseString());
+                        if (getDataCompleted != null)
+                            getDataCompleted(this, new EventResponseData(payments));//genero un evento de respuesta con los datos solicitados
+
+                    }
+                });
+            };
+            getDataCompleted = null;
+        }
+
+        /*
         /// <summary>
         /// I performed the call to connectionManager.getAccessTypes()
         /// and parses the data and generates an event with the data.
