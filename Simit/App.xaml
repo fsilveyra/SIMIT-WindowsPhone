@@ -20,6 +20,8 @@
         <clr:String x:Key="text_title_button_subpoenas">COMPARENDOS</clr:String>
         <clr:String x:Key="text_title_button_resolutions">RESOLUCIONES</clr:String>
         <clr:String x:Key="text_title_button_payment_arrangements">ACUERDOS DE PAGO</clr:String>
+        <clr:String x:Key="bogota_dc">Bogotá D.C</clr:String>
+        <clr:String x:Key="num_cero">0</clr:String>
 
 
         <!--recursos de color para los xml-->

@@ -114,12 +114,18 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="classAux\Dialog.cs" />
     <Compile Include="classAux\ImageLoader.cs" />
     <Compile Include="classAux\TwitterSharpIntegrated.cs" />
     <Compile Include="data\ManagerData.cs" />
+    <Compile Include="entities\ListNameAtentionPoints.cs" />
+    <Compile Include="entities\ListTypedocument.cs" />
+    <Compile Include="entities\PaymentsArrangement.cs" />
     <Compile Include="entities\PointsAtention.cs" />
+    <Compile Include="entities\Resolution.cs" />
+    <Compile Include="entities\Subpoena.cs" />
     <Compile Include="entities\TypeDocument.cs" />
-    <Compile Include="entities\TypeNameAtentionPoints.cs" />
+    <Compile Include="entities\NameAtentionPoints.cs" />
     <Compile Include="events\EventResponseConnection.cs" />
     <Compile Include="events\EventResponseData.cs" />
     <Compile Include="net\ConnectionManager.cs" />
@@ -129,7 +135,10 @@
     <Compile Include="page\PageConsultations.xaml.cs">
       <DependentUpon>PageConsultations.xaml</DependentUpon>
     </Compile>
+    <Compile Include="parse\ParsePaymentArrangements.cs" />
     <Compile Include="parse\ParsePointAtenion.cs" />
+    <Compile Include="parse\ParseResolutions.cs" />
+    <Compile Include="parse\ParseSubpoena.cs" />
     <Compile Include="resources\string\StringResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

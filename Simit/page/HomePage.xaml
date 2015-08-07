@@ -87,7 +87,7 @@
                         <Grid.Background>
                             <ImageBrush ImageSource="/image/button_green.png" ></ImageBrush>
                         </Grid.Background>
-                        <TextBlock x:Name="text_select_document" Text="CÉDULA DE CIUDADANíA" 
+                        <TextBlock x:Name="text_select_document" Text="{StaticResource text_button_page_points_atention}" 
                     		Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15" 
                     		FontSize="18" Width="260"/>
                         <Image Source="/image/arrow_down_list_piker.png" HorizontalAlignment="Right" Width="30" Margin="0,0,20,0"/>
@@ -154,7 +154,7 @@
                 <Grid VerticalAlignment="Top">
                     <StackPanel  Background="{StaticResource color_green_light}" Margin="50,60,50,0" MinHeight="50" VerticalAlignment="Center" 
                                     Orientation="Horizontal" Tap="button_select_point">
-                        <TextBlock x:Name="text_select_point" Text="{StaticResource text_button_page_points_atention}" 
+                        <TextBlock x:Name="text_select_point" Text="{StaticResource bogota_dc}" 
                     		    Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" 
                     		    FontSize="16" Width="260"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="70,0,0,0">
@@ -373,6 +373,135 @@
                 </Grid>
             </Grid>
         </Grid>
+        
+        <!--**********************************************fragment de descripcion de consultas*******************************************************-->
+        <Grid Grid.Row="0" x:Name="fragment_info_consultation"  Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="{StaticResource color_green_light}">
+                <Grid Grid.Column="0">
+                    <Image Source="/image/logo_header.png" Width="160"
+                          ></Image>
+                </Grid>
+                <Grid Grid.Column="1" HorizontalAlignment="Right">
+                    <Image Source="/image/icon_info.png" Width="40" 
+                           HorizontalAlignment="Right" Tap="button_info_Tap" Margin="0,25,30,25"></Image>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.Background>
+                    <ImageBrush ImageSource="/image/Background_panel_share.png"></ImageBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="Black"  Margin="0,0,0,55">
+                    <TextBlock x:Name="text_title_page_consultations" Text="{Binding}" 
+                               Foreground="{StaticResource color_blue_text_title}"
+                               FontSize="18" HorizontalAlignment="Right" Margin="5"></TextBlock>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid x:Name="button_subpoenas" Tap="button_subpoenas_Tap" Margin="45,0,45,0">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="/image/button_green.png"></ImageBrush>
+                        </Grid.Background>
+                        <Image  Source="/image/icon_subpoenas.png"  Width="50" HorizontalAlignment="Left" Margin="10"></Image>
+                        <TextBlock Text="{StaticResource text_title_button_subpoenas}" Foreground="Black" HorizontalAlignment="Center"
+                               VerticalAlignment="Center" FontSize="22"></TextBlock>
+                        <Grid HorizontalAlignment="Right">
+                            <Image Source="/image/icon_circle.png" Width="50"  Margin="10"></Image>
+                            <TextBlock x:Name="text_value_count_subpoenas" Text="{StaticResource num_cero}" Foreground="White" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="2"  Margin="0,10,0,0">
+                    <Grid x:Name="button_resolutions" Tap="button_resolutions_Tap" Margin="45,0,45,0">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="/image/button_green.png"></ImageBrush>
+                        </Grid.Background>
+                        <Image  Source="/image/icon_resolutions.png"  Width="50" HorizontalAlignment="Left" Margin="10"></Image>
+                        <TextBlock  Text="{StaticResource text_title_button_resolutions}" Foreground="Black" HorizontalAlignment="Center"
+                               VerticalAlignment="Center" FontSize="22"></TextBlock>
+                        <Grid HorizontalAlignment="Right">
+                            <Image Source="/image/icon_circle.png" Width="50"  Margin="10"></Image>
+                            <TextBlock x:Name="text_value_count_resolutions" Text="{StaticResource num_cero}" Foreground="White" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="3" Margin="0,10,0,0">
+                    <Grid x:Name="button_payment_arrangements" Tap="button_payment_arrangements_Tap" Margin="45,0,45,0">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="/image/button_green.png"></ImageBrush>
+                        </Grid.Background>
+                        <Image  Source="/image/icon_payment_arrangements.png"  Width="50" HorizontalAlignment="Left" Margin="10"></Image>
+                        <TextBlock  Text="{StaticResource text_title_button_payment_arrangements}" Foreground="Black" HorizontalAlignment="Center"
+                               VerticalAlignment="Center" FontSize="22"></TextBlock>
+                        <Grid HorizontalAlignment="Right">
+                            <Image Source="/image/icon_circle.png" Width="50"  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
+                            <TextBlock x:Name="text_value_payment_arrangements" Text="{StaticResource num_cero}" Foreground="White" HorizontalAlignment="Center" FontSize="22" VerticalAlignment="Center"></TextBlock>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+        
+        <!--********************************************fragment de detalle de consulta**************************-->
+        <Grid x:Name="fragment_detail_consultation"  Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="{StaticResource color_green_light}">
+                <Grid>
+                    <Image Source="/image/logo_header.png" Width="160"
+                          ></Image>
+                </Grid>
+                <Grid HorizontalAlignment="Right" Height="50" VerticalAlignment="Bottom">
+                    <Image Source="/image/icon_info.png" Width="40" 
+                           HorizontalAlignment="Right" Tap="button_info_Tap" Margin="0,25,30,25"></Image>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.Background>
+                    <ImageBrush ImageSource="/image/Background_panel_share.png"></ImageBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="Black"  Margin="0,0,0,55">
+                    <TextBlock x:Name="text_title_page_detail_consultations" Text="{Binding}" 
+                               Foreground="{StaticResource color_blue_text_title}"
+                               FontSize="18" HorizontalAlignment="Right" Margin="5"></TextBlock>
+                </Grid>
+                <Grid Grid.Row="1" Background="white">
+                    <StackPanel Orientation="Vertical">
+
+                        <TextBlock x:Name="text_title_type_list" Text="{Binding}" 
+                               Foreground="{StaticResource color_blue_text_title}"
+                               FontSize="18" HorizontalAlignment="Right" Margin="5"></TextBlock>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="2" Background="White">
+                    <ListBox x:Name="list_detail">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="22" Foreground="Black" Text="{Binding NUM_SUBPOENA}" HorizontalAlignment="Left"></TextBlock>
+                                    <TextBlock FontSize="22" Foreground="Black" Text="{Binding TOTAL}" HorizontalAlignment="Right"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Grid>
+        </Grid>
 
         <!--******************************************* dialog twitter ******************************************-->
         <!-- dialog twiwtter-->
@@ -484,6 +613,28 @@
             </Grid>
         </Popup>
        </Grid>
+        
+        <!--*************************************************************************************************************-->
+        <Grid Grid.RowSpan="2" x:Name="grid_popup_list_atention_point" Visibility="Collapsed">
+            <Grid.Background>
+                <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
+            </Grid.Background>
+            <Popup x:Name="popup_list_select_atention_point" IsOpen="False" Height="550" Width="300" VerticalAlignment="Top" Margin="0,50,0,0">
+                <Grid Background="White" >
+                    <ListBox x:Name="list_select_atention_point" Tap="list_select_atention_point_Tap">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel  Orientation="Vertical" Background="White" Name="Line">
+                                    <TextBlock Text="{Binding NAME_ATENTION_POINTS}" FontSize="22" Foreground="Black" 
+                                    VerticalAlignment="Center" Height="35" Margin="20"/>
+                                    <Grid Height="1" Background="Gray" Width="300"></Grid>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Popup>
+        </Grid>
 
         <!-- *********************************************************************************************************************-->
 

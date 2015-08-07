@@ -358,6 +358,24 @@ namespace Simit.resources.@string {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Ocurrió un error al recuperar los datos, intente nuevamente..
+        /// </summary>
+        internal static string MENSAGE_ERROR_LOAD_DATA {
+            get {
+                return ResourceManager.GetString("MENSAGE_ERROR_LOAD_DATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Se perdió la conexión, verifique su conexión de internet.
+        /// </summary>
+        internal static string MENSAGE_NOT_CONECTION_INTERNET {
+            get {
+                return ResourceManager.GetString("MENSAGE_NOT_CONECTION_INTERNET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a El tweet fue publicado correctamente..
         /// </summary>
         internal static string message_public_tweet_ok {
@@ -421,6 +439,15 @@ namespace Simit.resources.@string {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Acuerdos de Pago.
+        /// </summary>
+        internal static string payment_arrangements {
+            get {
+                return ResourceManager.GetString("payment_arrangements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Putumayo.
         /// </summary>
         internal static string putumayo {
@@ -435,6 +462,15 @@ namespace Simit.resources.@string {
         internal static string quindio {
             get {
                 return ResourceManager.GetString("quindio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Resoluciones.
+        /// </summary>
+        internal static string resolutions {
+            get {
+                return ResourceManager.GetString("resolutions", resourceCulture);
             }
         }
         
@@ -462,6 +498,15 @@ namespace Simit.resources.@string {
         internal static string santander {
             get {
                 return ResourceManager.GetString("santander", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Comparendos.
+        /// </summary>
+        internal static string subpoenas {
+            get {
+                return ResourceManager.GetString("subpoenas", resourceCulture);
             }
         }
         

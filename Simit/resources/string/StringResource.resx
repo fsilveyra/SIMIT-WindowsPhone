@@ -285,4 +285,19 @@
   <data name="writ_of_estranjeria" xml:space="preserve">
     <value>CÉDULA DE EXTRANJERÍA</value>
   </data>
+  <data name="MENSAGE_ERROR_LOAD_DATA" xml:space="preserve">
+    <value>Ocurrió un error al recuperar los datos, intente nuevamente.</value>
+  </data>
+  <data name="MENSAGE_NOT_CONECTION_INTERNET" xml:space="preserve">
+    <value>Se perdió la conexión, verifique su conexión de internet</value>
+  </data>
+  <data name="payment_arrangements" xml:space="preserve">
+    <value>Acuerdos de Pago</value>
+  </data>
+  <data name="resolutions" xml:space="preserve">
+    <value>Resoluciones</value>
+  </data>
+  <data name="subpoenas" xml:space="preserve">
+    <value>Comparendos</value>
+  </data>
 </root>

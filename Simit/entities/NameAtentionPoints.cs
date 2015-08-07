@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Simit.entities
 {
-    class TypeNameAtentionPoints
+    public class NameAtentionPoints
     {
         private String _nameAtentionPoints;
 
-        private int _id;
+        private String _id;
 
         public String NAME_ATENTION_POINTS
         {
@@ -26,7 +26,7 @@ namespace Simit.entities
             }
         }
 
-        public int ID
+        public String ID
         {
             get
             {

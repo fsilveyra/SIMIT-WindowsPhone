@@ -87,7 +87,7 @@ namespace Simit.data
             List<PointsAtention> listPointsAtention = new List<PointsAtention>();
             connectionManager.getAtentionPoints(numDeparment);
             //hago el llamado para obtener los datos
-            connectionManager.getQuestionCompleted += (s, eventResponse) =>
+            connectionManager.getAtentionPointsCompleted += (s, eventResponse) =>
                 {
                     //para eliminar la excepcion de hilos cruzados
                     Deployment.Current.Dispatcher.BeginInvoke(() =>
@@ -102,6 +102,76 @@ namespace Simit.data
                             }
                         });
                 };
+            getDataCompleted = null;
+        }
+
+        public void getResolutions(String document, String documentType)
+        {
+            ParseResolutions parseResolutions = new ParseResolutions();
+            List<Resolution> resolutions = new List<Resolution>();
+            connectionManager.getResolutions(document, documentType);
+            connectionManager.getResolutionsCompleted += (s, eventResponse) =>
+            {
+                //para eliminar la excepcion de hilos cruzados
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    if (eventResponse != null)//verifico si no es nula la respuesta
+                    {
+                        //parser los datos
+                        resolutions = parseResolutions.XmlParserRsolutions(eventResponse.getResponseString());
+                        if (getDataCompleted != null)
+                            getDataCompleted(this, new EventResponseData(resolutions));//genero un evento de respuesta con los datos solicitados
+
+                    }
+                });
+            };
+            getDataCompleted = null;
+        }
+
+
+        public void getSubpoena(String document, String document_type)
+        {
+            ParseSubpoena xmlParserSubpona = new ParseSubpoena();
+            List<Subpoena> listSubpoenas = new List<Subpoena>();
+            connectionManager.getSubpoena(document, document_type);
+            connectionManager.getSubpoenaCompleted += (s, eventResponse) =>
+            {
+                //para eliminar la excepcion de hilos cruzados
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    if (eventResponse != null)//verifico si no es nula la respuesta
+                    {
+                        //parser los datos
+                        listSubpoenas = xmlParserSubpona.XmlParserSubpoena(eventResponse.getResponseString());
+                        if (getDataCompleted != null)
+                            getDataCompleted(this, new EventResponseData(listSubpoenas));//genero un evento de respuesta con los datos solicitados
+
+                    }
+                });
+            };
+            getDataCompleted = null;
+        }
+
+        public void getPaymentArrangements(String document, String documentType)
+        {
+            ParsePaymentArrangements parsePayment = new ParsePaymentArrangements();
+            List<PaymentsArrangement> payments = new List<PaymentsArrangement>();
+            connectionManager.getPaymentArrangements(document, documentType);
+            connectionManager.getPaymentArrangementsCompleted += (s, eventResponse) =>
+            {
+                //para eliminar la excepcion de hilos cruzados
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    if (eventResponse != null)//verifico si no es nula la respuesta
+                    {
+                        //parser los datos
+                        payments = parsePayment.XmlParsePaymentArrangement(eventResponse.getResponseString());
+                        if (getDataCompleted != null)
+                            getDataCompleted(this, new EventResponseData(payments));//genero un evento de respuesta con los datos solicitados
+
+                    }
+                });
+            };
             getDataCompleted = null;
         }
 
