@@ -73,8 +73,6 @@ namespace Simit.data
         public event EventHandler<EventResponseConnection> getPaymentArrangementsCompleted = null;
         //public event EventHandler<EventResponseConnection> getCategoriesCompleted = null;
         
-        //Simit
-        public event EventHandler<GetPointsService.BuscarPuntosCompletedEventArgs> getPointsAtentionCompleted = null;
 
         public void getPaymentArrangements(String document,String documentType)
         {

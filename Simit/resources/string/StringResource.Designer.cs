@@ -376,6 +376,15 @@ namespace Simit.resources.@string {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Debe Ingresar un numero de documento valido..
+        /// </summary>
+        internal static string MESSAGE_NOT_IMPUT_DATA {
+            get {
+                return ResourceManager.GetString("MESSAGE_NOT_IMPUT_DATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a El tweet fue publicado correctamente..
         /// </summary>
         internal static string message_public_tweet_ok {

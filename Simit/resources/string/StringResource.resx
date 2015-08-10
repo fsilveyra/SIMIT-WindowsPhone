@@ -300,4 +300,7 @@
   <data name="subpoenas" xml:space="preserve">
     <value>Comparendos</value>
   </data>
+  <data name="MESSAGE_NOT_IMPUT_DATA" xml:space="preserve">
+    <value>Debe Ingresar un numero de documento valido.</value>
+  </data>
 </root>

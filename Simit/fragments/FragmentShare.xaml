@@ -1,0 +1,140 @@
+﻿<UserControl x:Class="Simit.fragments.FragmentShare"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    >
+
+    <!--************************************fragment share**********************************************-->
+    <Grid x:Name="fragment_share" Visibility="Visible">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="{StaticResource color_green_light}">
+            <Grid Grid.Column="0">
+                <Image Source="/image/logo_header.png" Width="160"
+                          ></Image>
+            </Grid>
+            <Grid Grid.Column="1" HorizontalAlignment="Right">
+                <Image Source="/image/icon_info.png" Width="40" 
+                           HorizontalAlignment="Right" Tap="button_info_Tap" Margin="0,25,30,25"></Image>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.Background>
+                <ImageBrush ImageSource="/image/Background_panel_share.png"></ImageBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="Black"  Margin="0,0,0,35">
+                <TextBlock Text="{StaticResource text_lineblack_page_share}" 
+                               Foreground="{StaticResource color_green_light}"
+                               FontSize="18" HorizontalAlignment="Right" Margin="5"></TextBlock>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Image x:Name="button_share_facebook" Source="/image/btnfacebook1.png" Margin="35,5,35,5" Tap="button_share_facebook_Tap"></Image>
+            </Grid>
+            <Grid Grid.Row="2" Tap="button_share_twitter_Tap">
+                <Image x:Name="button_share_twitter" Source="/image/btntwitter1.png" Margin="35,5,35,5"></Image>
+            </Grid>
+            <Grid Grid.Row="3"  Margin="0,0,0,40">
+                <Image x:Name="button_send_mail" Source="/image/btncorreo.png" Margin="35,5,35,0" Tap="button_send_mail_Tap"></Image>
+            </Grid>
+            <Grid Grid.Row="4" Margin="0,10,0,0">
+                <StackPanel Margin="35,0,35,0">
+                    <StackPanel Background="Black" Height="1" Margin="0,0,0,5"></StackPanel>
+                    <TextBlock Text="{StaticResource text_underline_page_share}" Foreground="Black"></TextBlock>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="5" VerticalAlignment="Center" Margin="35,0,35,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Image x:Name="button_page_facebook" Source="/image/btnfacebook.png"  
+                                        Width="100" HorizontalAlignment="Left" Tap="button_page_facebook_Tap"></Image>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Image x:Name="button_page_twitter" Source="/image/btntwitter.png" Width="100" Tap="button_page_twitter_Tap"></Image>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Image x:Name="button_page_simit" Source="/image/btnweb.png" Width="100"
+                               HorizontalAlignment="Right" Tap="button_page_simit_Tap"></Image>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <!--******************************************* dialog twitter ******************************************-->
+        <!-- dialog twiwtter-->
+        <Grid Grid.RowSpan="2" Visibility="Collapsed" x:Name="dialogTwitter">
+            <Grid.Background>
+                <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
+            </Grid.Background>
+            <Grid Background="White" Margin="50">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="1"></RowDefinition>
+                    <RowDefinition Height="10*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" x:Name="buttonCancel" Tap="buttonCancel_Tap">
+                        <TextBlock Foreground="Gray" Text="Cancelar" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Image Source="/image/logo_twitter.png" Width="60" HorizontalAlignment="Center"></Image>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <TextBlock Text="Twitter" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Gray" FontWeight="Medium"></TextBlock>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Column="2" x:Name="button_accept_twiter" Tap="button_accept_twiter_Tap">
+                        <TextBlock Foreground="Gray" Text="Aceptar" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1" Background="Black"></Grid>
+                <Grid Grid.Row="2">
+                    <TextBox x:Name="textTwitterImput" Foreground="Black" Margin="10" FontSize="20" TextWrapping="Wrap"></TextBox>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <!-- web view-->
+        <Grid Grid.RowSpan="2" Visibility="Collapsed" x:Name="webView">
+            <Grid.Background>
+                <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
+            </Grid.Background>
+            <Grid Margin="0">
+                <phone:WebBrowser x:Name="Browser" Grid.Row="1"  Background="Aqua" 
+                                    Navigating="Browser_Navigating" LoadCompleted="Browser_LoadCompleted"
+                                        NavigationFailed="Browser_NavigationFailed"/>
+            </Grid>
+        </Grid>
+
+    </Grid>
+    
+
+</UserControl>
