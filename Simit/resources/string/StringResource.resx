@@ -303,4 +303,10 @@
   <data name="MESSAGE_NOT_IMPUT_DATA" xml:space="preserve">
     <value>Debe Ingresar un numero de documento valido.</value>
   </data>
+  <data name="API_KEY_APP_ANDROID" xml:space="preserve">
+    <value>AIzaSyAVahCEPXRXG3IGoH8i0n9ORpwe3mxoREI</value>
+  </data>
+  <data name="CHANELID_YOU_TUBE" xml:space="preserve">
+    <value>UCoT2mmYn3Bxfpc_TQxZlRnA</value>
+  </data>
 </root>

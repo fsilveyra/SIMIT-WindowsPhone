@@ -118,6 +118,7 @@
     <Compile Include="classAux\ImageLoader.cs" />
     <Compile Include="classAux\TwitterSharpIntegrated.cs" />
     <Compile Include="data\ManagerData.cs" />
+    <Compile Include="entities\ItemNews.cs" />
     <Compile Include="entities\ListNameAtentionPoints.cs" />
     <Compile Include="entities\ListTypedocument.cs" />
     <Compile Include="entities\PaymentsArrangement.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="page\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="parse\ParseItemsNews.cs" />
     <Compile Include="parse\ParsePaymentArrangements.cs" />
     <Compile Include="parse\ParsePointAtenion.cs" />
     <Compile Include="parse\ParseResolutions.cs" />

@@ -25,8 +25,26 @@
                            HorizontalAlignment="Right" Tap="button_info_Tap" Margin="0,25,30,25"></Image>
             </Grid>
         </Grid>
-        <Grid Grid.RowSpan="2" VerticalAlignment="Bottom">
-            
+        <Grid Grid.Row="1">
+            <ListBox x:Name="list_news">
+                <ListBoxItem>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock x:Name="text_title_news" Foreground="Black" FontSize="22" FontWeight="Bold"
+                                           Text="{Binding TITLE}"></TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Image x:Name="image_news" Source="{Binding URL_IMAGE_VIDEO}"></Image>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </ListBoxItem>
+            </ListBox>
         </Grid>
     </Grid>
 </UserControl>
