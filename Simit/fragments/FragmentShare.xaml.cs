@@ -71,8 +71,28 @@ namespace Simit.fragments
             }
         }
 
+        public void onBackPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (dialogTwitter.Visibility == Visibility.Visible)
+            {
+                dialogTwitter.Visibility = Visibility.Collapsed;
+                context.closeBackgroundProgressBar();
+                e.Cancel = true;
+            }
+            else if (webView.Visibility == Visibility.Visible)
+            {
+                webView.Visibility = Visibility.Collapsed;
+                context.closeBackgroundProgressBar();
+                e.Cancel = true;
+            }
+            else
+            {
+                context.backTrue(e);
+            }
+        }
+
         //metodos para la publicacion con twitter
-        /*-------------------------------------------------------------------------------------------------------------------------------*/
+        /*-------------------------------------------------------------------------------------------------------------------------*/
         private void getRequestToken()
         {
             //creo el servicio

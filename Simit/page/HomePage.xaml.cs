@@ -69,6 +69,38 @@ namespace Simit.page
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
+            if (popup_info.Visibility == Visibility.Visible)
+            {
+                popup_info.Visibility = Visibility.Collapsed;
+                e.Cancel = true;
+            }
+            else
+            {
+                switch (buttonSelect)
+                {
+                    case 1:
+                        {
+                            checkCase1(e);
+                            break;
+                        }
+                    case 2:
+                        {
+                            backTrue(e);
+                            break;
+                        }
+                    case 3:
+                        {
+                            backTrue(e);
+                            break;
+                        }
+                    case 4:
+                        {
+                            checkCase4(e);
+                            break;
+                        }
+
+                }
+            }
             /*
             if (webView.Visibility == Visibility.Visible || dialogTwitter.Visibility == Visibility.Visible)
             {
@@ -99,6 +131,31 @@ namespace Simit.page
              */
         }
 
+        private void checkCase1(System.ComponentModel.CancelEventArgs e)
+        {
+            if (fragmentConsultation != null)
+                fragmentConsultation.backPress(e);
+        }
+
+        /*---------------------------------------------------------------------------------*/
+        //manejo del boton atras en los fragments
+        private void checkCase4(System.ComponentModel.CancelEventArgs e)
+        {
+            if(fragmentShare != null)
+                fragmentShare.onBackPress(e);
+        }
+
+        public void backTrue(System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = false;
+            //cierro la aplicacion eliminando todas las paginas abiertas
+            while (NavigationService.RemoveBackEntry() != null)
+            {
+                NavigationService.RemoveBackEntry();
+            }
+        }
+
+        /*--------------------------------------------------------------------------------*/
         public void openBackgroundProgressBar()
         {
             background_progress_bar.Visibility = Visibility.Visible;
@@ -124,7 +181,7 @@ namespace Simit.page
          * encuentra activo y lo 
          * desacttiva
          * */
-        public void collapsedStyleAllbuttonsMenu()
+        public void collapsedStylebuttonsMenu()
         {
            switch (buttonSelect)
             {
@@ -137,6 +194,9 @@ namespace Simit.page
                 line_green_consultions.Visibility = Visibility.Collapsed;
                 fragment_consultations.Visibility = Visibility.Collapsed;
                 arrow_consultions.Visibility = Visibility.Collapsed;
+                //oculto el resto de los fragment en caso de que esten visibles
+                fragment_info_consultation.Visibility = Visibility.Collapsed;
+                fragment_detail_consultation.Visibility = Visibility.Collapsed;
                 break;
                    }
 
@@ -183,7 +243,7 @@ namespace Simit.page
         /*Metodos que permiten activar el boton que se pulsa*/
         public void button_consultations_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            collapsedStyleAllbuttonsMenu();
+            collapsedStylebuttonsMenu();
             icon_consultions.Source = ImageLoader.getInstance().getBitmapImage(ICON_CONSULTATION_WHITE, null);//bitmapImage;
             text_consultions.Foreground = ManagerData.getIntance().GetColorFromHexa(COLOR_WHITE);
             image_shadow_right_consultions.Visibility = Visibility.Visible;
@@ -201,7 +261,7 @@ namespace Simit.page
 
         private void button_atention_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            collapsedStyleAllbuttonsMenu();
+            collapsedStylebuttonsMenu();
             icon_atention.Source = ImageLoader.getInstance().getBitmapImage(ICON_ATENTION_WHITE, null);//bitmapImage;
             text_atention.Foreground = ManagerData.getIntance().GetColorFromHexa(COLOR_WHITE);
             image_shadow_rigth_atention.Visibility = Visibility.Visible;
@@ -222,7 +282,7 @@ namespace Simit.page
 
         private void button_news_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            collapsedStyleAllbuttonsMenu();
+            collapsedStylebuttonsMenu();
             icon_news.Source = ImageLoader.getInstance().getBitmapImage(ICON_NEWS_WHITE, null);
             text_news.Foreground = ManagerData.getIntance().GetColorFromHexa(COLOR_WHITE);
             image_shadow_left_news.Visibility = Visibility.Visible;
@@ -244,7 +304,7 @@ namespace Simit.page
 
         private void button_share_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            collapsedStyleAllbuttonsMenu();
+            collapsedStylebuttonsMenu();
             icon_share.Source = ImageLoader.getInstance().getBitmapImage(ICON_SHARE_WHITE, null);
             text_share.Foreground = ManagerData.getIntance().GetColorFromHexa(COLOR_WHITE);
             image_shadow_left_share.Visibility = Visibility.Visible;

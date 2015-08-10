@@ -36,5 +36,12 @@ namespace Simit.fragments
         {
             context.popup_info.Visibility = Visibility.Collapsed;
         }
+
+        public void backPress(System.ComponentModel.CancelEventArgs e)
+        {
+            //modificar esto cuando agregue el ultimo fragment que contiene el popup
+            fragment_detail_consultation.Visibility = Visibility.Collapsed;
+            e.Cancel = true;
+        }
     }
 }

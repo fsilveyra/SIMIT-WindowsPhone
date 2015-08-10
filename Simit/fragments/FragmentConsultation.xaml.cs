@@ -22,6 +22,7 @@ namespace Simit.fragments
         TypeDocument typeDocument = new TypeDocument();//para almasenar el tipo de documento elegido
         HomePage context;
         List<Subpoena> listSubpoena;
+        FragmentDesciptionConsultation fragmentDescriptionConsultation;
 
         public FragmentConsultation(HomePage context)
         {
@@ -70,7 +71,7 @@ namespace Simit.fragments
             {
                 if (NetworkInterface.GetIsNetworkAvailable())
                 {
-                    FragmentDesciptionConsultation fragmentDescriptionConsultation = new FragmentDesciptionConsultation(context);
+                    fragmentDescriptionConsultation = new FragmentDesciptionConsultation(context);
                     context.fragment_info_consultation.Children.Add(fragmentDescriptionConsultation);
                     fragmentDescriptionConsultation.loadPage(text_imput_document.Text.ToString(),typeDocument);//cargo la pagina
                     context.fragment_info_consultation.Visibility = Visibility.Visible;
@@ -98,6 +99,22 @@ namespace Simit.fragments
         private void button_close_popup_info_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             context.popup_info.Visibility = Visibility.Collapsed;
+        }
+
+        public void backPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (context.fragment_info_consultation.Visibility == Visibility.Visible)
+            {
+                if (fragmentDescriptionConsultation != null)
+                {
+                    fragmentDescriptionConsultation.backPress(e);
+                }
+                else
+                {
+                    //sale de la aplicacion
+                    context.backTrue(e);
+                }
+            }
         }
 
     }

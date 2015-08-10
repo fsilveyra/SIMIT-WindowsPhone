@@ -18,6 +18,8 @@ namespace Simit.fragments
     {
         HomePage context;
         List<Subpoena> listSubpoena;
+        FragmentDetailConsultation fragmentDetailConsultation;
+
         public FragmentDesciptionConsultation(HomePage context)
         {
             InitializeComponent();
@@ -70,7 +72,7 @@ namespace Simit.fragments
         {
             if (listSubpoena != null && listSubpoena.Count > 0)
             {
-                FragmentDetailConsultation fragmentDetailConsultation = new FragmentDetailConsultation(context);
+                fragmentDetailConsultation = new FragmentDetailConsultation(context);
                 context.fragment_detail_consultation.Children.Add(fragmentDetailConsultation);
                 fragmentDetailConsultation.loadPageSubpoena(listSubpoena);
                 context.fragment_detail_consultation.Visibility = Visibility.Visible;
@@ -154,6 +156,23 @@ namespace Simit.fragments
                 Dialog dialog = new Dialog();
                 dialog.setDialog(resources.@string.StringResource.MENSAGE_NOT_CONECTION_INTERNET);
                 dialog.showDialog();
+            }
+        }
+
+        public void backPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (context.fragment_detail_consultation.Visibility == Visibility.Visible)
+            {
+                if (fragmentDetailConsultation != null)
+                {
+                    fragmentDetailConsultation.backPress(e);
+                }
+            }
+            else
+            {
+                //colapso este fragment y vuelvo al de consulta
+                context.fragment_info_consultation.Visibility = Visibility.Collapsed;
+                e.Cancel = true;
             }
         }
     }
