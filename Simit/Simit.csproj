@@ -128,12 +128,27 @@
     <Compile Include="entities\NameAtentionPoints.cs" />
     <Compile Include="events\EventResponseConnection.cs" />
     <Compile Include="events\EventResponseData.cs" />
+    <Compile Include="fragments\FragmentAtentionPoint.xaml.cs">
+      <DependentUpon>FragmentAtentionPoint.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="fragments\FragmentConsultation.xaml.cs">
+      <DependentUpon>FragmentConsultation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="fragments\FragmentDesciptionConsultation.xaml.cs">
+      <DependentUpon>FragmentDesciptionConsultation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="fragments\FragmentDetailConsultation.xaml.cs">
+      <DependentUpon>FragmentDetailConsultation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="fragments\FragmentNews.xaml.cs">
+      <DependentUpon>FragmentNews.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="fragments\FragmentShare.xaml.cs">
+      <DependentUpon>FragmentShare.xaml</DependentUpon>
+    </Compile>
     <Compile Include="net\ConnectionManager.cs" />
     <Compile Include="page\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="page\PageConsultations.xaml.cs">
-      <DependentUpon>PageConsultations.xaml</DependentUpon>
     </Compile>
     <Compile Include="parse\ParsePaymentArrangements.cs" />
     <Compile Include="parse\ParsePointAtenion.cs" />
@@ -143,11 +158,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StringResource.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\GetPointsService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="SplashScreen.xaml.cs">
       <DependentUpon>SplashScreen.xaml</DependentUpon>
@@ -161,11 +171,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="page\HomePage.xaml">
+    <Page Include="fragments\FragmentAtentionPoint.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="page\PageConsultations.xaml">
+    <Page Include="fragments\FragmentConsultation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="fragments\FragmentDesciptionConsultation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="fragments\FragmentDetailConsultation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="fragments\FragmentNews.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="fragments\FragmentShare.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="page\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -185,8 +215,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="image\Background_panel_share.png" />
-    <None Include="Service References\GetPointsService\WsPuntosAtencion.wsdl" />
-    <None Include="Service References\GetPointsService\WsPuntosAtencion.xsd" />
     <Content Include="image\button_green.png" />
     <Content Include="image\icon_circle.png" />
     <Content Include="image\icon_payment_arrangements.png" />
@@ -233,12 +261,6 @@
     <Content Include="image\simit_logoblanco.png" />
     <Content Include="image\simit_logocolores.png" />
     <Content Include="image\SplashScreenImage.png" />
-    <None Include="Service References\GetPointsService\configuration91.svcinfo" />
-    <None Include="Service References\GetPointsService\configuration.svcinfo" />
-    <None Include="Service References\GetPointsService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -249,12 +271,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="resources\color\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\GetPointsService\" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="MSAdvertising, Version=6.1">

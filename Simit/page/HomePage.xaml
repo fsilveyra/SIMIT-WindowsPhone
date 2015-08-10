@@ -6,27 +6,16 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:my="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"
-    xmlns:local="clr-namespace:CustomPushpinWp8" x:Key="LocalizedStrings"
+    xmlns:fragment="clr-namespace:Simit.fragments"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+    SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
     <phone:PhoneApplicationPage.Resources>
         
-        <Style TargetType="my:Pushpin" x:Key="PushpinStyle">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="my:Pushpin">
-                            
-                            <Image x:Name="image_push_pin" Source="/image/icon_push_pin.png" Stretch="Uniform" 
-                                                               Height="40" Tap="image_push_pin_Tap"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        
     </phone:PhoneApplicationPage.Resources>
     <!--LayoutRoot es la cuadrícula raíz donde se coloca todo el contenido de la página-->
     <Grid x:Name="LayoutRoot">
@@ -41,217 +30,23 @@
         </Grid.RowDefinitions>
 
         <!--fragments-->
-        <!--******************************* fragment de consultas***************************************-->
-        <Grid x:Name="fragment_consultations" Grid.Row="0" Visibility="Visible">
-            <Grid.Background>
-                <ImageBrush ImageSource="/image/background_2.png"/>
-            </Grid.Background>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <StackPanel>
-                            <Image Source="/image/simit_logoblanco.png" Width="160"></Image>
-                        </StackPanel>
-                        <StackPanel HorizontalAlignment="Right">
-                            <Image x:Name="button_info_consultations" Source="/image/icon_info.png" Width="40"
-                                    HorizontalAlignment="Left" Margin="30" Tap="button_info_Tap"></Image>
-                        </StackPanel>
-                    </Grid>
-                <Grid  Grid.Row="1">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{StaticResource text_info_page_consultations}"
-                                   TextWrapping="Wrap"  HorizontalAlignment="Center"
-                                   Foreground="Black" FontSize="22" FontWeight="SemiBold"></TextBlock>
-                        <TextBlock Text="{StaticResource text_info_page_consultations_2}" 
-                                   TextWrapping="Wrap"  HorizontalAlignment="Center"
-                                   Foreground="Black"  FontSize="22" FontWeight="SemiBold"></TextBlock>
-                    </StackPanel>
-                </Grid>
-                <Grid Grid.Row="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0" Margin="0,40,0,0">
-                    <TextBlock Text="{StaticResource text_type_document_page_consultations}" FontSize="22" HorizontalAlignment="Left" 
-                               Foreground="{StaticResource color_blue_text_title}" Margin="40,0,0,0"></TextBlock>
-                    </Grid>
-                    <Grid Grid.Row="1" x:Name="button_select_document" Margin="40,10,40,0" 
-                          Tap="button_select_document_Tap">
-                        <Grid.Background>
-                            <ImageBrush ImageSource="/image/button_green.png" ></ImageBrush>
-                        </Grid.Background>
-                        <TextBlock x:Name="text_select_document" Text="{StaticResource text_button_page_points_atention}" 
-                    		Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15" 
-                    		FontSize="18" Width="260"/>
-                        <Image Source="/image/arrow_down_list_piker.png" HorizontalAlignment="Right" Width="30" Margin="0,0,20,0"/>
-                    </Grid>
-                </Grid>
-                <Grid  Grid.Row="3" Margin="0,20,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0" Margin="0,20,0,0">
-                    <TextBlock Text="{StaticResource text_number_document_page_consultations}" 
-                               FontSize="22" HorizontalAlignment="Left" Margin="40,0,0,-2"
-                               Foreground="{StaticResource color_blue_text_title}"/>
-                    </Grid>
-                    <Grid Grid.Row="1">
-                        <TextBox x:Name="text_imput_document" MinWidth="200" MinHeight="50" Margin="30,0,30,0"
-                                 TextChanged="TextBox_TextChanged" BorderBrush="Gray"/>
-                    </Grid>
-                </Grid>
-                
-                <Grid Grid.Row="4" x:Name="button_accept_consultations" Tap="button_accept_consultations_Tap">
-                    <Grid VerticalAlignment="Center" Margin="40,0,40,0">
-                        <Grid.Background>
-                            <ImageBrush ImageSource="/image/button_green.png"></ImageBrush>
-                        </Grid.Background>
-                        <TextBlock  Foreground="Black" Text="{StaticResource text_button_consultation_page_consultations}" FontSize="18"
-                               HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15" ></TextBlock>
-                    </Grid>
-                </Grid>
-            </Grid>
-
+        <Grid Grid.Row="0" x:Name="fragment_consultations" Visibility="Collapsed">
+            
         </Grid>
-        
-        <!-- ******************************fragment atention point****************************************-->
-        <Grid x:Name="fragment_point_atention" Grid.Row="0"  Visibility="Collapsed" Background="White">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Background="{StaticResource color_green_light}">
-                <Grid Grid.Column="0">
-                    <Image Source="/image/logo_header.png" Width="160"
-                          ></Image>
-                </Grid>
-                <Grid Grid.Column="1" HorizontalAlignment="Right">
-                    <Image  Source="/image/icon_info.png" Width="40" 
-                           HorizontalAlignment="Right" Tap="button_info_Tap" Margin="0,25,30,25"></Image>
-                </Grid>
-            </Grid>
-            <!--LayoutRoot es la cuadrícula raíz donde se coloca todo el contenido de la página-->
-            <Grid Background="White" Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <!--ContentPanel. Colocar aquí el contenido adicional-->
-                <Grid x:Name="ContentPanel" >
-                    <my:Map x:Name="map_ubication"
-                                ZoomLevel="9" CredentialsProvider="Ag4c6F1g0UPr6O25eV-g1e_QshW0GmlIdywTlac9c_bHoIjX50G_eLXnhzTCvyv9"
-                            >
-                    </my:Map>
-                    
-                </Grid>
-                <Grid VerticalAlignment="Top">
-                    <StackPanel  Background="{StaticResource color_green_light}" Margin="50,60,50,0" MinHeight="50" VerticalAlignment="Center" 
-                                    Orientation="Horizontal" Tap="button_select_point">
-                        <TextBlock x:Name="text_select_point" Text="{StaticResource bogota_dc}" 
-                    		    Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" 
-                    		    FontSize="16" Width="260"/>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="70,0,0,0">
-                            <Image Source="/image/arrow_down_list_piker.png" HorizontalAlignment="Right" Width="30"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Grid>
-            </Grid>
+        <Grid Grid.Row="0" x:Name="fragment_point_atention" Visibility="Collapsed">
+            
         </Grid>
-        <!--************************************fragment news**********************************************-->
-        <Grid x:Name="fragment_news" Grid.Row="0"  Visibility="Collapsed" Background="White">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Background="{StaticResource color_green_light}">
-                <Grid Grid.Column="0">
-                    <Image Source="/image/logo_header.png" Width="160"
-                          ></Image>
-                </Grid>
-                <Grid Grid.Column="1" HorizontalAlignment="Right">
-                    <Image Source="/image/icon_info.png" Width="40" 
-                           HorizontalAlignment="Right" Tap="button_info_Tap" Margin="0,25,30,25"></Image>
-                </Grid>
-            </Grid>
-            <Grid Grid.RowSpan="2" VerticalAlignment="Bottom">
-               
-            </Grid>
+        <Grid Grid.Row="0" x:Name="fragment_info_consultation" Visibility="Collapsed">
+            
         </Grid>
-
-        <!--************************************fragment share**********************************************-->
-        <Grid x:Name="fragment_share" Grid.Row="0" Visibility="Collapsed">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Background="{StaticResource color_green_light}">
-                <Grid Grid.Column="0">
-                    <Image Source="/image/logo_header.png" Width="160"
-                          ></Image>
-                </Grid>
-                <Grid Grid.Column="1" HorizontalAlignment="Right">
-                    <Image Source="/image/icon_info.png" Width="40" 
-                           HorizontalAlignment="Right" Tap="button_info_Tap" Margin="0,25,30,25"></Image>
-                </Grid>
-            </Grid>
-            <Grid Grid.Row="1">
-                <Grid.Background>
-                    <ImageBrush ImageSource="/image/Background_panel_share.png"></ImageBrush>
-                </Grid.Background>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Background="Black"  Margin="0,0,0,35">
-                    <TextBlock Text="{StaticResource text_lineblack_page_share}" 
-                               Foreground="{StaticResource color_green_light}"
-                               FontSize="18" HorizontalAlignment="Right" Margin="5"></TextBlock>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <Image x:Name="button_share_facebook" Source="/image/btnfacebook1.png" Margin="35,5,35,5" Tap="button_share_facebook_Tap"></Image>
-                </Grid>
-                <Grid Grid.Row="2" Tap="button_share_twitter_Tap">
-                    <Image x:Name="button_share_twitter" Source="/image/btntwitter1.png" Margin="35,5,35,5"></Image>
-                </Grid>
-                <Grid Grid.Row="3"  Margin="0,0,0,40">
-                    <Image x:Name="button_send_mail" Source="/image/btncorreo.png" Margin="35,5,35,0" Tap="button_send_mail_Tap"></Image>
-                </Grid>
-                <Grid Grid.Row="4" Margin="0,10,0,0">
-                    <StackPanel Margin="35,0,35,0">
-                        <StackPanel Background="Black" Height="1" Margin="0,0,0,5"></StackPanel>
-                        <TextBlock Text="{StaticResource text_underline_page_share}" Foreground="Black"></TextBlock>
-                    </StackPanel>
-                </Grid>
-                <Grid Grid.Row="5" VerticalAlignment="Center" Margin="35,0,35,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <Image x:Name="button_page_facebook" Source="/image/btnfacebook.png"  
-                                        Width="100" HorizontalAlignment="Left" Tap="button_page_facebook_Tap"></Image>
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <Image x:Name="button_page_twitter" Source="/image/btntwitter.png" Width="100" Tap="button_page_twitter_Tap"></Image>
-                    </Grid>
-                    <Grid Grid.Column="2">
-                        <Image x:Name="button_page_simit" Source="/image/btnweb.png" Width="100"
-                               HorizontalAlignment="Right" Tap="button_page_simit_Tap"></Image>
-                    </Grid>
-                </Grid>
-            </Grid>
+        <Grid Grid.Row="0" x:Name="fragment_news" Visibility="Collapsed">
+            
+        </Grid>
+        <Grid Grid.Row="0" x:Name="fragment_share" Visibility="Collapsed">
+            
+        </Grid>
+        <Grid Grid.Row="0" x:Name="fragment_detail_consultation" Visibility="Collapsed">
+            
         </Grid>
         
         <!--**********************************************************************************************-->
@@ -374,191 +169,6 @@
             </Grid>
         </Grid>
         
-        <!--**********************************************fragment de descripcion de consultas*******************************************************-->
-        <Grid Grid.Row="0" x:Name="fragment_info_consultation"  Visibility="Collapsed">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Background="{StaticResource color_green_light}">
-                <Grid Grid.Column="0">
-                    <Image Source="/image/logo_header.png" Width="160"
-                          ></Image>
-                </Grid>
-                <Grid Grid.Column="1" HorizontalAlignment="Right">
-                    <Image Source="/image/icon_info.png" Width="40" 
-                           HorizontalAlignment="Right" Tap="button_info_Tap" Margin="0,25,30,25"></Image>
-                </Grid>
-            </Grid>
-            <Grid Grid.Row="1">
-                <Grid.Background>
-                    <ImageBrush ImageSource="/image/Background_panel_share.png"></ImageBrush>
-                </Grid.Background>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Background="Black"  Margin="0,0,0,55">
-                    <TextBlock x:Name="text_title_page_consultations" Text="{Binding}" 
-                               Foreground="{StaticResource color_blue_text_title}"
-                               FontSize="18" HorizontalAlignment="Right" Margin="5"></TextBlock>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <Grid x:Name="button_subpoenas" Tap="button_subpoenas_Tap" Margin="45,0,45,0">
-                        <Grid.Background>
-                            <ImageBrush ImageSource="/image/button_green.png"></ImageBrush>
-                        </Grid.Background>
-                        <Image  Source="/image/icon_subpoenas.png"  Width="50" HorizontalAlignment="Left" Margin="10"></Image>
-                        <TextBlock Text="{StaticResource text_title_button_subpoenas}" Foreground="Black" HorizontalAlignment="Center"
-                               VerticalAlignment="Center" FontSize="22"></TextBlock>
-                        <Grid HorizontalAlignment="Right">
-                            <Image Source="/image/icon_circle.png" Width="50"  Margin="10"></Image>
-                            <TextBlock x:Name="text_value_count_subpoenas" Text="{StaticResource num_cero}" Foreground="White" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                        </Grid>
-                    </Grid>
-                </Grid>
-                <Grid Grid.Row="2"  Margin="0,10,0,0">
-                    <Grid x:Name="button_resolutions" Tap="button_resolutions_Tap" Margin="45,0,45,0">
-                        <Grid.Background>
-                            <ImageBrush ImageSource="/image/button_green.png"></ImageBrush>
-                        </Grid.Background>
-                        <Image  Source="/image/icon_resolutions.png"  Width="50" HorizontalAlignment="Left" Margin="10"></Image>
-                        <TextBlock  Text="{StaticResource text_title_button_resolutions}" Foreground="Black" HorizontalAlignment="Center"
-                               VerticalAlignment="Center" FontSize="22"></TextBlock>
-                        <Grid HorizontalAlignment="Right">
-                            <Image Source="/image/icon_circle.png" Width="50"  Margin="10"></Image>
-                            <TextBlock x:Name="text_value_count_resolutions" Text="{StaticResource num_cero}" Foreground="White" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                        </Grid>
-                    </Grid>
-                </Grid>
-                <Grid Grid.Row="3" Margin="0,10,0,0">
-                    <Grid x:Name="button_payment_arrangements" Tap="button_payment_arrangements_Tap" Margin="45,0,45,0">
-                        <Grid.Background>
-                            <ImageBrush ImageSource="/image/button_green.png"></ImageBrush>
-                        </Grid.Background>
-                        <Image  Source="/image/icon_payment_arrangements.png"  Width="50" HorizontalAlignment="Left" Margin="10"></Image>
-                        <TextBlock  Text="{StaticResource text_title_button_payment_arrangements}" Foreground="Black" HorizontalAlignment="Center"
-                               VerticalAlignment="Center" FontSize="22"></TextBlock>
-                        <Grid HorizontalAlignment="Right">
-                            <Image Source="/image/icon_circle.png" Width="50"  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
-                            <TextBlock x:Name="text_value_payment_arrangements" Text="{StaticResource num_cero}" Foreground="White" HorizontalAlignment="Center" FontSize="22" VerticalAlignment="Center"></TextBlock>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Grid>
-        </Grid>
-        
-        <!--********************************************fragment de detalle de consulta**************************-->
-        <Grid x:Name="fragment_detail_consultation"  Visibility="Collapsed">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Background="{StaticResource color_green_light}">
-                <Grid>
-                    <Image Source="/image/logo_header.png" Width="160"
-                          ></Image>
-                </Grid>
-                <Grid HorizontalAlignment="Right" Height="50" VerticalAlignment="Bottom">
-                    <Image Source="/image/icon_info.png" Width="40" 
-                           HorizontalAlignment="Right" Tap="button_info_Tap" Margin="0,25,30,25"></Image>
-                </Grid>
-            </Grid>
-            <Grid Grid.Row="1">
-                <Grid.Background>
-                    <ImageBrush ImageSource="/image/Background_panel_share.png"></ImageBrush>
-                </Grid.Background>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Background="Black"  Margin="0,0,0,55">
-                    <TextBlock x:Name="text_title_page_detail_consultations" Text="{Binding}" 
-                               Foreground="{StaticResource color_blue_text_title}"
-                               FontSize="18" HorizontalAlignment="Right" Margin="5"></TextBlock>
-                </Grid>
-                <Grid Grid.Row="1" Background="white">
-                    <StackPanel Orientation="Vertical">
-
-                        <TextBlock x:Name="text_title_type_list" Text="{Binding}" 
-                               Foreground="{StaticResource color_blue_text_title}"
-                               FontSize="18" HorizontalAlignment="Right" Margin="5"></TextBlock>
-                    </StackPanel>
-                </Grid>
-                <Grid Grid.Row="2" Background="White">
-                    <ListBox x:Name="list_detail">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="22" Foreground="Black" Text="{Binding NUM_SUBPOENA}" HorizontalAlignment="Left"></TextBlock>
-                                    <TextBlock FontSize="22" Foreground="Black" Text="{Binding TOTAL}" HorizontalAlignment="Right"></TextBlock>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-            </Grid>
-        </Grid>
-
-        <!--******************************************* dialog twitter ******************************************-->
-        <!-- dialog twiwtter-->
-        <Grid Grid.RowSpan="2" Visibility="Collapsed" x:Name="dialogTwitter">
-            <Grid.Background>
-                <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
-            </Grid.Background>
-            <Grid Background="White" Margin="50">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="1"></RowDefinition>
-                    <RowDefinition Height="10*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" x:Name="buttonCancel" Tap="buttonCancel_Tap">
-                        <TextBlock Foreground="Gray" Text="Cancelar" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="2*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0">
-                            <Image Source="/image/logo_twitter.png" Width="60" HorizontalAlignment="Center"></Image>
-                        </Grid>
-                        <Grid Grid.Column="1">
-                            <TextBlock Text="Twitter" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Gray" FontWeight="Medium"></TextBlock>
-                        </Grid>
-                    </Grid>
-                    <Grid Grid.Column="2" x:Name="button_accept_twiter" Tap="button_accept_twiter_Tap">
-                        <TextBlock Foreground="Gray" Text="Aceptar" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-                    </Grid>
-                </Grid>
-                <Grid Grid.Row="1" Background="Black"></Grid>
-                <Grid Grid.Row="2">
-                    <TextBox x:Name="textTwitterImput" Foreground="Black" Margin="10" FontSize="20" TextWrapping="Wrap"></TextBox>
-                </Grid>
-            </Grid>
-        </Grid>
-        
-        <!-- web view-->
-        <Grid Grid.RowSpan="2" Visibility="Collapsed" x:Name="webView">
-            <Grid.Background>
-                <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
-            </Grid.Background>
-            <Grid Margin="0">
-                <phone:WebBrowser x:Name="Browser" Grid.Row="1"  Background="Aqua" 
-                                    Navigating="Browser_Navigating" LoadCompleted="Browser_LoadCompleted"
-                                        NavigationFailed="Browser_NavigationFailed"/>
-            </Grid>
-        </Grid>
-
         <!--pop up de mensajes -->
         <!--******************************************* pop up de informacion ******************************************-->
 
@@ -592,49 +202,9 @@
 
             </StackPanel>
         </Grid>
-        <!--********************************pop up de Lista de busqueda ************************************ -->
-        <Grid Grid.RowSpan="2" x:Name="grid_popup_list" Visibility="Collapsed">
-            <Grid.Background>
-                <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
-            </Grid.Background>
-            <Popup x:Name="popup_list_select_document" IsOpen="False" Height="550" Width="300" VerticalAlignment="Top" Margin="0,50,0,0">
-                <Grid Background="White" >
-                 <ListBox x:Name="list_select_document" Tap="list_selec_document_Tap">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel  Orientation="Vertical" Background="White" Name="Line">
-                                    <TextBlock Text="{Binding NameDocument}" FontSize="22" Foreground="Black" 
-                                    VerticalAlignment="Center" Height="35" Margin="20"/>
-                                    <Grid Height="1" Background="Gray" Width="300"></Grid>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-            </Grid>
-        </Popup>
-       </Grid>
         
-        <!--*************************************************************************************************************-->
-        <Grid Grid.RowSpan="2" x:Name="grid_popup_list_atention_point" Visibility="Collapsed">
-            <Grid.Background>
-                <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
-            </Grid.Background>
-            <Popup x:Name="popup_list_select_atention_point" IsOpen="False" Height="550" Width="300" VerticalAlignment="Top" Margin="0,50,0,0">
-                <Grid Background="White" >
-                    <ListBox x:Name="list_select_atention_point" Tap="list_select_atention_point_Tap">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel  Orientation="Vertical" Background="White" Name="Line">
-                                    <TextBlock Text="{Binding NAME_ATENTION_POINTS}" FontSize="22" Foreground="Black" 
-                                    VerticalAlignment="Center" Height="35" Margin="20"/>
-                                    <Grid Height="1" Background="Gray" Width="300"></Grid>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-            </Popup>
-        </Grid>
+        
+        
 
         <!-- *********************************************************************************************************************-->
 
