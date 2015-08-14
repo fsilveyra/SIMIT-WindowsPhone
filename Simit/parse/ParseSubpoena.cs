@@ -24,9 +24,9 @@ namespace Simit.parse
                     newSubpoena.STATE = (String)subpoena.Element("estadoComparendo");
                     newSubpoena.DATE = (String)subpoena.Element("fechaComparendo");
                     newSubpoena.OFFENDER = (String)subpoena.Element("infractorComparendo");
-                    newSubpoena.NUM_SUBPOENA = (String)subpoena.Element("numeroComparendo");
+                    newSubpoena.NUM = (String)subpoena.Element("numeroComparendo");
                     newSubpoena.SECRETARY = (String)subpoena.Element("secretariaComparendo");
-                    newSubpoena.TOTAL = (Double)subpoena.Element("total");
+                    newSubpoena.TOTAL = (String)subpoena.Element("total");
                     listSubpoenas.Add(newSubpoena);
                 }
             }

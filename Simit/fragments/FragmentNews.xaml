@@ -26,24 +26,26 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
-            <ListBox x:Name="list_news">
-                <ListBoxItem>
+            <ListBox x:Name="list_news" Tap="list_news_Tap">
+                <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
+                        <Grid Margin="30,20,30,20">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <TextBlock x:Name="text_title_news" Foreground="Black" FontSize="22" FontWeight="Bold"
-                                           Text="{Binding TITLE}"></TextBlock>
+                            <Grid Grid.Row="0" Background="{StaticResource color_green_list_video}">
+                                <TextBlock x:Name="text_title_news" Foreground="Black" FontSize="24" Margin="20,5,20,5"
+                                           Text="{Binding TITLE}" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
                             </Grid>
                             <Grid Grid.Row="1">
-                                <Image x:Name="image_news" Source="{Binding URL_IMAGE_VIDEO}"></Image>
+                                <Image x:Name="image_not_found" Source="/image/image_backgroud_url_video_defect.jpeg"></Image>
+                                <Grid Background="{StaticResource color_gray_background_defoult}"></Grid>
+                                <Image x:Name="image_news" Source="{Binding URL_IMAGE}"></Image>
                             </Grid>
                         </Grid>
                     </DataTemplate>
-                </ListBoxItem>
+                </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
     </Grid>

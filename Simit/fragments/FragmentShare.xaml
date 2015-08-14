@@ -50,7 +50,7 @@
                 <Image x:Name="button_share_twitter" Source="/image/btntwitter1.png" Margin="50,5,50,5"></Image>
             </Grid>
             <Grid Grid.Row="3"  Margin="0,0,0,40">
-                <Image x:Name="button_send_mail" Source="/image/btncorreo.png" Margin="50,5,50,0" Tap="button_send_mail_Tap"></Image>
+                <Image x:Name="button_send_mail" Source="/image/btncorreo.png" Margin="45,5,45,0" Tap="button_send_mail_Tap"></Image>
             </Grid>
             <Grid Grid.Row="4" Margin="0,0,0,0">
                 <StackPanel Margin="50,0,50,0">
@@ -66,15 +66,15 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <Image x:Name="button_page_facebook" Source="/image/btnfacebook.png"  
-                                        Width="100" HorizontalAlignment="Left" Tap="button_page_facebook_Tap"
+                                        Width="80" HorizontalAlignment="Left" Tap="button_page_facebook_Tap"
                            Margin="20"></Image>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <Image x:Name="button_page_twitter" Source="/image/btntwitter.png" Width="100"
+                    <Image x:Name="button_page_twitter" Source="/image/btntwitter.png" Width="80"
                            Tap="button_page_twitter_Tap" Margin="20"></Image>
                 </Grid>
                 <Grid Grid.Column="2">
-                    <Image x:Name="button_page_simit" Source="/image/btnweb.png" Width="100"
+                    <Image x:Name="button_page_simit" Source="/image/btnweb.png" Width="80"
                                HorizontalAlignment="Right" Tap="button_page_simit_Tap" Margin="20"></Image>
                 </Grid>
             </Grid>

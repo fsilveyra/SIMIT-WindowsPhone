@@ -97,9 +97,12 @@
       <HintPath>..\packages\TweetSharp.2.3.0\lib\sl4-wp\ICSharpCode.SharpZipLib.WindowsPhone.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Phone.Controls.Maps, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Phone.Controls.Toolkit">
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=8.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="MSPToolkit">
+      <HintPath>..\packages\MSPToolkit.2.6.7\lib\sl4-wp71\MSPToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -116,17 +119,22 @@
     </Compile>
     <Compile Include="classAux\Dialog.cs" />
     <Compile Include="classAux\ImageLoader.cs" />
+    <Compile Include="classAux\ItemListNews.cs" />
     <Compile Include="classAux\TwitterSharpIntegrated.cs" />
     <Compile Include="data\ManagerData.cs" />
+    <Compile Include="entities\High.cs" />
     <Compile Include="entities\ItemNews.cs" />
     <Compile Include="entities\ListNameAtentionPoints.cs" />
     <Compile Include="entities\ListTypedocument.cs" />
     <Compile Include="entities\PaymentsArrangement.cs" />
     <Compile Include="entities\PointsAtention.cs" />
     <Compile Include="entities\Resolution.cs" />
+    <Compile Include="entities\Snippet.cs" />
     <Compile Include="entities\Subpoena.cs" />
+    <Compile Include="entities\Thumbnails.cs" />
     <Compile Include="entities\TypeDocument.cs" />
     <Compile Include="entities\NameAtentionPoints.cs" />
+    <Compile Include="entities\VideoId.cs" />
     <Compile Include="events\EventResponseConnection.cs" />
     <Compile Include="events\EventResponseData.cs" />
     <Compile Include="fragments\FragmentAtentionPoint.xaml.cs">
@@ -207,6 +215,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="README_FIRST.txt" />
+    <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
@@ -223,6 +237,7 @@
     <Content Include="image\icon_push_pin.png" />
     <Content Include="image\icon_resolutions.png" />
     <Content Include="image\icon_subpoenas.png" />
+    <Content Include="image\image_backgroud_url_video_defect.jpeg" />
     <Content Include="image\logo_twitter.png" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>

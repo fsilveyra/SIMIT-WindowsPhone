@@ -48,7 +48,8 @@
         <Grid Grid.Row="0" x:Name="fragment_detail_consultation" Visibility="Collapsed">
             
         </Grid>
-        
+       
+
         <!--**********************************************************************************************-->
         <!-- Flecha -->
         <Grid Grid.Row="0" VerticalAlignment="Bottom">
@@ -85,9 +86,9 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Background="#003938" MinWidth="480">
                 <StackPanel Orientation="Horizontal">
                     <!--botton consultas-->
-                        <StackPanel x:Name="button_consultations" Orientation="Vertical" Tap="button_consultations_Tap" Margin="0,0,0,0">
-                            <StackPanel VerticalAlignment="Center" Height="120" Orientation="Horizontal">
-                                <StackPanel VerticalAlignment="Center" Margin="0,20,0,5" Width="108">
+                        <StackPanel x:Name="button_consultations" Orientation="Vertical"  Margin="0,0,0,0">
+                                <StackPanel VerticalAlignment="Center" Height="120" Orientation="Horizontal" Tap="button_consultations_Tap">
+                                    <StackPanel VerticalAlignment="Center" Margin="0,20,0,5" Width="108" Tap="button_consultations_Tap">
                                     <Image x:Name="icon_consultions" Source="/image/Consultas_blanco.png" Height="58"></Image>
                                     <TextBlock x:Name="text_consultions" Text="CONSULTAS" FontSize="16" Margin="0,10,0,0" 
                                                HorizontalAlignment="Center"/>
@@ -109,8 +110,8 @@
                                 <!--imagen con sombreado-->
                                 <Image x:Name="image_shadow_left_atention" Source="/image/shadow left.png" Height="120" Width="8" Stretch="Fill" Visibility="Collapsed"></Image>
                             </StackPanel>
-                            <StackPanel VerticalAlignment="Center" Margin="0,20,0,5" Width="108">
-                                <Image x:Name="icon_atention" Source="/image/Puntos_verde.png" Height="42" Margin="0,0,0,0"></Image>
+                                    <StackPanel VerticalAlignment="Center" Margin="0,20,0,5" Width="108" Tap="button_atention_Tap">
+                                        <Image x:Name="icon_atention" Source="/image/Puntos_verde.png" Height="42" Margin="0,0,0,0"></Image>
                                 <TextBlock x:Name="text_atention" Text="PUNTOS DE ATENCIÓN" FontSize="16" TextWrapping="Wrap" 
                                        Margin="0,5,0,0" HorizontalAlignment="Center"  Foreground="#73cf17"></TextBlock>
                             </StackPanel>
@@ -132,8 +133,8 @@
                                 <!--imagen con sombreado-->
                                 <Image x:Name="image_shadow_left_news" Source="/image/shadow left.png" Height="120" Width="8" Stretch="Fill" Visibility="Collapsed"></Image>
                             </StackPanel>
-                            <StackPanel VerticalAlignment="Center" Margin="0,20,0,5" Width="108">
-                                <Image x:Name="icon_news" Source="/image/Noticias_verde.png" Height="58"></Image>
+                                    <StackPanel VerticalAlignment="Center" Margin="0,20,0,5" Width="108" Tap="button_news_Tap">
+                                        <Image x:Name="icon_news" Source="/image/Noticias_verde.png" Height="58" ></Image>
                                 <TextBlock x:Name="text_news" Text="NOTICIAS" FontSize="16" Margin="0,10,0,0" HorizontalAlignment="Center"  
                                             Foreground="#73cf17"></TextBlock>
                             </StackPanel>
@@ -153,8 +154,8 @@
                                 <!--imagen con sombreado-->
                                 <Image x:Name="image_shadow_left_share" Source="/image/shadow left.png" Height="120" Width="8" Stretch="Fill" Visibility="Collapsed"></Image>
                             </StackPanel>
-                            <StackPanel VerticalAlignment="Center" Margin="0,20,0,5" Width="108">
-                                <Image x:Name="icon_share" Source="/image/Compartir_verde.png" Height="58"></Image>
+                                    <StackPanel VerticalAlignment="Center" Margin="0,20,0,5" Width="108" Tap="button_share_Tap">
+                                        <Image x:Name="icon_share" Source="/image/Compartir_verde.png" Height="58" ></Image>
                                 <TextBlock x:Name="text_share" Text="COMPARTIR" FontSize="16" Margin="0,10,0,0" HorizontalAlignment="Center" 
                                                 Foreground="#73cf17"></TextBlock>
                             </StackPanel>
@@ -218,7 +219,7 @@
             </Grid.RowDefinitions>
             <TextBlock Text="Cargando..." Margin="180,300,180,430" Grid.Row="1" FontSize="23" HorizontalAlignment="Center" Foreground="White"
                        ></TextBlock>
-            <ProgressBar IsIndeterminate="True" Maximum="100" Value="30" Margin="90,342,87,330" Background="#FF7C8386" Foreground="White" Grid.Row="1" />
+            <ProgressBar x:Name="progress" IsIndeterminate="True" Maximum="100" Value="30" Margin="90,342,87,330" Background="#FF7C8386" Foreground="White" Grid.Row="1" />
         </Grid>
     </Grid>
 

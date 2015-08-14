@@ -43,6 +43,7 @@ namespace Simit.fragments
             list_select_document.ItemsSource = listDocument;
             popup_list_select_document.IsOpen = true; //abro el popup de lista
             grid_popup_list.Visibility = Visibility.Visible;
+            context.openBackground();
             //fragment_info_consultation.Visibility = Visibility.Collapsed;
         }
 
@@ -63,6 +64,7 @@ namespace Simit.fragments
             }
             popup_list_select_document.IsOpen = false; //cierro el popup de lista
             grid_popup_list.Visibility = Visibility.Collapsed;
+            context.closeBackground();
         }
 
         private void button_accept_consultations_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -103,18 +105,34 @@ namespace Simit.fragments
 
         public void backPress(System.ComponentModel.CancelEventArgs e)
         {
+            if (grid_popup_list.Visibility == Visibility.Visible)
+            {
+                grid_popup_list.Visibility = Visibility.Collapsed;
+                popup_list_select_document.IsOpen = false;
+                context.closeBackground();
+                e.Cancel = true;
+            }
+            else
             if (context.fragment_info_consultation.Visibility == Visibility.Visible)
             {
+                
                 if (fragmentDescriptionConsultation != null)
                 {
                     fragmentDescriptionConsultation.backPress(e);
                 }
-                else
-                {
-                    //sale de la aplicacion
-                    context.backTrue(e);
-                }
+
             }
+            else
+            {
+                //sale de la aplicacion
+                context.backTrue(e);
+            }
+        }
+
+        private void popup_list_select_document_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            grid_popup_list.Visibility = Visibility.Collapsed;
+            popup_list_select_document.IsOpen = false; 
         }
 
     }

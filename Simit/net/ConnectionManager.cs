@@ -56,7 +56,7 @@ namespace Simit.data
         private static String PARAMETER_API_KEY_APP_ANDROID = "&key=";
         private static String CHANEL_ID = resources.@string.StringResource.CHANELID_YOU_TUBE;
         private static String API_KEY_APP_ANDROID = resources.@string.StringResource.API_KEY_APP_ANDROID;
-        private static String URL_NEWS = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=date";
+        private static String URL_NEWS = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=date";
 
         //parameters
         private static String PARAMETER_NUM_DEPARTMENT = "&department_id=";
@@ -92,7 +92,7 @@ namespace Simit.data
                 {
                     var responseItemsNews = webRequest.EndGetResponse(result);
                     resultRequest = new StreamReader(responseItemsNews.GetResponseStream()).ReadToEnd();
-                    MessageBox.Show(resultRequest);
+                    
                     if (resultRequest != null)
                     {
                         if (getItemsNewsCompleted != null)

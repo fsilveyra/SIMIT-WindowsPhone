@@ -11,10 +11,13 @@ namespace Simit.entities
 
         private String _state;
         private String _date;
-        private String _numSubpoena;
+        private String _num;
         private String _offender;
         private String _secretary;
-        private Double _totalToPay;
+        private String _totalToPay;
+        private Double _size;
+        private String _totalWithFormat;
+        private String _numVisualize;
 
 
         public String STATE
@@ -45,17 +48,17 @@ namespace Simit.entities
             }
         }
 
-        public String NUM_SUBPOENA
+        public String NUM
         {
             get
             {
-                return _numSubpoena;
+                return _num;
             }
 
             set
             {
                 if (value != null)
-                    _numSubpoena = value;
+                    _num = value;
             }
         }
 
@@ -87,7 +90,7 @@ namespace Simit.entities
             }
         }
 
-        public Double TOTAL
+        public String TOTAL
         {
             get
             {
@@ -98,6 +101,48 @@ namespace Simit.entities
             {
                 if (value != null)
                     _totalToPay = value;
+            }
+        }
+
+        public Double SIZE
+        {
+            get
+            {
+                return _size;
+            }
+
+            set
+            {
+                if(value != null)
+                    _size = value;
+            }
+        }
+
+        public String TOTAL_WITH_FORMAT
+        {
+            get
+            {
+                return _totalWithFormat;
+            }
+
+            set
+            {
+                if (value != null)
+                    _totalWithFormat = value;
+            }
+        }
+
+        public String NUM_VISUALIZE
+        {
+            get
+            {
+                return _numVisualize;
+            }
+
+            set
+            {
+                if (value != null)
+                    _numVisualize = value;
             }
         }
     }

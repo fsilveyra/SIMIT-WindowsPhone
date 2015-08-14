@@ -31,7 +31,13 @@
         <LinearGradientBrush x:Key="color_blue_text_title">
             <GradientStop Color="#0faba7"/>
         </LinearGradientBrush>
-
+        <LinearGradientBrush x:Key="color_green_list_video">
+            <GradientStop Color="#0faba7"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="color_gray_background_defoult">
+            <GradientStop Color="#98d8d8d8"/>
+        </LinearGradientBrush>
+        
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

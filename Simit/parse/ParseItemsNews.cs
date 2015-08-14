@@ -4,6 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Simit.entities;
+using System.Runtime.Serialization;
+using Simit.classAux;
+using System.IO;
+using System.Runtime.Serialization.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace Simit.parse
 {
@@ -18,17 +24,11 @@ namespace Simit.parse
                 try
                 {
                     listItemNews = new List<ItemNews>();
-                    dynamic news = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
-                    var items = news.items;
-                    foreach (var item in items)
+                    JObject news = JObject.Parse(json);
+                    IList<JToken> items = news["items"].Children().ToList();
+                    foreach (JToken item in items)
                     {
-                        ItemNews itemNews = new ItemNews();
-                        if (item.id.videoId != null)
-                            itemNews.ID_VIDEO = item.id.videoId;
-                        if (item.snippet.title != null)
-                            itemNews.TITLE = item.snippet.title;
-                        if (item.snippet.thumbnails.medium != null)
-                            itemNews.URL_IMAGE_VIDEO = item.snippet.thumbnails.medium;
+                        ItemNews itemNews = JsonConvert.DeserializeObject<ItemNews>(item.ToString());
                         listItemNews.Add(itemNews);
                     }
                 }
@@ -40,17 +40,4 @@ namespace Simit.parse
             return listItemNews;
         }
     }
-
-            /*
-             * dynamic x = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonString);
-        var page = x.page;
-        var total_pages = x.total_pages
-        var albums = x.albums;
-        foreach(var album in albums)
-        { 
-            var albumName = album.name;
-            //access album data;
-             * }
-
-             * */
 }

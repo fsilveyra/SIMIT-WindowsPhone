@@ -187,8 +187,7 @@ namespace Simit.data
                 {
                     if (eventResponse != null)//verifico si no es nula la respuesta
                     {
-                        //parser los datos
-                        listItemNews = parseItemNews.parseJsonItemNews(eventResponse.getResponseString());
+                        listItemNews = (List<ItemNews>)parseItemNews.parseJsonItemNews(eventResponse.getResponseString());
                         //payments = parsePayment.XmlParsePaymentArrangement(eventResponse.getResponseString());
                         
                         if (getDataCompleted != null)

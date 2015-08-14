@@ -47,21 +47,31 @@
             <!--ContentPanel. Colocar aquí el contenido adicional-->
             <Grid x:Name="ContentPanel" >
                 <my:Map x:Name="map_ubication"
-                                ZoomLevel="9" CredentialsProvider="Ag4c6F1g0UPr6O25eV-g1e_QshW0GmlIdywTlac9c_bHoIjX50G_eLXnhzTCvyv9"
+                                ZoomLevel="9" CredentialsProvider="Ag4c6F1g0UPr6O25eV-g1e_QshW0GmlIdywTlac9c_bHoIjX50G_eLXnhzTCvyv9" 
                             >
+                    <my:MapItemsControl>
+                        <my:MapItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <my:Pushpin x:Name="pushpin_item" Style="{StaticResource PushpinStyle}" Location="{Binding Location}">
+                                    
+                                </my:Pushpin>
+                            </DataTemplate>
+                        </my:MapItemsControl.ItemTemplate>
+                    </my:MapItemsControl>
                 </my:Map>
 
             </Grid>
             <Grid VerticalAlignment="Top">
-                <StackPanel  Background="{StaticResource color_green_light}" Margin="50,60,50,0" MinHeight="50" VerticalAlignment="Center" 
-                                    Orientation="Horizontal" Tap="button_select_point">
+                <Grid Margin="50,60,50,0" MinHeight="50" VerticalAlignment="Center" 
+                                     Tap="button_select_point">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/image/button_green.png" ></ImageBrush>
+                    </Grid.Background>
                     <TextBlock x:Name="text_select_point" Text="{StaticResource bogota_dc}" 
                     		    Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" 
                     		    FontSize="16" Width="260"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="70,0,0,0">
-                        <Image Source="/image/arrow_down_list_piker.png" HorizontalAlignment="Right" Width="30"/>
-                    </StackPanel>
-                </StackPanel>
+                    <Image Source="/image/arrow_down_list_piker.png" HorizontalAlignment="Right" Width="30" Margin="0,0,20,0"/>
+                </Grid>
             </Grid>
         </Grid>
 
@@ -70,9 +80,9 @@
             <Grid.Background>
                 <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
             </Grid.Background>
-            <Popup x:Name="popup_list_select_atention_point" IsOpen="False" Height="550" Width="300" VerticalAlignment="Top" Margin="0,50,0,0">
+            <Popup x:Name="popup_list_select_atention_point" IsOpen="False" Height="580" Width="300" VerticalAlignment="Center" >
                 <Grid Background="White" >
-                    <ListBox x:Name="list_select_atention_point" Tap="list_select_atention_point_Tap">
+                    <ListBox x:Name="list_select_atention_point" Tap="list_select_atention_point_Tap" Height="580">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel  Orientation="Vertical" Background="White" Name="Line">
@@ -86,5 +96,28 @@
                 </Grid>
             </Popup>
         </Grid>
+        <!--
+        <Grid Grid.RowSpan="2" x:Name="grid_popup_list" Visibility="Collapsed" Tap="popup_list_select_document_Tap">
+            <Grid.Background>
+                <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
+            </Grid.Background>
+            <Popup x:Name="popup_list_select_document" IsOpen="False" Height="550" Width="300"
+                   Tap="popup_list_select_document_Tap" VerticalAlignment="Top" Margin="0,50,0,0">
+                <Grid Background="White" >
+                    <ListBox x:Name="list_select_document" Tap="list_selec_document_Tap">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel  Orientation="Vertical" Background="White" Name="Line">
+                                    <TextBlock Text="{Binding NameDocument}" FontSize="22" Foreground="Black" 
+                                    VerticalAlignment="Center" Height="35" Margin="20"/>
+                                    <Grid Height="1" Background="Gray" Width="300"></Grid>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Popup>
+        </Grid>
+        -->
     </Grid>
 </UserControl>

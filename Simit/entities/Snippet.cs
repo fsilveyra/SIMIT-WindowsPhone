@@ -1,50 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Runtime.Serialization;
 
 namespace Simit.entities
 {
     [DataContract]
-    public class ItemNews
+    public class Snippet
     {
-        
-        private VideoId _videoId;
-        private Snippet _snippet;
-
-        [DataMember(Name="id")]
-        public VideoId VIDEO_ID
+        private String _title;
+        private Thumbnails _thumbnails;
+ 
+        [DataMember(Name="title")]
+        public String TITLE
         {
             get
             {
-                return _videoId;
+                return _title;
             }
 
             set
             {
                 if (value != null)
-                    _videoId = value;
+                    _title = value;
             }
-
         }
 
-        [DataMember(Name="snippet")]
-        public Snippet SNIPPET
+        [DataMember(Name="thumbnails")]
+        public Thumbnails THUMBNAILS
         {
             get
             {
-                return _snippet;
+                return _thumbnails;
             }
-
             set
             {
                 if (value != null)
-                    _snippet = value;
+                    _thumbnails = value;
             }
         }
-
     }
 }
