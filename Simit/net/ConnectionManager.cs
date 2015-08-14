@@ -52,6 +52,11 @@ namespace Simit.data
         //Simit
         private static String URL_SERVEICE_GET_POINTS_ATENTION = "https://181.48.11.4/ServiciosSimit/WsPuntosAtencion?wsdl";//deprecated
         private static String URL_BASE = "https://development.infinixsoft.com/simit/";
+        private static String PARAMETER_CHANEL_ID = "&channelId=";
+        private static String PARAMETER_API_KEY_APP_ANDROID = "&key=";
+        private static String CHANEL_ID = resources.@string.StringResource.CHANELID_YOU_TUBE;
+        private static String API_KEY_APP_ANDROID = resources.@string.StringResource.API_KEY_APP_ANDROID;
+        private static String URL_NEWS = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=date";
 
         //parameters
         private static String PARAMETER_NUM_DEPARTMENT = "&department_id=";
@@ -71,8 +76,39 @@ namespace Simit.data
         public event EventHandler<EventResponseConnection> getSubpoenaCompleted = null;
         public event EventHandler<EventResponseConnection> getResolutionsCompleted = null;
         public event EventHandler<EventResponseConnection> getPaymentArrangementsCompleted = null;
-        //public event EventHandler<EventResponseConnection> getCategoriesCompleted = null;
+        public event EventHandler<EventResponseConnection> getItemsNewsCompleted = null;
         
+        //public event EventHandler<EventResponseConnection> getCategoriesCompleted = null;
+
+        public void getItemsNews()
+        {
+            webRequest = HttpWebRequest.Create(URL_NEWS + PARAMETER_CHANEL_ID + CHANEL_ID + PARAMETER_API_KEY_APP_ANDROID + API_KEY_APP_ANDROID);
+            String resultRequest = null;
+            IAsyncResult result = null;
+            //verificar si existe coneccion a internet
+            result = webRequest.BeginGetResponse(state =>
+            {
+                try
+                {
+                    var responseItemsNews = webRequest.EndGetResponse(result);
+                    resultRequest = new StreamReader(responseItemsNews.GetResponseStream()).ReadToEnd();
+                    
+                    if (resultRequest != null)
+                    {
+                        if (getItemsNewsCompleted != null)
+                        {
+                            getItemsNewsCompleted(this, new EventResponseConnection(resultRequest));
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    getItemsNewsCompleted(this, new EventResponseConnection(new MemoryStream()));//envio datos nulos
+                }
+
+            }, null);
+            getItemsNewsCompleted = null;
+        }
 
         public void getPaymentArrangements(String document,String documentType)
         {

@@ -24,12 +24,12 @@ namespace Simit.parse
                         Resolution resolution = new Resolution();
                         resolution.ESTADOS_RESOLUCIONES = (String)res.Element("estadosResoluciones");
                         resolution.FECHA_COMPARENDO = (String)res.Element("fechaComparendo");
-                        resolution.FECHA_RESOLUCION = (String)res.Element("fechaResolution");
+                        resolution.FECHA_RESOLUCION = (String)res.Element("fechaResolucion");
                         resolution.NOMBRES_INFRACTORES = (String)res.Element("nombresInfractores");
-                        resolution.NUM_SUBPOENA = (String)res.Element("numeroComparendo");
+                        resolution.NUM = (String)res.Element("numeroComparendo");
                         resolution.RESOLUCIONES = (String)res.Element("resoluciones");
                         resolution.SECRETARIAS = (String)res.Element("secretarias");
-                        resolution.TOTAL = (Double)res.Element("total");
+                        resolution.TOTAL = (String)res.Element("total");
                         listResolutions.Add(resolution);
                     }
                 }

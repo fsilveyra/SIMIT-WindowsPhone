@@ -91,11 +91,12 @@
         </Grid>
         
         <!--********************************pop up de Lista de busqueda ************************************ -->
-        <Grid Grid.RowSpan="2" x:Name="grid_popup_list" Visibility="Collapsed">
+        <Grid Grid.RowSpan="2" x:Name="grid_popup_list" Visibility="Collapsed" Tap="popup_list_select_document_Tap">
             <Grid.Background>
                 <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
             </Grid.Background>
-            <Popup x:Name="popup_list_select_document" IsOpen="False" Height="550" Width="300" VerticalAlignment="Top" Margin="0,50,0,0">
+            <Popup x:Name="popup_list_select_document" IsOpen="False" Height="550" Width="300"
+                   Tap="popup_list_select_document_Tap" VerticalAlignment="Top" Margin="0,50,0,0">
                 <Grid Background="White" >
                     <ListBox x:Name="list_select_document" Tap="list_selec_document_Tap">
                         <ListBox.ItemTemplate>

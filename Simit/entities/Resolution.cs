@@ -15,7 +15,11 @@ namespace Simit.entities
         private String _numeroComparendo;
         private String _resoluciones;
         private String _secretarias;
-        private Double _total;
+        private String _total;
+        private Double _size;
+        //para la vista en la lista
+        private String _totalwithFormat;
+        private String _numVisualize;
 
         public String ESTADOS_RESOLUCIONES 
         {
@@ -73,7 +77,7 @@ namespace Simit.entities
             }
         }
 
-        public String NUM_SUBPOENA
+        public String NUM
         {
             get
             {
@@ -115,7 +119,7 @@ namespace Simit.entities
             }
         }
 
-        public Double TOTAL
+        public String TOTAL
         {
             get
             {
@@ -124,8 +128,49 @@ namespace Simit.entities
 
             set
             {
-                if (value != null)
                  _total = value;
+            }
+        }
+
+        public Double SIZE
+        {
+            get
+            {
+                return _size;
+            }
+
+            set
+            {
+                if(value != null)
+                _size = value;
+            }
+        }
+
+        public String TOTAL_WITH_FORMAT
+        {
+            get
+            {
+                return _totalwithFormat;
+            }
+
+            set
+            {
+                if (value != null)
+                    _totalwithFormat = value;
+            }
+        }
+
+        public String NUM_VISUALIZE
+        {
+            get
+            {
+                return _numVisualize;
+            }
+
+            set
+            {
+                if (value != null)
+                    _numVisualize = value;
             }
         }
     }

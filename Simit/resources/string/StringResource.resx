@@ -303,4 +303,43 @@
   <data name="MESSAGE_NOT_IMPUT_DATA" xml:space="preserve">
     <value>Debe Ingresar un numero de documento valido.</value>
   </data>
+  <data name="API_KEY_APP_ANDROID" xml:space="preserve">
+    <value>AIzaSyAVahCEPXRXG3IGoH8i0n9ORpwe3mxoREI</value>
+  </data>
+  <data name="CHANELID_YOU_TUBE" xml:space="preserve">
+    <value>UCoT2mmYn3Bxfpc_TQxZlRnA</value>
+  </data>
+  <data name="NAVIGATED_FAILED" xml:space="preserve">
+    <value>Ocurrio un error al cargar el video, intente mas tarde.</value>
+  </data>
+  <data name="text_date_subpoena" xml:space="preserve">
+    <value>FECHA DEL COMPARENDO</value>
+  </data>
+  <data name="text_infractor_sunpoena" xml:space="preserve">
+    <value>INFRACTOR COMPARENDO</value>
+  </data>
+  <data name="text_num_resolution" xml:space="preserve">
+    <value>NÚMERO DE RESOLUCION</value>
+  </data>
+  <data name="text_num_subpoena" xml:space="preserve">
+    <value>NÚMERO DE COMPARENDO</value>
+  </data>
+  <data name="text_secretaries_subpoena" xml:space="preserve">
+    <value>SECRETARÍA COMPARENDO</value>
+  </data>
+  <data name="text_state_subpoena" xml:space="preserve">
+    <value>ESTADO DEL COMPARENDO</value>
+  </data>
+  <data name="text_total_payment" xml:space="preserve">
+    <value>TOTAL A PAGAR</value>
+  </data>
+  <data name="text_date_resolution" xml:space="preserve">
+    <value>FECHA DE LA RESOLUCIÓN</value>
+  </data>
+  <data name="text_secretaries_arragment" xml:space="preserve">
+    <value>SECRETARIA CON LA QUE REALIZÓ EL ACUERDO</value>
+  </data>
+  <data name="text_state_resolution" xml:space="preserve">
+    <value>ESTADO DE LA RESOLUCIÓN</value>
+  </data>
 </root>

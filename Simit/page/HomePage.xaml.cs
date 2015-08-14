@@ -85,7 +85,7 @@ namespace Simit.page
                         }
                     case 2:
                         {
-                            backTrue(e);
+                            checkCase3(e);
                             break;
                         }
                     case 3:
@@ -145,6 +145,15 @@ namespace Simit.page
                 fragmentShare.onBackPress(e);
         }
 
+        public void checkCase3(System.ComponentModel.CancelEventArgs e)
+        {
+            if (fragmentAtentionPoint != null)
+            {
+                fragmentAtentionPoint.backPress(e);
+            }
+            
+        }
+
         public void backTrue(System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = false;
@@ -164,6 +173,18 @@ namespace Simit.page
         public void closeBackgroundProgressBar()
         {
             background_progress_bar.Visibility = Visibility.Collapsed;
+        }
+
+        public void openBackground()
+        {
+            background_progress_bar.Visibility = Visibility.Visible;
+            progress.Visibility = Visibility.Collapsed;
+        }
+
+        public void closeBackground()
+        {
+            background_progress_bar.Visibility = Visibility.Collapsed;
+            progress.Visibility = Visibility.Visible;
         }
 
         private void button_info_Tap(object sender, System.Windows.Input.GestureEventArgs e)

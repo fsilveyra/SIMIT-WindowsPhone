@@ -79,6 +79,15 @@ namespace Simit.resources.@string {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a AIzaSyAVahCEPXRXG3IGoH8i0n9ORpwe3mxoREI.
+        /// </summary>
+        internal static string API_KEY_APP_ANDROID {
+            get {
+                return ResourceManager.GetString("API_KEY_APP_ANDROID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Simit.
         /// </summary>
         internal static string app_name {
@@ -192,6 +201,15 @@ namespace Simit.resources.@string {
         internal static string cesar {
             get {
                 return ResourceManager.GetString("cesar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a UCoT2mmYn3Bxfpc_TQxZlRnA.
+        /// </summary>
+        internal static string CHANELID_YOU_TUBE {
+            get {
+                return ResourceManager.GetString("CHANELID_YOU_TUBE", resourceCulture);
             }
         }
         
@@ -412,6 +430,15 @@ namespace Simit.resources.@string {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Ocurrio un error al cargar el video, intente mas tarde..
+        /// </summary>
+        internal static string NAVIGATED_FAILED {
+            get {
+                return ResourceManager.GetString("NAVIGATED_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a NIT.
         /// </summary>
         internal static string nit {
@@ -529,11 +556,101 @@ namespace Simit.resources.@string {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a FECHA DE LA RESOLUCIÓN.
+        /// </summary>
+        internal static string text_date_resolution {
+            get {
+                return ResourceManager.GetString("text_date_resolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a FECHA DEL COMPARENDO.
+        /// </summary>
+        internal static string text_date_subpoena {
+            get {
+                return ResourceManager.GetString("text_date_subpoena", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a El texto debe contener como maximo 140 caracteres..
         /// </summary>
         internal static string text_dialog_twitter {
             get {
                 return ResourceManager.GetString("text_dialog_twitter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a INFRACTOR COMPARENDO.
+        /// </summary>
+        internal static string text_infractor_sunpoena {
+            get {
+                return ResourceManager.GetString("text_infractor_sunpoena", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a NÚMERO DE RESOLUCION.
+        /// </summary>
+        internal static string text_num_resolution {
+            get {
+                return ResourceManager.GetString("text_num_resolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a NÚMERO DE COMPARENDO.
+        /// </summary>
+        internal static string text_num_subpoena {
+            get {
+                return ResourceManager.GetString("text_num_subpoena", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SECRETARIA CON LA QUE REALIZÓ EL ACUERDO.
+        /// </summary>
+        internal static string text_secretaries_arragment {
+            get {
+                return ResourceManager.GetString("text_secretaries_arragment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SECRETARÍA COMPARENDO.
+        /// </summary>
+        internal static string text_secretaries_subpoena {
+            get {
+                return ResourceManager.GetString("text_secretaries_subpoena", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ESTADO DE LA RESOLUCIÓN.
+        /// </summary>
+        internal static string text_state_resolution {
+            get {
+                return ResourceManager.GetString("text_state_resolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ESTADO DEL COMPARENDO.
+        /// </summary>
+        internal static string text_state_subpoena {
+            get {
+                return ResourceManager.GetString("text_state_subpoena", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a TOTAL A PAGAR.
+        /// </summary>
+        internal static string text_total_payment {
+            get {
+                return ResourceManager.GetString("text_total_payment", resourceCulture);
             }
         }
         

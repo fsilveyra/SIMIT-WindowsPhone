@@ -175,6 +175,29 @@ namespace Simit.data
             getDataCompleted = null;
         }
 
+        public void getItemsNews()
+        {
+            List<ItemNews> listItemNews = new List<ItemNews>();
+            ParseItemsNews parseItemNews = new ParseItemsNews();
+            connectionManager.getItemsNews();
+            connectionManager.getItemsNewsCompleted += (s, eventResponse) =>
+            {
+                //para eliminar la excepcion de hilos cruzados
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    if (eventResponse != null)//verifico si no es nula la respuesta
+                    {
+                        listItemNews = (List<ItemNews>)parseItemNews.parseJsonItemNews(eventResponse.getResponseString());
+                        //payments = parsePayment.XmlParsePaymentArrangement(eventResponse.getResponseString());
+                        
+                        if (getDataCompleted != null)
+                            getDataCompleted(this, new EventResponseData(listItemNews));//genero un evento de respuesta con los datos solicitados
+                    }
+                });
+            };
+            getDataCompleted = null;
+        }
+
         /*
         /// <summary>
         /// I performed the call to connectionManager.getAccessTypes()
