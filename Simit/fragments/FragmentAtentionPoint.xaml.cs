@@ -17,7 +17,7 @@ using MSPToolkit.Controls;
 using System.Net.NetworkInformation;
 using Simit.classAux;
 using Microsoft.Phone.Maps.Controls;
-using Microsoft.Phone.Maps.Toolkit;
+//using Microsoft.Phone.Maps.Toolkit;
 
 namespace Simit.fragments
 {
@@ -66,7 +66,7 @@ namespace Simit.fragments
                 
                 Pushpin pushpin = new Pushpin();//marcador en el mapa
                 //pushpin.Style = this.Resources["PushpinStyle"] as Style;
-                pushpin
+                //pushpin
                 Location location = new Location();
                 pushpin.Background = new SolidColorBrush(Colors.Red);
                 location.Latitude = Convert.ToDouble(pointAtention.LATITUDE);
@@ -74,7 +74,6 @@ namespace Simit.fragments
                 pushpin.Location = location;
                 map_ubication.SetView(location, 9);
                 map_ubication.Children.Add(pushpin);
-                 
             }
         }
 
