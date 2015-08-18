@@ -16,7 +16,23 @@
                     <ControlTemplate TargetType="my:Pushpin">
 
                         <Image x:Name="image_push_pin" Source="/image/icon_push_pin.png" Stretch="Uniform" 
-                                                               Height="40" Tap="image_push_pin_Tap"/>
+                                                               Height="40" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="my:Pushpin" x:Key="PushpinStyle_selected">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="my:Pushpin">
+                        <StackPanel>
+                            <StackPanel Background="Black" Margin="5">
+                                <TextBlock Text="{Binding}" x:Name="text_style_selected" Foreground="White"></TextBlock>
+                            </StackPanel>
+                            <Image x:Name="image_push_pin" Source="/image/icon_push_pin.png" Stretch="Uniform" 
+                                                               Height="40" HorizontalAlignment="Left"/>
+                        </StackPanel>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -46,20 +62,10 @@
             </Grid.RowDefinitions>
             <!--ContentPanel. Colocar aquí el contenido adicional-->
             <Grid x:Name="ContentPanel" >
-                <my:Map x:Name="map_ubication"
+                <my:Map x:Name="map_ubication" Tap="map_ubication_Tap"
                                 ZoomLevel="9" CredentialsProvider="Ag4c6F1g0UPr6O25eV-g1e_QshW0GmlIdywTlac9c_bHoIjX50G_eLXnhzTCvyv9" 
                             >
-                    <my:MapItemsControl>
-                        <my:MapItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <my:Pushpin x:Name="pushpin_item" Style="{StaticResource PushpinStyle}" Location="{Binding Location}">
-                                    
-                                </my:Pushpin>
-                            </DataTemplate>
-                        </my:MapItemsControl.ItemTemplate>
-                    </my:MapItemsControl>
                 </my:Map>
-
             </Grid>
             <Grid VerticalAlignment="Top">
                 <Grid Margin="50,60,50,0" MinHeight="50" VerticalAlignment="Center" 

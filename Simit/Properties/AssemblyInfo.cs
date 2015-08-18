@@ -6,11 +6,11 @@ using System.Resources;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie los valores de estos atributos para modificar la información
 // asociada a un ensamblado.
-[assembly: AssemblyTitle("Simit")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Simit.")]
+[assembly: AssemblyDescription("Simit.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("Simit")]
+[assembly: AssemblyProduct("Simit.")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -34,4 +34,4 @@ using System.Resources;
 // mediante el carácter '*', como se muestra a continuación:
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: NeutralResourcesLanguageAttribute("es-ES")]
+[assembly: NeutralResourcesLanguageAttribute("es-CO")]

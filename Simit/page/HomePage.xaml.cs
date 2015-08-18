@@ -24,6 +24,7 @@ using Hammock;
 using Microsoft.Phone.Tasks;
 using System.Net.NetworkInformation;
 using Simit.fragments;
+using System.IO.IsolatedStorage;
 
 namespace Simit.page
 {
@@ -47,6 +48,7 @@ namespace Simit.page
 
         //para las lista de los detalles
         private int buttonSelect = 1; //identifica el boton activo
+        private static String CONFIRM = "confirm";
 
         //page
         private static String PAGE_CONSULTATIONS = "/page/PageConsultations.xaml";
@@ -56,6 +58,7 @@ namespace Simit.page
         FragmentAtentionPoint fragmentAtentionPoint;
         FragmentNews fragmentNews;
         FragmentShare fragmentShare;
+
         
 
         public HomePage()
@@ -65,6 +68,13 @@ namespace Simit.page
             fragmentConsultation = new FragmentConsultation(this);
             fragment_consultations.Children.Add(fragmentConsultation);
             fragment_consultations.Visibility = Visibility.Visible;
+
+            if (!IsolatedStorageSettings.ApplicationSettings.Contains(CONFIRM))
+            {
+                popup_info.Visibility = Visibility.Visible;
+                IsolatedStorageSettings.ApplicationSettings.Add(CONFIRM, true);
+                IsolatedStorageSettings.ApplicationSettings.Save();
+            }
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
@@ -101,34 +111,6 @@ namespace Simit.page
 
                 }
             }
-            /*
-            if (webView.Visibility == Visibility.Visible || dialogTwitter.Visibility == Visibility.Visible)
-            {
-                webView.Visibility = Visibility.Collapsed;
-                dialogTwitter.Visibility = Visibility.Collapsed;
-                e.Cancel = true;
-            }
-            else if (fragment_info_consultation.Visibility == Visibility.Visible)
-            {
-                fragment_info_consultation.Visibility = Visibility.Collapsed;
-                e.Cancel = true;
-            }
-            else if (fragment_detail_consultation.Visibility == Visibility.Visible)
-            {
-                fragment_detail_consultation.Visibility = Visibility.Collapsed;
-                fragment_info_consultation.Visibility = Visibility.Visible;
-                e.Cancel = true;
-            }
-            else
-            {
-                e.Cancel = false;
-                //cierro la aplicacion eliminando todas las paginas abiertas
-                while (NavigationService.RemoveBackEntry() != null)
-                {
-                    NavigationService.RemoveBackEntry();
-                }
-            }
-             */
         }
 
         private void checkCase1(System.ComponentModel.CancelEventArgs e)

@@ -25,6 +25,7 @@ namespace Simit.fragments
     {
         private HomePage context;//contexto donde se va a montar el fragment
         private static String NUM_DEPARTMENT_DEFECT = "11";
+        Pushpin pushPinSelected;
 
         public FragmentAtentionPoint(HomePage context)
         {
@@ -57,30 +58,33 @@ namespace Simit.fragments
         {
             //elimino los puntos anteriores si es que hay
             if (map_ubication.Children.Count > 0)
-                /*
-                for (int i = 0; i < map_ubication.Children.Count - 1; i++)
-                  */
                 map_ubication.Children.Clear();
             foreach (PointsAtention pointAtention in listPointAtention)
             {
-                
                 Pushpin pushpin = new Pushpin();//marcador en el mapa
                 //pushpin.Style = this.Resources["PushpinStyle"] as Style;
-                //pushpin
+                pushpin.Tag = pointAtention;
+                pushpin.Background = new SolidColorBrush(Colors.Black);
                 Location location = new Location();
-                pushpin.Background = new SolidColorBrush(Colors.Red);
                 location.Latitude = Convert.ToDouble(pointAtention.LATITUDE);
                 location.Longitude = Convert.ToDouble(pointAtention.LONGITUDE);
                 pushpin.Location = location;
+                pushpin.Tap += pushpin_Tap;
                 map_ubication.SetView(location, 9);
                 map_ubication.Children.Add(pushpin);
             }
         }
 
-        private void image_push_pin_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+
+
+        void pushpin_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            Pushpin pushpin = (Pushpin)sender;
-        }
+            if (pushPinSelected != null)
+                pushPinSelected.Content = "";
+            pushPinSelected = (Pushpin)sender;
+            PointsAtention p = (PointsAtention)pushPinSelected.Tag;
+            pushPinSelected.Content = p.ADDRESS  + "\n" + p.TIME;//seteo la informacion  a mostrar
+        } 
 
         private void button_select_point(object sender, System.Windows.Input.GestureEventArgs e)
         {
@@ -153,5 +157,12 @@ namespace Simit.fragments
                 context.backTrue(e);
             }
         }
+
+        private void map_ubication_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            
+        }
+
+        
     }
 }
