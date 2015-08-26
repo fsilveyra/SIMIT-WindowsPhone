@@ -21,6 +21,7 @@ namespace Simit.fragments
         List<Resolution> listResolution;
         FragmentDetailConsultation fragmentDetailConsultation;
         List<PaymentsArrangement> listPayment;
+        SuspencionLicense suspencionLicense;
 
         public FragmentDesciptionConsultation(HomePage context)
         {
@@ -164,6 +165,47 @@ namespace Simit.fragments
                         //paso una lista con todos los puntos de atension
                         if(listPayment.Count > 0)
                             text_value_payment_arrangements.Text = listPayment.Count.ToString();
+                        //chequeo que la licencia no este suspendida
+                        getSuspuncionLicense(document, typeDocument);
+                    }
+                    else
+                    {
+                        Dialog dialog = new Dialog();
+                        dialog.setDialog(resources.@string.StringResource.MENSAGE_ERROR_LOAD_DATA);
+                        dialog.showDialog();
+                    }
+                };
+            }
+            else
+            {
+                Dialog dialog = new Dialog();
+                dialog.setDialog(resources.@string.StringResource.MENSAGE_NOT_CONECTION_INTERNET);
+                dialog.showDialog();
+            }
+        }
+
+        public void getSuspuncionLicense(String document, String typeDocument)
+        {
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+            context.openBackground();
+            ManagerData.getIntance().getSuspencionLicense(document, typeDocument);
+            ManagerData.getIntance().getDataCompleted += (s, eventResponseData) =>
+                {
+                    context.closeBackgroundProgressBar();
+                    suspencionLicense = new SuspencionLicense();
+                    if (eventResponseData.getResponseData() != null)
+                    {
+                        suspencionLicense = (SuspencionLicense)eventResponseData.getResponseData();
+                        //paso una lista con todos los puntos de atension
+                        if (!String.IsNullOrEmpty(suspencionLicense.MESSAGE))
+                        {
+                            //agrego el cuadro de licencia suspendida
+                            text_value_message_suspencion_license.Text = suspencionLicense.MESSAGE;
+                            popup_suspencion_license.Visibility = Visibility.Visible;
+                        }
+                        else
+                            popup_suspencion_license.Visibility = Visibility.Collapsed;
                         //se generaron las llamadas correctamente
                     }
                     else
@@ -181,6 +223,7 @@ namespace Simit.fragments
                 dialog.showDialog();
             }
         }
+
 
         public void backPress(System.ComponentModel.CancelEventArgs e)
         {

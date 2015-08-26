@@ -12,6 +12,7 @@ using System.Net.NetworkInformation;
 using Simit.page;
 using Simit.data;
 using Simit.classAux;
+using System.Windows.Input;
 
 namespace Simit.fragments
 {
@@ -61,6 +62,17 @@ namespace Simit.fragments
             {
                 text_select_document.Text = ((TypeDocument)list_select_document.SelectedValue).NameDocument;
                 typeDocument = (TypeDocument)list_select_document.SelectedValue;
+                //cambio el tipo de teclado segun la opcion elegida, 
+                //por defecto siempre es numerico
+                //solo para le pasaporte el alfanumerico
+                InputScope scope = new InputScope();
+                InputScopeName name = new InputScopeName();
+                if (text_select_document.Text.ToString().Equals(resources.@string.StringResource.passport))
+                    name.NameValue = InputScopeNameValue.AlphanumericFullWidth;
+                else
+                    name.NameValue = InputScopeNameValue.Number;
+                scope.Names.Add(name);
+                text_imput_document.InputScope = scope;
             }
             popup_list_select_document.IsOpen = false; //cierro el popup de lista
             grid_popup_list.Visibility = Visibility.Collapsed;

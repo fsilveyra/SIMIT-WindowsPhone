@@ -69,6 +69,7 @@ namespace Simit.data
         private static String PARAMETER_SERVICE_GET_SUBPOENAS = "comparendos";
         private static String PARAMETER_SERVICE_GET_RESOLUTIONS = "resoluciones";//payment_arrangements
         private static String PARAMETER_SERVICE_GET_PAYMENT_ARRANGEMENTS = "acuerdos_pago";
+        private static String PARAMETER_SERVICE_GET_SUSPENCION_LICENSE = "suspenciones_licencias";
         
 
         //eventos de respuesta
@@ -77,6 +78,7 @@ namespace Simit.data
         public event EventHandler<EventResponseConnection> getResolutionsCompleted = null;
         public event EventHandler<EventResponseConnection> getPaymentArrangementsCompleted = null;
         public event EventHandler<EventResponseConnection> getItemsNewsCompleted = null;
+        public event EventHandler<EventResponseConnection> getsuspencionLicenseCompleted = null;
         
         //public event EventHandler<EventResponseConnection> getCategoriesCompleted = null;
 
@@ -108,6 +110,36 @@ namespace Simit.data
 
             }, null);
             getItemsNewsCompleted = null;
+        }
+
+        public void getSuspencionLicense(String document, String documentType)
+        {
+            webRequest = HttpWebRequest.Create(URL_BASE + PARAMTER_SERVICE + PARAMETER_SERVICE_GET_SUSPENCION_LICENSE + PARAMETER_DOCUMENT + document + PARAMETER_DOCUMENT_TYPE + documentType);
+            String resultRequest = null;
+            IAsyncResult result = null;
+            //verificar si existe coneccion a internet
+            result = webRequest.BeginGetResponse(state =>
+            {
+                try
+                {
+                    var responsesuspencionLicense = webRequest.EndGetResponse(result);
+                    resultRequest = new StreamReader(responsesuspencionLicense.GetResponseStream()).ReadToEnd();
+
+                    if (resultRequest != null)
+                    {
+                        if (getsuspencionLicenseCompleted != null)
+                        {
+                            getsuspencionLicenseCompleted(this, new EventResponseConnection(resultRequest));
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    getsuspencionLicenseCompleted(this, new EventResponseConnection(new MemoryStream()));//envio datos nulos
+                }
+
+            }, null);
+            getsuspencionLicenseCompleted = null;
         }
 
         public void getPaymentArrangements(String document,String documentType)

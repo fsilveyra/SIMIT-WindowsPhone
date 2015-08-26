@@ -175,6 +175,28 @@ namespace Simit.data
             getDataCompleted = null;
         }
 
+        public void getSuspencionLicense(String document, String documentType)
+        {
+            ParseSuspencionLicense parseSuspencionLicense = new ParseSuspencionLicense();
+            SuspencionLicense suspencionLicense = new SuspencionLicense();
+            connectionManager.getSuspencionLicense(document, documentType);
+            connectionManager.getsuspencionLicenseCompleted += (s, eventResponse) =>
+            {
+                //para eliminar la excepcion de hilos cruzados
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    if (eventResponse != null)//verifico si no es nula la respuesta
+                    {
+                        //parser los datos
+                        suspencionLicense = parseSuspencionLicense.XmlParsesuspencionLicense(eventResponse.getResponseString());
+                        if (getDataCompleted != null)
+                            getDataCompleted(this, new EventResponseData(suspencionLicense));//genero un evento de respuesta con los datos solicitados
+                    }
+                });
+            };
+            getDataCompleted = null;
+        }
+
         public void getItemsNews()
         {
             List<ItemNews> listItemNews = new List<ItemNews>();

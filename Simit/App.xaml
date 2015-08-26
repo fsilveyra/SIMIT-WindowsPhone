@@ -22,9 +22,13 @@
         <clr:String x:Key="text_title_button_payment_arrangements">ACUERDOS DE PAGO</clr:String>
         <clr:String x:Key="bogota_dc">Bogotá D.C</clr:String>
         <clr:String x:Key="num_cero">0</clr:String>
+        <clr:String x:Key="suspencion_license">LICENCIA SUSPENDIDA</clr:String>
+        <clr:String x:Key="text_popup_information">Bienvenido a la Aplicación del Sistema Integrado de Información sobre Multas y Sanciones por Infracciones de Tránsito - Simit.
+                               
+                                    A través de esta aplicación podrá consultar sus infracciones de  tránsito pendientes y el estado de su cuenta. Así mismo podrá consultar  puntos de atención y noticias actualizadas del sistema.</clr:String>
 
 
-        <!--recursos de color para los xml-->
+            <!--recursos de color para los xml-->
         <LinearGradientBrush x:Key="color_green_light">
             <GradientStop Color="#73cf17"/>
         </LinearGradientBrush>

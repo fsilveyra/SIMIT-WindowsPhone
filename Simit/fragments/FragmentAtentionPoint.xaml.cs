@@ -64,7 +64,7 @@ namespace Simit.fragments
                 Pushpin pushpin = new Pushpin();//marcador en el mapa
                 //pushpin.Style = this.Resources["PushpinStyle"] as Style;
                 pushpin.Tag = pointAtention;
-                pushpin.Background = new SolidColorBrush(Colors.Black);
+                pushpin.Background = new SolidColorBrush(Colors.Red);
                 Location location = new Location();
                 location.Latitude = Convert.ToDouble(pointAtention.LATITUDE);
                 location.Longitude = Convert.ToDouble(pointAtention.LONGITUDE);

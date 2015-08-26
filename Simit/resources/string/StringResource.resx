@@ -127,16 +127,17 @@
     <value>dOh3sS9pNzzhsyPocKFg7Be51l9Q60KvaE1UoTBeK2Q0VEqX02</value>
   </data>
   <data name="dialog_share" xml:space="preserve">
-    <value>Consulte en nuestra app información importante de los organismos de transito.</value>
+    <value>Consulte en nuestra app información importante de los organismos de tránsito.</value>
   </data>
   <data name="text_dialog_twitter" xml:space="preserve">
     <value>El texto debe contener como maximo 140 caracteres.</value>
   </data>
   <data name="url_site_simit" xml:space="preserve">
-    <value>http://www2.simit.org.co</value>
+    <value>https://www.simit.org.co</value>
   </data>
   <data name="body_email" xml:space="preserve">
-    <value>http://www2.simit.org.co/simit/menu/menu_inicial.jsp</value>
+    <value>https://www.simit.org.co
+A través de esta aplicación podrá consultar sus infracciones de  tránsito pendientes y el estado de su cuenta. Así mismo podrá consultar  puntos de atención y noticias del sistema.</value>
   </data>
   <data name="consumer_token_secret_twitter" xml:space="preserve">
     <value>dOh3sS9pNzzhsyPocKFg7Be51l9Q60KvaE1UoTBeK2Q0VEqX02</value>
@@ -154,7 +155,7 @@
     <value>https://es-es.facebook.com/simitnacional</value>
   </data>
   <data name="url_page_simit" xml:space="preserve">
-    <value>https://www.simit.org.co/</value>
+    <value>https://www.simit.org.co</value>
   </data>
   <data name="url_page_twitter" xml:space="preserve">
     <value>https://mobile.twitter.com/Simit_FCM</value>
@@ -301,7 +302,7 @@
     <value>Comparendos</value>
   </data>
   <data name="MESSAGE_NOT_IMPUT_DATA" xml:space="preserve">
-    <value>Debe Ingresar un numero de documento valido.</value>
+    <value>Debe ingresar un documento válido.</value>
   </data>
   <data name="API_KEY_APP_ANDROID" xml:space="preserve">
     <value>AIzaSyAVahCEPXRXG3IGoH8i0n9ORpwe3mxoREI</value>
@@ -341,5 +342,11 @@
   </data>
   <data name="text_state_resolution" xml:space="preserve">
     <value>ESTADO DE LA RESOLUCIÓN</value>
+  </data>
+  <data name="number" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="suspencion_license" xml:space="preserve">
+    <value>LICENCIA SUSPENDIDA</value>
   </data>
 </root>

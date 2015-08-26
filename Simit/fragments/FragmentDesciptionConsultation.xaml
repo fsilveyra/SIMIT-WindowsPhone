@@ -34,6 +34,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Background="Black"  Margin="0,0,0,55">
                 <TextBlock x:Name="text_title_page_consultations" Text="{Binding}" 
@@ -79,6 +80,34 @@
                     <Grid HorizontalAlignment="Right">
                         <Image Source="/image/icon_circle.png" Width="50"  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
                         <TextBlock x:Name="text_value_payment_arrangements" Text="{StaticResource num_cero}" Foreground="White" HorizontalAlignment="Center" FontSize="22" VerticalAlignment="Center"></TextBlock>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="4" VerticalAlignment="Top">
+                <Grid x:Name="popup_suspencion_license" Background="{StaticResource color_green_list_video}" 
+                      Margin="45,30,45,0" Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="1.8*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" >
+                        <Image Source="/image/exclamation.png" Margin="10" VerticalAlignment="Center"></Image>
+                    </Grid>
+                    <Grid Grid.Column="1" Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <TextBlock Text="{StaticResource suspencion_license}"  Foreground="White" 
+                                   HorizontalAlignment="Left" FontSize="25" VerticalAlignment="Center" 
+                                       TextWrapping="Wrap"></TextBlock>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <TextBlock x:Name="text_value_message_suspencion_license" Foreground="White" 
+                                   HorizontalAlignment="Left" FontSize="16" VerticalAlignment="Center"
+                                       TextWrapping="Wrap"></TextBlock>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>

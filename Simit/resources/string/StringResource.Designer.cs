@@ -115,7 +115,8 @@ namespace Simit.resources.@string {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a http://www2.simit.org.co/simit/menu/menu_inicial.jsp.
+        ///   Busca una cadena traducida similar a https://www.simit.org.co
+        ///A través de esta aplicación podrá consultar sus infracciones de  tránsito pendientes y el estado de su cuenta. Así mismo podrá consultar  puntos de atención y noticias del sistema..
         /// </summary>
         internal static string body_email {
             get {
@@ -295,7 +296,7 @@ namespace Simit.resources.@string {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Consulte en nuestra app información importante de los organismos de transito..
+        ///   Busca una cadena traducida similar a Consulte en nuestra app información importante de los organismos de tránsito..
         /// </summary>
         internal static string dialog_share {
             get {
@@ -394,7 +395,7 @@ namespace Simit.resources.@string {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Debe Ingresar un numero de documento valido..
+        ///   Busca una cadena traducida similar a Debe ingresar un documento válido..
         /// </summary>
         internal static string MESSAGE_NOT_IMPUT_DATA {
             get {
@@ -462,6 +463,15 @@ namespace Simit.resources.@string {
         internal static string not_get_data {
             get {
                 return ResourceManager.GetString("not_get_data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Number.
+        /// </summary>
+        internal static string number {
+            get {
+                return ResourceManager.GetString("number", resourceCulture);
             }
         }
         
@@ -552,6 +562,15 @@ namespace Simit.resources.@string {
         internal static string sucre {
             get {
                 return ResourceManager.GetString("sucre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a LICENCIA SUSPENDIDA.
+        /// </summary>
+        internal static string suspencion_license {
+            get {
+                return ResourceManager.GetString("suspencion_license", resourceCulture);
             }
         }
         
@@ -673,7 +692,7 @@ namespace Simit.resources.@string {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a https://www.simit.org.co/.
+        ///   Busca una cadena traducida similar a https://www.simit.org.co.
         /// </summary>
         internal static string url_page_simit {
             get {
@@ -691,7 +710,7 @@ namespace Simit.resources.@string {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a http://www2.simit.org.co.
+        ///   Busca una cadena traducida similar a https://www.simit.org.co.
         /// </summary>
         internal static string url_site_simit {
             get {

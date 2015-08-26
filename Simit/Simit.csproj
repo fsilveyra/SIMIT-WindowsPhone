@@ -22,7 +22,7 @@
     </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>Simit..xap</XapFilename>
+    <XapFilename>Simit.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
     <SilverlightAppEntry>Simit.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>
@@ -130,6 +130,7 @@
     <Compile Include="entities\Resolution.cs" />
     <Compile Include="entities\Snippet.cs" />
     <Compile Include="entities\Subpoena.cs" />
+    <Compile Include="entities\SuspencionLicense.cs" />
     <Compile Include="entities\Thumbnails.cs" />
     <Compile Include="entities\TypeDocument.cs" />
     <Compile Include="entities\NameAtentionPoints.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="parse\ParsePointAtenion.cs" />
     <Compile Include="parse\ParseResolutions.cs" />
     <Compile Include="parse\ParseSubpoena.cs" />
+    <Compile Include="parse\ParseSuspencionLicense.cs" />
     <Compile Include="resources\string\StringResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -214,6 +216,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="image\exclamation.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
