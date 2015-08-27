@@ -34,6 +34,7 @@ namespace Simit.fragments
             this.context = context;
         }
 
+
         /*Carga la lista de los tipos 
          * de documentos a elegir y 
          * abre el popup
@@ -147,5 +148,10 @@ namespace Simit.fragments
             popup_list_select_document.IsOpen = false; 
         }
 
+        private void text_imput_document_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Unknown)//evita que se escriba el punto Key.Unknown representa la tecla punto
+                e.Handled = true;
+        }
     }
 }

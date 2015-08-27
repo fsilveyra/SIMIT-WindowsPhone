@@ -22,7 +22,16 @@ namespace Simit.fragments
         {
             InitializeComponent();
             this.context = context;
+            double whith;
+            double height;
             resolution = (Size)DeviceExtendedProperties.GetValue("PhysicalScreenResolution");
+            whith = resolution.Width;
+            height = resolution.Height;
+            if (resolution.Width > resolution.Height)
+            {
+                resolution.Width = height;
+                resolution.Height = whith;
+            }
         }
 
         public void loadPageSubpoena(List<Subpoena> liStSubpoena,String titlePage)

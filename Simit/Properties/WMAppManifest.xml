@@ -4,7 +4,7 @@
   <Languages xmlns="">
     <Language code="es-CO" />
   </Languages>
-  <App xmlns="" ProductID="{612a770e-09f8-418e-a897-81d571155b86}" Title="Simit: Federación Colombiana de Municipios" RuntimeType="Silverlight" Version="1.0.0.4" Genre="apps.normal" Author="Simit: Federación Colombiana de Municipios" Description="Sample description" Publisher="Simit: Federación Colombiana de Municipios" PublisherID="{bed9709b-72d6-4a79-833a-452c5885a160}">
+  <App xmlns="" ProductID="{612a770e-09f8-418e-a897-81d571155b86}" Title="Simit: Federación Colombiana de Municipios" RuntimeType="Silverlight" Version="1.0.0.5" Genre="apps.normal" Author="Simit: Federación Colombiana de Municipios" Description="Sample description" Publisher="Simit: Federación Colombiana de Municipios" PublisherID="{bed9709b-72d6-4a79-833a-452c5885a160}">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_IDENTITY_DEVICE" />

@@ -72,8 +72,8 @@
                                Foreground="{StaticResource color_blue_text_title}"/>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <TextBox x:Name="text_imput_document" MinWidth="200" MinHeight="50" Margin="30,0,30,0"
-                                 BorderBrush="Gray" InputScope="Number">
+                    <TextBox x:Name="text_imput_document" MinWidth="200" MinHeight="50" Margin="30,0,30,0" KeyDown="text_imput_document_KeyDown"
+                                 BorderBrush="Gray" InputScope="Number" >
                         <!--InputScope="Number"-->
                         
                     </TextBox>
