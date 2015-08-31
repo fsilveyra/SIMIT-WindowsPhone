@@ -22,6 +22,7 @@ namespace Simit.fragments
         {
             InitializeComponent();
             this.context = context;
+            /*
             double whith;
             double height;
             resolution = (Size)DeviceExtendedProperties.GetValue("PhysicalScreenResolution");
@@ -32,6 +33,7 @@ namespace Simit.fragments
                 resolution.Width = height;
                 resolution.Height = whith;
             }
+             * */
         }
 
         public void loadPageSubpoena(List<Subpoena> liStSubpoena,String titlePage)

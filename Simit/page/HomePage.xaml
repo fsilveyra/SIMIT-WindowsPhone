@@ -173,7 +173,7 @@
         <!--pop up de mensajes -->
         <!--******************************************* pop up de informacion ******************************************-->
 
-        <Grid x:Name="popup_info" Grid.RowSpan="2" Visibility="Visible">
+        <Grid x:Name="popup_info" Grid.RowSpan="2" Visibility="Collapsed">
             <Grid.Background>
                 <ImageBrush ImageSource="/image/bg.png" Stretch="Fill" />
             </Grid.Background>

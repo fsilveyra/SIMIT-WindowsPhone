@@ -16,7 +16,7 @@
     <!--LayoutRoot es la cuadrícula raíz donde se coloca todo el contenido de la página-->
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
-            <ImageBrush ImageSource="/image/SplashScreenImage.png"></ImageBrush>
+            <ImageBrush ImageSource="/image/SplashScreenImage.png" Stretch="UniformToFill"></ImageBrush>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

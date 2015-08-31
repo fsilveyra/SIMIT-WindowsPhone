@@ -54,7 +54,7 @@
                 <ListBox x:Name="list_detail" Tap="list_detail_Tap">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Grid x:Name="with_item_list" Width="{Binding SIZE}">
+                            <Grid x:Name="with_item_list" MinWidth="480" MaxWidth="720">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"></RowDefinition>
                                     <RowDefinition Height="1"></RowDefinition>

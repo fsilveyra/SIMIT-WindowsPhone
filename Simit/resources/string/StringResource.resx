@@ -349,4 +349,7 @@ A través de esta aplicación podrá consultar sus infracciones de  tránsito pe
   <data name="suspencion_license" xml:space="preserve">
     <value>LICENCIA SUSPENDIDA</value>
   </data>
+  <data name="color_green_ligth" xml:space="preserve">
+    <value>#73cf17</value>
+  </data>
 </root>
